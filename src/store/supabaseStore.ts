@@ -68,15 +68,12 @@ export const useSupabaseInventoryStore = create<SupabaseInventoryStore>()((set, 
       console.log('Adding item:', item); // Debugging line
       console.log('Supabase client:', supabase); // Debugging line
       
-      // Test Supabase connection first
-      const { data: testData, error: testError } = await supabase
-        .from('items')
-        .select('count')
-        .limit(1);
+      // Add timeout to prevent hanging
+      const timeoutPromise = new Promise((_, reject) => {
+        setTimeout(() => reject(new Error('Request timeout after 10 seconds')), 10000);
+      });
       
-      console.log('Supabase connection test:', { testData, testError }); // Debugging line
-      
-      const { data, error } = await supabase
+      const insertPromise = supabase
         .from('items')
         .insert({
           sku: item.sku,
@@ -87,6 +84,8 @@ export const useSupabaseInventoryStore = create<SupabaseInventoryStore>()((set, 
         })
         .select()
         .single();
+
+      const { data, error } = await Promise.race([insertPromise, timeoutPromise]) as any;
 
       console.log('Supabase response:', { data, error }); // Debugging line
 

@@ -17,11 +17,17 @@ export function SupabaseTest() {
     setTestResult("");
 
     try {
-      // Test 1: Check if we can connect to Supabase
-      const { data, error } = await supabase
+      // Test with timeout to prevent hanging
+      const timeoutPromise = new Promise((_, reject) => {
+        setTimeout(() => reject(new Error('Connection timeout after 5 seconds')), 5000);
+      });
+      
+      const testPromise = supabase
         .from('locations')
         .select('*')
         .limit(1);
+
+      const { data, error } = await Promise.race([testPromise, timeoutPromise]) as any;
 
       if (error) {
         setTestResult(`❌ Connection failed: ${error.message}`);
@@ -30,7 +36,8 @@ export function SupabaseTest() {
 
       setTestResult(`✅ Connection successful! Found ${data?.length || 0} locations.`);
     } catch (error) {
-      setTestResult(`❌ Error: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      setTestResult(`❌ Error: ${errorMessage}`);
     } finally {
       setIsLoading(false);
     }

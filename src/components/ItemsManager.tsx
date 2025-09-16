@@ -81,7 +81,16 @@ export function ItemsManager() {
                   console.error('Error adding item:', error);
                   const errorMessage = error instanceof Error ? error.message : 'Failed to add item';
                   const errorDetails = error instanceof Error ? error.toString() : String(error);
-                  setAddMessage(`Error: ${errorMessage}`);
+                  
+                  // Handle specific error types
+                  if (errorMessage.includes('timeout')) {
+                    setAddMessage('Error: Request timed out. Please check your internet connection and try again.');
+                  } else if (errorMessage.includes('Supabase error')) {
+                    setAddMessage(`Error: ${errorMessage}`);
+                  } else {
+                    setAddMessage(`Error: ${errorMessage}`);
+                  }
+                  
                   console.error('Full error details:', errorDetails);
                 } finally {
                   setIsAdding(false);
