@@ -22,7 +22,7 @@ export function LocationsManager() {
             <input
               className="border rounded-lg p-2 md:p-1"
               value={loc.name}
-              onChange={(e) => updateLocation(loc.id, e.target.value)}
+              onChange={(e) => updateLocation(loc.id, { name: e.target.value })}
             />
             <button className="border rounded-lg px-3 py-2 md:px-2 md:py-1 text-red-600" onClick={() => removeLocation(loc.id)}>Delete</button>
           </li>
