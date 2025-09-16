@@ -7,7 +7,7 @@ import { ThemeHeader } from "@/components/ThemeHeader";
 import { ThemeWrapper } from "@/components/ThemeWrapper";
 import { SupabaseInitializer } from "@/components/SupabaseInitializer";
 import { Footer } from "@/components/Footer";
-import packageJson from "../package.json";
+import { APP_VERSION } from "@/lib/version";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -42,7 +42,7 @@ export default function RootLayout({
               <main className="mx-auto max-w-2xl md:max-w-5xl px-4 md:px-6 py-4 md:py-6">
                 {children}
               </main>
-              <Footer version={packageJson.version} />
+              <Footer version={APP_VERSION} />
             </ThemeWrapper>
           </SupabaseAuthProvider>
         </ThemeProvider>
