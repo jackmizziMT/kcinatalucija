@@ -7,6 +7,7 @@ import { UserManagement } from "@/components/UserManagement";
 import { SecurityQuestionManager } from "@/components/SecurityQuestionManager";
 // import { DataBackup } from "@/components/DataBackup";
 import { SupabaseTest } from "@/components/SupabaseTest";
+import { SupabaseConfigInfo } from "@/components/SupabaseConfigInfo";
 import { DataPurge } from "@/components/DataPurge";
 import { Card, CardBody, CardHeader } from "@/components/ui/Card";
 import Link from "next/link";
@@ -30,6 +31,7 @@ function AdminContent() {
       <h1 className={`text-2xl md:text-3xl font-bold ${isDark ? "text-white" : "text-gray-900"}`}>Admin</h1>
       <SecurityQuestionManager />
       <UserManagement />
+      <SupabaseConfigInfo />
       <SupabaseTest />
       <ItemsManager />
       <LocationsManager />

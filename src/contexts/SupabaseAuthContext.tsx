@@ -324,13 +324,22 @@ export function SupabaseAuthProvider({ children }: { children: ReactNode }) {
   // User management functions
   const createUser = async (userData: { username: string; email: string; password: string; role: 'admin' | 'editor' | 'viewer' }) => {
     try {
-      // Use regular signup flow instead of admin functions
+      // Use regular signup flow with email confirmation disabled for now
       const { data: authData, error: authError } = await supabase.auth.signUp({
         email: userData.email,
         password: userData.password,
+        options: {
+          emailRedirectTo: undefined, // Disable email confirmation redirect
+        }
       });
 
-      if (authError) throw authError;
+      if (authError) {
+        // Handle specific error cases
+        if (authError.message.includes('already registered')) {
+          throw new Error('User with this email already exists');
+        }
+        throw authError;
+      }
 
       if (!authData.user) {
         throw new Error('User creation failed - no user data returned');

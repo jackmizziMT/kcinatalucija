@@ -64,7 +64,9 @@ export function UserManagement() {
         role: newRole,
       });
 
-      setMessage(`✅ User "${newUsername}" created successfully! They can now log in with their email and password.`);
+      setMessage(`✅ User "${newUsername}" created successfully! 
+
+Note: If email confirmation is enabled in Supabase, the user will need to check their email and click the confirmation link before they can log in. If you don't see the email, check the spam folder.`);
       setNewUsername("");
       setNewPassword("");
       setNewEmail("");

@@ -1617,3 +1617,9 @@ https://nextjs.org/docs/messages/module-not-found
 
  ✓ Starting...
  ✓ Ready in 1335ms
+ ○ Compiling / ...
+ ✓ Compiled / in 2s
+ GET / 200 in 2375ms
+ ✓ Compiled /login in 277ms
+ GET /login 200 in 311ms
+ ✓ Compiled in 320ms
