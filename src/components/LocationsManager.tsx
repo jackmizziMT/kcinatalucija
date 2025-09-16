@@ -14,7 +14,7 @@ export function LocationsManager() {
       <h2 className="text-base md:text-lg font-medium">Locations</h2>
       <div className="flex flex-col sm:flex-row gap-2">
         <input className="border rounded-lg p-3 md:p-2" placeholder="New location name" value={newName} onChange={(e) => setNewName(e.target.value)} />
-        <button className="border rounded-lg p-3 md:p-2" onClick={() => newName && (addLocation(newName), setNewName(""))}>Add</button>
+        <button className="border rounded-lg p-3 md:p-2" onClick={() => newName && (addLocation({ name: newName }), setNewName(""))}>Add</button>
       </div>
       <ul className="space-y-2">
         {list.map((loc) => (
