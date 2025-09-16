@@ -60,7 +60,7 @@ export function SupabaseAuthProvider({ children }: { children: ReactNode }) {
   const loadAppUser = async (userId: string) => {
     try {
       const { data, error } = await supabase
-        .from('users')
+        .from('app_users')
         .select('*')
         .eq('id', userId)
         .single();
@@ -111,7 +111,7 @@ export function SupabaseAuthProvider({ children }: { children: ReactNode }) {
 
       // Create app user record
       const { error: userError } = await supabase
-        .from('users')
+        .from('app_users')
         .insert({
           id: authData.user.id,
           username,
@@ -162,7 +162,7 @@ export function SupabaseAuthProvider({ children }: { children: ReactNode }) {
   const updateUserRole = async (userId: string, role: 'admin' | 'editor' | 'viewer'): Promise<boolean> => {
     try {
       const { error } = await supabase
-        .from('users')
+        .from('app_users')
         .update({ role })
         .eq('id', userId);
 
@@ -188,7 +188,7 @@ export function SupabaseAuthProvider({ children }: { children: ReactNode }) {
 
     try {
       const { error } = await supabase
-        .from('users')
+        .from('app_users')
         .update({ 
           security_question: question,
           security_answer: answer,

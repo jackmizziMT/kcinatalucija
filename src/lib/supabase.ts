@@ -143,7 +143,7 @@ export interface Database {
           created_at?: string;
         };
       };
-      users: {
+      app_users: {
         Row: {
           id: string;
           username: string;

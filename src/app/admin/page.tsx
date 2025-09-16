@@ -6,6 +6,7 @@ import { ItemsManager } from "@/components/ItemsManager";
 import { UserManagement } from "@/components/UserManagement";
 import { SecurityQuestionManager } from "@/components/SecurityQuestionManager";
 import { DataBackup } from "@/components/DataBackup";
+import { SupabaseTest } from "@/components/SupabaseTest";
 import { Card, CardBody, CardHeader } from "@/components/ui/Card";
 import Link from "next/link";
 import { useTheme } from "@/contexts/ThemeContext";
@@ -27,6 +28,7 @@ function AdminContent() {
     <main className="space-y-6 md:space-y-8">
       <h1 className={`text-2xl md:text-3xl font-bold ${isDark ? "text-white" : "text-gray-900"}`}>Admin</h1>
       <SecurityQuestionManager />
+      <SupabaseTest />
       <DataBackup />
       <UserManagement />
       <ItemsManager />
