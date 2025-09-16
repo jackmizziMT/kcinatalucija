@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useAuth } from '@/contexts/AuthContext';
+import { useSupabaseAuth } from '@/contexts/SupabaseAuthContext';
 
 interface AuthGuardProps {
   children: React.ReactNode;
@@ -19,7 +19,7 @@ export function AuthGuard({
   requireEditor = false, 
   allowViewer = false 
 }: AuthGuardProps) {
-  const { user, isLoading } = useAuth();
+  const { user, isLoading } = useSupabaseAuth();
   const router = useRouter();
 
   useEffect(() => {

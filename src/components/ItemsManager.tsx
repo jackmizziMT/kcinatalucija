@@ -1,14 +1,14 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { useInventoryStore } from "@/store/inventoryStore";
+import { useSupabaseInventoryStore } from "@/store/supabaseStore";
 import { euro } from "@/lib/types";
 import { Card, CardBody, CardHeader } from "@/components/ui/Card";
 import { Button, Input, Label, Select } from "@/components/ui/Controls";
 import { useTheme } from "@/contexts/ThemeContext";
 
 export function ItemsManager() {
-  const { items, locations, stockByLocation, addItem } = useInventoryStore();
+  const { items, locations, stockByLocation, addItem } = useSupabaseInventoryStore();
   const { theme } = useTheme();
   const [sku, setSku] = useState("");
   const [name, setName] = useState("");

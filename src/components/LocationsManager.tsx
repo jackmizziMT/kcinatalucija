@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { useInventoryStore } from "@/store/inventoryStore";
+import { useSupabaseInventoryStore } from "@/store/supabaseStore";
 
 export function LocationsManager() {
-  const { locations, addLocation, updateLocation, removeLocation } = useInventoryStore();
+  const { locations, addLocation, updateLocation, removeLocation } = useSupabaseInventoryStore();
   const [newName, setNewName] = useState("");
 
   const list = Object.values(locations);

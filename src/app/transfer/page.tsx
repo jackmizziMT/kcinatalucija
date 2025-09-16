@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { useInventoryStore } from "@/store/inventoryStore";
+import { useSupabaseInventoryStore } from "@/store/supabaseStore";
 import { Card, CardBody, CardHeader } from "@/components/ui/Card";
 import { Button, Input, Label, Select } from "@/components/ui/Controls";
 import { useTheme } from "@/contexts/ThemeContext";
@@ -16,7 +16,7 @@ export default function TransferPage() {
 }
 
 function TransferContent() {
-  const { items, locations, stockByLocation, transferStock } = useInventoryStore();
+  const { items, locations, stockByLocation, transferStock } = useSupabaseInventoryStore();
   const { theme } = useTheme();
   const [sku, setSku] = useState("");
   const [fromLocationId, setFromLocationId] = useState("");

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/contexts/ThemeContext";
-import { AuthProvider } from "@/contexts/AuthContext";
+import { SupabaseAuthProvider } from "@/contexts/SupabaseAuthContext";
 import { ThemeHeader } from "@/components/ThemeHeader";
 import { ThemeWrapper } from "@/components/ThemeWrapper";
 
@@ -32,14 +32,14 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}
       >
         <ThemeProvider>
-          <AuthProvider>
+          <SupabaseAuthProvider>
             <ThemeWrapper>
               <ThemeHeader />
               <main className="mx-auto max-w-2xl md:max-w-5xl px-4 md:px-6 py-4 md:py-6">
                 {children}
               </main>
             </ThemeWrapper>
-          </AuthProvider>
+          </SupabaseAuthProvider>
         </ThemeProvider>
       </body>
     </html>

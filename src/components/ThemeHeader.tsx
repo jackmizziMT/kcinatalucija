@@ -2,11 +2,11 @@
 
 import Link from "next/link";
 import { useTheme } from "@/contexts/ThemeContext";
-import { useAuth } from "@/contexts/AuthContext";
+import { useSupabaseAuth } from "@/contexts/SupabaseAuthContext";
 
 export function ThemeHeader() {
   const { theme, toggleTheme } = useTheme();
-  const { user, logout } = useAuth();
+  const { user, logout } = useSupabaseAuth();
   const isDark = theme === "dark";
 
   return (

@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { useInventoryStore } from "@/store/inventoryStore";
+import { useSupabaseInventoryStore } from "@/store/supabaseStore";
 import { Card, CardBody, CardHeader } from "@/components/ui/Card";
 import { Button, Input, Label, Select } from "@/components/ui/Controls";
 import { useTheme } from "@/contexts/ThemeContext";
@@ -16,7 +16,7 @@ export default function DashboardPage() {
 }
 
 function DashboardContent() {
-  const { items, locations, stockByLocation, getAuditTrail } = useInventoryStore();
+  const { items, locations, stockByLocation, getAuditTrail } = useSupabaseInventoryStore();
   const { theme } = useTheme();
   const [reportType, setReportType] = useState<"location" | "product" | "audit">("location");
   const [selectedLocationId, setSelectedLocationId] = useState("");

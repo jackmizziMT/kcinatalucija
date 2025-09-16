@@ -1041,3 +1041,23 @@ https://nextjs.org/docs/messages/module-not-found
  ✓ Compiled in 63ms
    Reload env: .env.local
    Reload env: .env.local
+ ⨯ Error: Module 19362 was instantiated because it was required from module 49695, but the module factory is not available.
+    at Object.<anonymous> (.next/server/app/login/page.js:16:3) {
+  page: '/login'
+}
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 1130ms
+ GET /login 500 in 1780ms
+ ⨯ Error: Module 19362 was instantiated because it was required from module 49695, but the module factory is not available.
+    at Object.<anonymous> (.next/server/app/login/page.js:16:3) {
+  page: '/login'
+}
+ GET /login 500 in 219ms
+ ⨯ Error: Module 19362 was instantiated because it was required from module 49695, but the module factory is not available.
+    at Object.<anonymous> (.next/server/app/login/page.js:16:3) {
+  page: '/login'
+}
+ GET /login 500 in 91ms
+ ✓ Compiled in 718ms
+ ✓ Compiled in 478ms
+ ✓ Compiled in 296ms

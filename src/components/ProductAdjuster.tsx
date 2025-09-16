@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState, useRef } from "react";
-import { useInventoryStore } from "@/store/inventoryStore";
+import { useSupabaseInventoryStore } from "@/store/supabaseStore";
 import { Card, CardBody, CardHeader } from "@/components/ui/Card";
 import { Button, Input, Label, Select } from "@/components/ui/Controls";
 import { useTheme } from "@/contexts/ThemeContext";
@@ -11,7 +11,7 @@ interface ProductAdjusterProps {
 }
 
 export function ProductAdjuster({ canEdit = true }: ProductAdjusterProps) {
-  const { items, locations, stockByLocation, addStock, deductStock } = useInventoryStore();
+  const { items, locations, stockByLocation, addStock, deductStock } = useSupabaseInventoryStore();
   const { theme } = useTheme();
   const [sku, setSku] = useState("");
   const [qtyByLoc, setQtyByLoc] = useState<Record<string, number>>({});
