@@ -419,13 +419,22 @@ export const useSupabaseInventoryStore = create<SupabaseInventoryStore>()((set, 
     if (quantity <= 0 || !Number.isInteger(quantity)) return;
 
     try {
+      console.log('Starting transfer:', { sku, fromLocationId, toLocationId, quantity, note });
+      
+      // Add timeout to prevent hanging
+      const timeoutPromise = new Promise((_, reject) => {
+        setTimeout(() => reject(new Error('Transfer request timeout after 10 seconds')), 10000);
+      });
+      
       // Get current stock from source location
-      const { data: fromStock, error: fromError } = await supabase
+      const fromStockPromise = supabase
         .from('stock_by_location')
         .select('quantity')
         .eq('sku', sku)
         .eq('location_id', fromLocationId)
         .single();
+        
+      const { data: fromStock, error: fromError } = await Promise.race([fromStockPromise, timeoutPromise]) as any;
 
       if (fromError && fromError.code !== 'PGRST116') throw fromError;
 
@@ -435,19 +444,21 @@ export const useSupabaseInventoryStore = create<SupabaseInventoryStore>()((set, 
       }
 
       // Get current stock from destination location
-      const { data: toStock, error: toError } = await supabase
+      const toStockPromise = supabase
         .from('stock_by_location')
         .select('quantity')
         .eq('sku', sku)
         .eq('location_id', toLocationId)
         .single();
 
+      const { data: toStock, error: toError } = await Promise.race([toStockPromise, timeoutPromise]) as any;
+
       if (toError && toError.code !== 'PGRST116') throw toError;
 
       const toQuantity = toStock?.quantity || 0;
 
       // Update both locations
-      const { error: updateFromError } = await supabase
+      const updateFromPromise = supabase
         .from('stock_by_location')
         .upsert({
           sku,
@@ -455,9 +466,10 @@ export const useSupabaseInventoryStore = create<SupabaseInventoryStore>()((set, 
           quantity: fromQuantity - quantity,
         }, { onConflict: 'sku,location_id' });
 
+      const { error: updateFromError } = await Promise.race([updateFromPromise, timeoutPromise]) as any;
       if (updateFromError) throw updateFromError;
 
-      const { error: updateToError } = await supabase
+      const updateToPromise = supabase
         .from('stock_by_location')
         .upsert({
           sku,
@@ -465,6 +477,7 @@ export const useSupabaseInventoryStore = create<SupabaseInventoryStore>()((set, 
           quantity: toQuantity + quantity,
         }, { onConflict: 'sku,location_id' });
 
+      const { error: updateToError } = await Promise.race([updateToPromise, timeoutPromise]) as any;
       if (updateToError) throw updateToError;
 
       // Add audit record
@@ -515,6 +528,8 @@ export const useSupabaseInventoryStore = create<SupabaseInventoryStore>()((set, 
           }
         };
       });
+      
+      console.log('Transfer completed successfully');
     } catch (error) {
       console.error('Error transferring stock:', error);
       throw error;
