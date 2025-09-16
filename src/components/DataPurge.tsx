@@ -55,8 +55,8 @@ export function DataPurge() {
       }, 2000);
       
     } catch (error) {
-      console.error('Error purging data:', error);
-      setPurgeMessage(`❌ Error: ${error instanceof Error ? error.message : 'Failed to purge data'}`);
+      console.error('Error purging inventory data:', error);
+      setPurgeMessage(`❌ Error: ${error instanceof Error ? error.message : 'Failed to purge inventory data'}`);
     } finally {
       setIsPurging(false);
       setShowConfirmation(false);
@@ -82,11 +82,11 @@ export function DataPurge() {
               </svg>
               <div>
                 <h4 className={`text-sm font-semibold ${isDark ? "text-red-300" : "text-red-800"}`}>
-                  ⚠️ DANGER ZONE
+                  ⚠️ INVENTORY DATA ONLY
                 </h4>
                 <p className={`text-xs mt-1 ${isDark ? "text-red-200" : "text-red-700"}`}>
-                  This will permanently delete ALL inventory data including items, locations, stock quantities, and audit trails. 
-                  Users and settings will be preserved. This action cannot be undone!
+                  This will permanently delete ONLY inventory data: items, locations, stock quantities, and audit trails. 
+                  ✅ Users, settings, and app configuration will be preserved. This action cannot be undone!
                 </p>
               </div>
             </div>
