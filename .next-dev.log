@@ -1494,3 +1494,88 @@ https://nextjs.org/docs/messages/module-not-found
  ✓ Compiled in 285ms
  ✓ Compiled in 474ms
  ✓ Compiled in 744ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.sjl14jzv61'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.sjl14jzv61'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.ctfh8qncx9d'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.ctfh8qncx9d'
+}
+ ✓ Compiled / in 256ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.zmzd2qbi3j'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.zmzd2qbi3j'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.2upa2tkj7r1'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.2upa2tkj7r1'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.dhj29o15oc'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.dhj29o15oc'
+}
+[Error: ENOENT: no such file or directory, open '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.7vynxkchfhu'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.7vynxkchfhu'
+}
+[Error: ENOENT: no such file or directory, open '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.vsfg50nmpar'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.vsfg50nmpar'
+}
+[Error: ENOENT: no such file or directory, open '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.ctfh8qncx9d'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.ctfh8qncx9d'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.h9hsdzomxjw'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.h9hsdzomxjw'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.8x0fznw7uv'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.8x0fznw7uv'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.a1kzd6bnyu5'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.a1kzd6bnyu5'
+}
+[Error: ENOENT: no such file or directory, open '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.w35efi2c7iq'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.w35efi2c7iq'
+}
+[Error: ENOENT: no such file or directory, open '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.139vpci5brh'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.139vpci5brh'
+}
+[Error: ENOENT: no such file or directory, open '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.c7w0ne588ph'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.c7w0ne588ph'
+}

@@ -16,7 +16,7 @@ interface AppUser {
 }
 
 export function UserManagement() {
-  const { user, createUser, updateUser, deleteUser, resetUserPassword, getAllUsers } = useSupabaseAuth();
+  const { user, createUser, deleteUser, getAllUsers } = useSupabaseAuth();
   const { theme } = useTheme();
   const [newUsername, setNewUsername] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -24,10 +24,6 @@ export function UserManagement() {
   const [newEmail, setNewEmail] = useState("");
   const [isCreating, setIsCreating] = useState(false);
   const [message, setMessage] = useState("");
-  const [editingUser, setEditingUser] = useState<any>(null);
-  const [editUsername, setEditUsername] = useState("");
-  const [editRole, setEditRole] = useState<"admin" | "editor" | "viewer">("editor");
-  const [editEmail, setEditEmail] = useState("");
   const [users, setUsers] = useState<AppUser[]>([]);
   const [loadingUsers, setLoadingUsers] = useState(false);
 
@@ -36,7 +32,7 @@ export function UserManagement() {
   // Load users on component mount
   useEffect(() => {
     loadUsers();
-  }, []);
+  }, [getAllUsers]);
 
   const loadUsers = async () => {
     setLoadingUsers(true);
@@ -104,34 +100,6 @@ export function UserManagement() {
     }
   };
 
-  const handleUpdateUser = async (userId: string) => {
-    try {
-      await updateUser(userId, {
-        username: editUsername,
-        role: editRole,
-        email: editEmail,
-      });
-
-      setMessage(`✅ User "${editUsername}" updated successfully`);
-      setEditingUser(null);
-      setEditUsername("");
-      setEditEmail("");
-      setEditRole("editor");
-
-      // Reload users list
-      loadUsers();
-
-      // Clear success message after 3 seconds
-      setTimeout(() => setMessage(""), 3000);
-    } catch (error) {
-      console.error('Error updating user:', error);
-      const errorMessage = error instanceof Error ? error.message : 'Failed to update user';
-      setMessage(`❌ Error: ${errorMessage}`);
-      
-      // Clear error message after 5 seconds
-      setTimeout(() => setMessage(""), 5000);
-    }
-  };
 
   const handleDeleteUser = async (userId: string, username: string) => {
     if (!confirm(`Are you sure you want to delete user "${username}"? This action cannot be undone.`)) {
@@ -157,25 +125,6 @@ export function UserManagement() {
     }
   };
 
-  const handleResetPassword = async (userId: string, username: string) => {
-    const newPassword = prompt(`Enter new password for user "${username}":`);
-    if (!newPassword) return;
-
-    try {
-      await resetUserPassword(userId, newPassword);
-      setMessage(`✅ Password reset successfully for user "${username}"`);
-
-      // Clear success message after 3 seconds
-      setTimeout(() => setMessage(""), 3000);
-    } catch (error) {
-      console.error('Error resetting password:', error);
-      const errorMessage = error instanceof Error ? error.message : 'Failed to reset password';
-      setMessage(`❌ Error: ${errorMessage}`);
-      
-      // Clear error message after 5 seconds
-      setTimeout(() => setMessage(""), 5000);
-    }
-  };
 
   return (
     <div className="space-y-6 md:space-y-8">
@@ -297,24 +246,21 @@ export function UserManagement() {
                       </div>
                       <div className="flex gap-2">
                         <Button
-                          variant="secondary"
+                          variant="default"
                           size="sm"
                           onClick={() => {
-                            setEditingUser(userItem);
-                            setEditUsername(userItem.username);
-                            setEditEmail(userItem.email);
-                            setEditRole(userItem.role);
+                            setMessage("Edit functionality requires admin privileges. This feature will be available in a future update.");
+                            setTimeout(() => setMessage(""), 5000);
                           }}
                           disabled={userItem.id === user?.id}
                         >
                           Edit
                         </Button>
                         <Button
-                          variant="secondary"
+                          variant="danger"
                           size="sm"
                           onClick={() => handleDeleteUser(userItem.id, userItem.username)}
                           disabled={userItem.id === user?.id}
-                          className="text-red-600 hover:text-red-700 hover:bg-red-50 dark:text-red-400 dark:hover:text-red-300 dark:hover:bg-red-500/10"
                         >
                           Delete
                         </Button>
