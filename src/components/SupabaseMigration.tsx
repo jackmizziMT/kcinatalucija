@@ -7,6 +7,7 @@ import { useSupabaseAuth } from "@/contexts/SupabaseAuthContext";
 import { Card, CardBody, CardHeader } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Controls";
 import { useTheme } from "@/contexts/ThemeContext";
+import { Item, Location } from "@/lib/types";
 
 export function SupabaseMigration() {
   const [isMigrating, setIsMigrating] = useState(false);
@@ -33,14 +34,14 @@ export function SupabaseMigration() {
       
       // Step 2: Import items to Supabase
       setMigrationStatus("Migrating items...");
-      const items = Object.values(localData.items || {});
+      const items = Object.values(localData.items || {}) as Item[];
       if (items.length > 0) {
         await supabaseStore.importItems(items);
       }
 
       // Step 3: Import locations to Supabase
       setMigrationStatus("Migrating locations...");
-      const locations = Object.values(localData.locations || {});
+      const locations = Object.values(localData.locations || {}) as Location[];
       for (const location of locations) {
         await supabaseStore.addLocation({ name: location.name });
       }
@@ -54,6 +55,7 @@ export function SupabaseMigration() {
       const stockEntries = Object.entries(localData.stockByLocation || {});
       for (const [key, quantity] of stockEntries) {
         const [sku, locationId] = key.split('::');
+        const quantityNum = Number(quantity);
         
         // Find the new location ID by name
         const localLocation = localData.locations?.[locationId];
@@ -62,8 +64,8 @@ export function SupabaseMigration() {
             loc => loc.name === localLocation.name
           );
           
-          if (newLocation && quantity > 0) {
-            await supabaseStore.addStock(sku, newLocation.id, quantity, "migration", "Migrated from local storage");
+          if (newLocation && quantityNum > 0) {
+            await supabaseStore.addStock(sku, newLocation.id, quantityNum, "migration", "Migrated from local storage");
           }
         }
       }

@@ -77,6 +77,7 @@ export function SupabaseAuthProvider({ children }: { children: ReactNode }) {
         id: data.id,
         username: data.username,
         role: data.role,
+        email: data.email,
         securityQuestion: data.security_question,
         securityAnswer: data.security_answer,
       });

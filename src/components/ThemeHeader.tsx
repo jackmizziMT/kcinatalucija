@@ -6,7 +6,7 @@ import { useSupabaseAuth } from "@/contexts/SupabaseAuthContext";
 
 export function ThemeHeader() {
   const { theme, toggleTheme } = useTheme();
-  const { user, logout } = useSupabaseAuth();
+  const { user, signOut } = useSupabaseAuth();
   const isDark = theme === "dark";
 
   return (
@@ -91,7 +91,7 @@ export function ThemeHeader() {
           
           {user && (
             <button
-              onClick={logout}
+              onClick={signOut}
               className={`ml-2 px-3 py-2 rounded-md text-sm transition-colors ${
                 isDark ? "bg-red-500/20 text-red-300 hover:bg-red-500/30" : "bg-red-100 text-red-700 hover:bg-red-200"
               }`}
