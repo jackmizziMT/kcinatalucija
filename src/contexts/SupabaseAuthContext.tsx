@@ -355,11 +355,18 @@ export function SupabaseAuthProvider({ children }: { children: ReactNode }) {
 
       if (error) throw error;
 
-      return data.map((user: any) => ({
+      return data.map((user: {
+        id: string;
+        username: string;
+        email: string;
+        role: string;
+        security_question?: string;
+        security_answer?: string;
+      }) => ({
         id: user.id,
         username: user.username,
         email: user.email,
-        role: user.role,
+        role: user.role as 'admin' | 'editor' | 'viewer',
         securityQuestion: user.security_question,
         securityAnswer: user.security_answer,
       }));

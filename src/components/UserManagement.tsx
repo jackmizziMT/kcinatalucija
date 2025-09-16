@@ -29,11 +29,6 @@ export function UserManagement() {
 
   const isDark = theme === "dark";
 
-  // Load users on component mount
-  useEffect(() => {
-    loadUsers();
-  }, [getAllUsers]);
-
   const loadUsers = async () => {
     setLoadingUsers(true);
     try {
@@ -46,6 +41,11 @@ export function UserManagement() {
       setLoadingUsers(false);
     }
   };
+
+  // Load users on component mount
+  useEffect(() => {
+    loadUsers();
+  }, []);
 
   const handleCreateUser = async () => {
     if (!newUsername || !newPassword || !newEmail) {
@@ -247,20 +247,20 @@ export function UserManagement() {
                       <div className="flex gap-2">
                         <Button
                           variant="default"
-                          size="sm"
                           onClick={() => {
                             setMessage("Edit functionality requires admin privileges. This feature will be available in a future update.");
                             setTimeout(() => setMessage(""), 5000);
                           }}
                           disabled={userItem.id === user?.id}
+                          className="text-sm px-3 py-2"
                         >
                           Edit
                         </Button>
                         <Button
                           variant="danger"
-                          size="sm"
                           onClick={() => handleDeleteUser(userItem.id, userItem.username)}
                           disabled={userItem.id === user?.id}
+                          className="text-sm px-3 py-2"
                         >
                           Delete
                         </Button>
