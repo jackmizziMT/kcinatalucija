@@ -15,6 +15,8 @@ export function ItemsManager() {
   const [cost, setCost] = useState("0");
   const [price, setPrice] = useState("0");
   const [quantityKind, setQuantityKind] = useState<"unit" | "kg">("unit");
+  const [isAdding, setIsAdding] = useState(false);
+  const [addMessage, setAddMessage] = useState("");
 
   const locationList = useMemo(() => Object.values(locations), [locations]);
   const itemList = useMemo(() => Object.values(items), [items]);
@@ -51,21 +53,55 @@ export function ItemsManager() {
             </Label>
             <Button
               variant="primary"
-              onClick={() => {
-                if (!sku || !name) return;
-                const costCents = Math.round(parseFloat(cost) * 100) || 0;
-                const priceCents = Math.round(parseFloat(price) * 100) || 0;
-                addItem({ sku, name, costPriceEuroCents: costCents, sellingPriceEuroCents: priceCents, quantityKind });
-                setSku("");
-                setName("");
-                setCost("0");
-                setPrice("0");
-                setQuantityKind("unit");
+              disabled={isAdding}
+              onClick={async () => {
+                if (!sku || !name) {
+                  setAddMessage("Please enter SKU and Product Name");
+                  return;
+                }
+                
+                setIsAdding(true);
+                setAddMessage("");
+                
+                try {
+                  const costCents = Math.round(parseFloat(cost) * 100) || 0;
+                  const priceCents = Math.round(parseFloat(price) * 100) || 0;
+                  await addItem({ sku, name, costPriceEuroCents: costCents, sellingPriceEuroCents: priceCents, quantityKind });
+                  
+                  setSku("");
+                  setName("");
+                  setCost("0");
+                  setPrice("0");
+                  setQuantityKind("unit");
+                  setAddMessage("Item added successfully!");
+                  
+                  // Clear success message after 3 seconds
+                  setTimeout(() => setAddMessage(""), 3000);
+                } catch (error) {
+                  console.error('Error adding item:', error);
+                  setAddMessage(`Error: ${error instanceof Error ? error.message : 'Failed to add item'}`);
+                } finally {
+                  setIsAdding(false);
+                }
               }}
             >
-              Save
+              {isAdding ? "Adding..." : "Save"}
             </Button>
           </div>
+          
+          {addMessage && (
+            <div className={`mt-4 p-3 rounded-lg border ${
+              addMessage.includes("Error") || addMessage.includes("Please")
+                ? isDark 
+                  ? "bg-red-500/20 border-red-500/30 text-red-300" 
+                  : "bg-red-100 border-red-200 text-red-700"
+                : isDark 
+                  ? "bg-green-500/20 border-green-500/30 text-green-300" 
+                  : "bg-green-100 border-green-200 text-green-700"
+            }`}>
+              {addMessage}
+            </div>
+          )}
         </CardBody>
       </Card>
 

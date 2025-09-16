@@ -65,6 +65,8 @@ export const useSupabaseInventoryStore = create<SupabaseInventoryStore>()((set, 
   // Items
   addItem: async (item) => {
     try {
+      console.log('Adding item:', item); // Debugging line
+      
       const { data, error } = await supabase
         .from('items')
         .insert({
@@ -77,11 +79,15 @@ export const useSupabaseInventoryStore = create<SupabaseInventoryStore>()((set, 
         .select()
         .single();
 
+      console.log('Supabase response:', { data, error }); // Debugging line
+
       if (error) throw error;
 
       set((state) => ({
         items: { ...state.items, [item.sku]: item }
       }));
+      
+      console.log('Item added successfully'); // Debugging line
     } catch (error) {
       console.error('Error adding item:', error);
       throw error;
