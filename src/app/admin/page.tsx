@@ -3,9 +3,9 @@
 import { ImportExport } from "@/components/ImportExport";
 import { LocationsManager } from "@/components/LocationsManager";
 import { ItemsManager } from "@/components/ItemsManager";
-import { UserManagement } from "@/components/UserManagement";
+// import { UserManagement } from "@/components/UserManagement";
 import { SecurityQuestionManager } from "@/components/SecurityQuestionManager";
-import { DataBackup } from "@/components/DataBackup";
+// import { DataBackup } from "@/components/DataBackup";
 import { SupabaseTest } from "@/components/SupabaseTest";
 import { Card, CardBody, CardHeader } from "@/components/ui/Card";
 import Link from "next/link";
@@ -29,8 +29,8 @@ function AdminContent() {
       <h1 className={`text-2xl md:text-3xl font-bold ${isDark ? "text-white" : "text-gray-900"}`}>Admin</h1>
       <SecurityQuestionManager />
       <SupabaseTest />
-      <DataBackup />
-      <UserManagement />
+      {/* <DataBackup /> */}
+      {/* <UserManagement /> */}
       <ItemsManager />
       <LocationsManager />
       <Card>
