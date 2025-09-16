@@ -195,11 +195,18 @@ export const useSupabaseInventoryStore = create<SupabaseInventoryStore>()((set, 
     try {
       console.log('Adding location:', location);
       
-      const { data, error } = await supabase
+      // Add timeout to prevent hanging
+      const timeoutPromise = new Promise((_, reject) => {
+        setTimeout(() => reject(new Error('Location request timeout after 10 seconds')), 10000);
+      });
+      
+      const insertPromise = supabase
         .from('locations')
         .insert({ name: location.name })
         .select()
         .single();
+
+      const { data, error } = await Promise.race([insertPromise, timeoutPromise]) as any;
 
       console.log('Supabase response:', { data, error });
 
@@ -532,10 +539,15 @@ export const useSupabaseInventoryStore = create<SupabaseInventoryStore>()((set, 
         query = query.eq('sku', filters.sku);
       }
 
-      const { data, error } = await query;
+      // Add timeout to prevent hanging
+      const timeoutPromise = new Promise((_, reject) => {
+        setTimeout(() => reject(new Error('Audit trail request timeout after 10 seconds')), 10000);
+      });
+      
+      const { data, error } = await Promise.race([query, timeoutPromise]) as any;
       if (error) throw error;
 
-      return data.map(record => ({
+      return data.map((record: any) => ({
         id: record.id,
         timestampIso: record.timestamp_iso,
         type: record.type,
@@ -577,19 +589,26 @@ export const useSupabaseInventoryStore = create<SupabaseInventoryStore>()((set, 
   // Sync from database
   syncFromDatabase: async () => {
     try {
+      // Add timeout to prevent hanging
+      const timeoutPromise = new Promise((_, reject) => {
+        setTimeout(() => reject(new Error('Sync request timeout after 15 seconds')), 15000);
+      });
+      
       // Fetch all data from database
-      const [itemsResult, locationsResult, stockResult] = await Promise.all([
+      const syncPromise = Promise.all([
         supabase.from('items').select('*'),
         supabase.from('locations').select('*'),
         supabase.from('stock_by_location').select('*'),
       ]);
+      
+      const [itemsResult, locationsResult, stockResult] = await Promise.race([syncPromise, timeoutPromise]) as any;
 
       if (itemsResult.error) throw itemsResult.error;
       if (locationsResult.error) throw locationsResult.error;
       if (stockResult.error) throw stockResult.error;
 
       // Transform data
-      const items = itemsResult.data.reduce((acc, item) => {
+      const items = itemsResult.data.reduce((acc: any, item: any) => {
         acc[item.sku] = {
           sku: item.sku,
           name: item.name,
@@ -600,7 +619,7 @@ export const useSupabaseInventoryStore = create<SupabaseInventoryStore>()((set, 
         return acc;
       }, {} as Record<string, Item>);
 
-      const locations = locationsResult.data.reduce((acc, location) => {
+      const locations = locationsResult.data.reduce((acc: any, location: any) => {
         acc[location.id] = {
           id: location.id,
           name: location.name,
@@ -608,7 +627,7 @@ export const useSupabaseInventoryStore = create<SupabaseInventoryStore>()((set, 
         return acc;
       }, {} as Record<string, Location>);
 
-      const stockByLocation = stockResult.data.reduce((acc, stock) => {
+      const stockByLocation = stockResult.data.reduce((acc: any, stock: any) => {
         const key = buildStockKey(stock.sku, stock.location_id);
         acc[key] = stock.quantity;
         return acc;
