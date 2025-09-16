@@ -3,7 +3,6 @@ export type QuantityKind = "unit" | "kg";
 export interface Item {
   sku: string; // globally unique
   name: string;
-  costPriceEuroCents: number; // store in cents to avoid float issues
   sellingPriceEuroCents: number; // store in cents
   quantityKind: QuantityKind; // unit or kg (whole numbers only)
 }

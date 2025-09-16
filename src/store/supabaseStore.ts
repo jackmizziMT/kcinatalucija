@@ -112,7 +112,6 @@ export const useSupabaseInventoryStore = create<SupabaseInventoryStore>()((set, 
         .insert({
           sku: item.sku,
           name: item.name,
-          cost_price_euro_cents: item.costPriceEuroCents,
           selling_price_euro_cents: item.sellingPriceEuroCents,
           quantity_kind: item.quantityKind,
         })
@@ -149,7 +148,6 @@ export const useSupabaseInventoryStore = create<SupabaseInventoryStore>()((set, 
         .from('items')
         .update({
           name: updates.name,
-          cost_price_euro_cents: updates.costPriceEuroCents,
           selling_price_euro_cents: updates.sellingPriceEuroCents,
           quantity_kind: updates.quantityKind,
         })
@@ -202,7 +200,6 @@ export const useSupabaseInventoryStore = create<SupabaseInventoryStore>()((set, 
       const itemsToInsert = items.map(item => ({
         sku: item.sku,
         name: item.name,
-        cost_price_euro_cents: item.costPriceEuroCents,
         selling_price_euro_cents: item.sellingPriceEuroCents,
         quantity_kind: item.quantityKind,
       }));
@@ -650,7 +647,6 @@ export const useSupabaseInventoryStore = create<SupabaseInventoryStore>()((set, 
         acc[item.sku] = {
           sku: item.sku,
           name: item.name,
-          costPriceEuroCents: item.cost_price_euro_cents,
           sellingPriceEuroCents: item.selling_price_euro_cents,
           quantityKind: item.quantity_kind,
         };

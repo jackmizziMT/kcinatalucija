@@ -32,7 +32,6 @@ export interface Database {
           id: string;
           sku: string;
           name: string;
-          cost_price_euro_cents: number;
           selling_price_euro_cents: number;
           quantity_kind: 'unit' | 'kg';
           created_at: string;
@@ -42,7 +41,6 @@ export interface Database {
           id?: string;
           sku: string;
           name: string;
-          cost_price_euro_cents: number;
           selling_price_euro_cents: number;
           quantity_kind: 'unit' | 'kg';
           created_at?: string;
@@ -52,7 +50,6 @@ export interface Database {
           id?: string;
           sku?: string;
           name?: string;
-          cost_price_euro_cents?: number;
           selling_price_euro_cents?: number;
           quantity_kind?: 'unit' | 'kg';
           created_at?: string;

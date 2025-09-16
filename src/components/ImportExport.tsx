@@ -39,13 +39,11 @@ export function ImportExport() {
             
             for (const r of rows) {
               if (!r.sku || !r.name) continue;
-              const costCents = Math.round(parseFloat(r.cost || 0) * 100) || 0;
               const priceCents = Math.round(parseFloat(r.price || 0) * 100) || 0;
               const quantityKind = (r.quantityKind === "kg" ? "kg" : "unit") as "unit" | "kg";
               items.push({ 
                 sku: r.sku.trim(), 
                 name: r.name.trim(), 
-                costPriceEuroCents: costCents, 
                 sellingPriceEuroCents: priceCents, 
                 quantityKind 
               });
@@ -155,9 +153,9 @@ export function ImportExport() {
       </div>
       
       <div className={`text-sm ${isDark ? "text-white/60" : "text-gray-500"}`}>
-        <p><strong>CSV Format:</strong> sku,name,cost,price,quantityKind</p>
+        <p><strong>CSV Format:</strong> sku,name,price,quantityKind</p>
         <p><strong>Required:</strong> sku, name</p>
-        <p><strong>Optional:</strong> cost (€), price (€), quantityKind (unit/kg)</p>
+        <p><strong>Optional:</strong> price (€), quantityKind (unit/kg)</p>
       </div>
     </div>
   );

@@ -12,7 +12,6 @@ export function ItemsManager() {
   const { theme } = useTheme();
   const [sku, setSku] = useState("");
   const [name, setName] = useState("");
-  const [cost, setCost] = useState("0");
   const [price, setPrice] = useState("0");
   const [quantityKind, setQuantityKind] = useState<"unit" | "kg">("unit");
   const [isAdding, setIsAdding] = useState(false);
@@ -94,16 +93,10 @@ export function ItemsManager() {
               </Label>
             </div>
             
-            <div className="grid grid-cols-2 gap-2">
-              <Label>
-                <span className={`text-base font-medium ${isDark ? "text-white" : "text-gray-900"}`}>Cost (EUR)</span>
-                <Input placeholder="Cost" type="number" step="0.01" value={cost} onChange={(e) => setCost(e.target.value)} />
-              </Label>
-              <Label>
-                <span className={`text-base font-medium ${isDark ? "text-white" : "text-gray-900"}`}>Price (EUR)</span>
-                <Input placeholder="Price" type="number" step="0.01" value={price} onChange={(e) => setPrice(e.target.value)} />
-              </Label>
-            </div>
+            <Label>
+              <span className={`text-base font-medium ${isDark ? "text-white" : "text-gray-900"}`}>Price (EUR)</span>
+              <Input placeholder="Price" type="number" step="0.01" value={price} onChange={(e) => setPrice(e.target.value)} />
+            </Label>
             
             <div className="grid grid-cols-2 gap-2">
               <Label>
@@ -131,13 +124,11 @@ export function ItemsManager() {
                   setAddMessage("");
                   
                   try {
-                    const costCents = Math.round(parseFloat(cost) * 100) || 0;
                     const priceCents = Math.round(parseFloat(price) * 100) || 0;
-                    await addItem({ sku, name, costPriceEuroCents: costCents, sellingPriceEuroCents: priceCents, quantityKind });
+                    await addItem({ sku, name, sellingPriceEuroCents: priceCents, quantityKind });
                     
                     setSku("");
                     setName("");
-                    setCost("0");
                     setPrice("0");
                     setQuantityKind("unit");
                     setSkuExists(false);
@@ -195,7 +186,6 @@ export function ItemsManager() {
                 <tr className="text-left whitespace-nowrap">
                   <th className="p-2">SKU</th>
                   <th className="p-2">Name</th>
-                  <th className="p-2">Cost</th>
                   <th className="p-2">Price</th>
                   <th className="p-2">Kind</th>
                   {locationList.map((loc) => (
@@ -223,19 +213,6 @@ export function ItemsManager() {
                           />
                         ) : (
                           it.name
-                        )}
-                      </td>
-                      <td className="p-2">
-                        {isEditing ? (
-                          <Input 
-                            type="number" 
-                            step="0.01"
-                            value={cost} 
-                            onChange={(e) => setCost(e.target.value)}
-                            className="text-xs h-8"
-                          />
-                        ) : (
-                          euro(it.costPriceEuroCents)
                         )}
                       </td>
                       <td className="p-2">
@@ -280,11 +257,9 @@ export function ItemsManager() {
                                 onClick={async () => {
                                   setIsUpdating(true);
                                   try {
-                                    const costCents = Math.round(parseFloat(cost) * 100) || 0;
                                     const priceCents = Math.round(parseFloat(price) * 100) || 0;
                                     await updateItem(it.sku, {
                                       name,
-                                      costPriceEuroCents: costCents,
                                       sellingPriceEuroCents: priceCents,
                                       quantityKind
                                     });
@@ -308,7 +283,6 @@ export function ItemsManager() {
                                 onClick={() => {
                                   setEditingSku(null);
                                   setName("");
-                                  setCost("0");
                                   setPrice("0");
                                   setQuantityKind("unit");
                                 }}
@@ -324,7 +298,6 @@ export function ItemsManager() {
                                 onClick={() => {
                                   setEditingSku(it.sku);
                                   setName(it.name);
-                                  setCost((it.costPriceEuroCents / 100).toFixed(2));
                                   setPrice((it.sellingPriceEuroCents / 100).toFixed(2));
                                   setQuantityKind(it.quantityKind);
                                 }}

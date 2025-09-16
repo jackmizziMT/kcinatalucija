@@ -402,10 +402,6 @@ function DashboardContent() {
             }`}>
               <div className="flex items-center justify-center gap-6 text-sm">
                 <div className="flex items-center gap-2">
-                  <span className={`font-medium ${isDark ? "text-white/80" : "text-gray-600"}`}>Cost:</span>
-                  <span className={`font-semibold ${isDark ? "text-white" : "text-gray-900"}`}>
-                    €{(selectedItem.costPriceEuroCents / 100).toFixed(2)}
-                  </span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className={`font-medium ${isDark ? "text-white/80" : "text-gray-600"}`}>Selling:</span>
