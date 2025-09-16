@@ -19,6 +19,7 @@ interface InventoryActions {
   updateItem: (sku: string, updates: Partial<Omit<Item, "sku">>) => Promise<void>;
   removeItem: (sku: string) => Promise<void>;
   importItems: (items: Item[]) => Promise<void>;
+  checkSkuExists: (sku: string) => Promise<boolean>;
 
   // Locations
   addLocation: (location: Omit<Location, "id">) => Promise<void>;
@@ -66,10 +67,40 @@ export const useSupabaseInventoryStore = create<SupabaseInventoryStore>()((set, 
   reasons: ["purchase", "sale", "correction", "wastage", "return_in", "return_out", "stocktake", "other"],
 
   // Items
+  checkSkuExists: async (sku) => {
+    try {
+      const { data, error } = await supabase
+        .from('items')
+        .select('sku')
+        .eq('sku', sku)
+        .single();
+
+      if (error && error.code === 'PGRST116') {
+        // No rows found - SKU doesn't exist
+        return false;
+      }
+      
+      if (error) {
+        console.error('Error checking SKU:', error);
+        throw error;
+      }
+
+      return !!data; // SKU exists
+    } catch (error) {
+      console.error('Error checking SKU existence:', error);
+      throw error;
+    }
+  },
+
   addItem: async (item) => {
     try {
-      console.log('Adding item:', item); // Debugging line
-      console.log('Supabase client:', supabase); // Debugging line
+      console.log('Adding item:', item);
+      
+      // Check if SKU already exists
+      const skuExists = await get().checkSkuExists(item.sku);
+      if (skuExists) {
+        throw new Error(`SKU "${item.sku}" already exists. Please use a different SKU.`);
+      }
       
       // Add timeout to prevent hanging
       const timeoutPromise = new Promise((_, reject) => {
@@ -90,18 +121,22 @@ export const useSupabaseInventoryStore = create<SupabaseInventoryStore>()((set, 
 
       const { data, error } = await Promise.race([insertPromise, timeoutPromise]) as any;
 
-      console.log('Supabase response:', { data, error }); // Debugging line
+      console.log('Supabase response:', { data, error });
 
       if (error) {
         console.error('Supabase error details:', error);
-        throw new Error(`Supabase error: ${error.message} (Code: ${error.code})`);
+        // Check for duplicate key error
+        if (error.code === '23505' || error.message.includes('duplicate key')) {
+          throw new Error(`SKU "${item.sku}" already exists. Please use a different SKU.`);
+        }
+        throw new Error(`Failed to add item: ${error.message}`);
       }
 
       set((state) => ({
         items: { ...state.items, [item.sku]: item }
       }));
       
-      console.log('Item added successfully'); // Debugging line
+      console.log('Item added successfully');
     } catch (error) {
       console.error('Error adding item:', error);
       throw error;

@@ -6,6 +6,7 @@ import { SupabaseAuthProvider } from "@/contexts/SupabaseAuthContext";
 import { ThemeHeader } from "@/components/ThemeHeader";
 import { ThemeWrapper } from "@/components/ThemeWrapper";
 import { SupabaseInitializer } from "@/components/SupabaseInitializer";
+import { Footer } from "@/components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,6 +41,7 @@ export default function RootLayout({
               <main className="mx-auto max-w-2xl md:max-w-5xl px-4 md:px-6 py-4 md:py-6">
                 {children}
               </main>
+              <Footer version="1.0.0" />
             </ThemeWrapper>
           </SupabaseAuthProvider>
         </ThemeProvider>

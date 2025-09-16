@@ -8,7 +8,7 @@ import { Button, Input, Label, Select } from "@/components/ui/Controls";
 import { useTheme } from "@/contexts/ThemeContext";
 
 export function ItemsManager() {
-  const { items, locations, stockByLocation, addItem } = useSupabaseInventoryStore();
+  const { items, locations, stockByLocation, addItem, checkSkuExists } = useSupabaseInventoryStore();
   const { theme } = useTheme();
   const [sku, setSku] = useState("");
   const [name, setName] = useState("");
@@ -17,10 +17,30 @@ export function ItemsManager() {
   const [quantityKind, setQuantityKind] = useState<"unit" | "kg">("unit");
   const [isAdding, setIsAdding] = useState(false);
   const [addMessage, setAddMessage] = useState("");
+  const [skuExists, setSkuExists] = useState(false);
+  const [isCheckingSku, setIsCheckingSku] = useState(false);
 
   const locationList = useMemo(() => Object.values(locations), [locations]);
   const itemList = useMemo(() => Object.values(items), [items]);
   const isDark = theme === "dark";
+
+  // Check if SKU exists when user types
+  const handleSkuChange = async (value: string) => {
+    setSku(value);
+    setSkuExists(false);
+    
+    if (value.trim().length > 0) {
+      setIsCheckingSku(true);
+      try {
+        const exists = await checkSkuExists(value.trim());
+        setSkuExists(exists);
+      } catch (error) {
+        console.error('Error checking SKU:', error);
+      } finally {
+        setIsCheckingSku(false);
+      }
+    }
+  };
 
   return (
     <div className="space-y-6 md:space-y-8">
@@ -30,7 +50,33 @@ export function ItemsManager() {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-2">
             <Label>
               <span className={`text-base font-medium ${isDark ? "text-white" : "text-gray-900"}`}>SKU</span>
-              <Input placeholder="SKU" value={sku} onChange={(e) => setSku(e.target.value)} />
+              <div className="relative">
+                <Input 
+                  placeholder="SKU" 
+                  value={sku} 
+                  onChange={(e) => handleSkuChange(e.target.value)}
+                  className={skuExists ? "border-red-500 focus:border-red-500" : ""}
+                />
+                {isCheckingSku && (
+                  <div className="absolute right-2 top-1/2 transform -translate-y-1/2">
+                    <div className="animate-spin h-4 w-4 border-2 border-blue-500 border-t-transparent rounded-full"></div>
+                  </div>
+                )}
+                {sku.trim().length > 0 && !isCheckingSku && (
+                  <div className="absolute right-2 top-1/2 transform -translate-y-1/2">
+                    {skuExists ? (
+                      <span className="text-red-500 text-sm">⚠️</span>
+                    ) : (
+                      <span className="text-green-500 text-sm">✓</span>
+                    )}
+                  </div>
+                )}
+              </div>
+              {skuExists && (
+                <p className="text-red-500 text-sm mt-1">
+                  SKU "{sku}" already exists. Please use a different SKU.
+                </p>
+              )}
             </Label>
             <Label>
               <span className={`text-base font-medium ${isDark ? "text-white" : "text-gray-900"}`}>Product Name</span>
@@ -53,10 +99,15 @@ export function ItemsManager() {
             </Label>
             <Button
               variant="primary"
-              disabled={isAdding}
+              disabled={isAdding || skuExists}
               onClick={async () => {
                 if (!sku || !name) {
                   setAddMessage("Please enter SKU and Product Name");
+                  return;
+                }
+                
+                if (skuExists) {
+                  setAddMessage(`SKU "${sku}" already exists. Please use a different SKU.`);
                   return;
                 }
                 
