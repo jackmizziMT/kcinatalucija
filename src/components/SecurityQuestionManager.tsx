@@ -1,13 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useAuth } from "@/contexts/AuthContext";
+import { useSupabaseAuth } from "@/contexts/SupabaseAuthContext";
 import { useTheme } from "@/contexts/ThemeContext";
 import { Card, CardBody, CardHeader } from "@/components/ui/Card";
 import { Button, Input, Label } from "@/components/ui/Controls";
 
 export function SecurityQuestionManager() {
-  const { updateAdminSecurityQuestion, isLoading } = useAuth();
+  const { updateSecurityQuestion, isLoading } = useSupabaseAuth();
   const { theme } = useTheme();
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
@@ -39,7 +39,7 @@ export function SecurityQuestionManager() {
       return;
     }
 
-    const success = await updateAdminSecurityQuestion(question, answer);
+    const success = await updateSecurityQuestion(question, answer);
     if (success) {
       setSuccess("Security question updated successfully");
     } else {
