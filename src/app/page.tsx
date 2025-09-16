@@ -1,6 +1,5 @@
 "use client";
 
-import { useSupabaseInventoryStore } from "@/store/supabaseStore";
 import { ProductAdjuster } from "@/components/ProductAdjuster";
 import { AuthGuard } from "@/components/AuthGuard";
 import { useTheme } from "@/contexts/ThemeContext";
