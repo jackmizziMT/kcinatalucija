@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useAuth } from "@/contexts/AuthContext";
+import { useSupabaseAuth } from "@/contexts/SupabaseAuthContext";
 import { useTheme } from "@/contexts/ThemeContext";
 import { Card, CardBody, CardHeader } from "@/components/ui/Card";
 import { Button, Input, Label, Select } from "@/components/ui/Controls";

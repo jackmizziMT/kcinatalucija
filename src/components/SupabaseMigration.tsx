@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { useInventoryStore } from "@/store/inventoryStore";
 import { useSupabaseInventoryStore } from "@/store/supabaseStore";
-import { useAuth } from "@/contexts/AuthContext";
 import { useSupabaseAuth } from "@/contexts/SupabaseAuthContext";
 import { Card, CardBody, CardHeader } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Controls";
@@ -16,7 +15,6 @@ export function SupabaseMigration() {
   
   const localStore = useInventoryStore();
   const supabaseStore = useSupabaseInventoryStore();
-  const { user: localUser } = useAuth();
   const { user: supabaseUser } = useSupabaseAuth();
   const { theme } = useTheme();
   
@@ -30,18 +28,19 @@ export function SupabaseMigration() {
     try {
       // Step 1: Export local data
       setMigrationStatus("Exporting local data...");
-      const localData = localStore.exportState();
+      const localDataString = localStore.exportState();
+      const localData = JSON.parse(localDataString);
       
       // Step 2: Import items to Supabase
       setMigrationStatus("Migrating items...");
-      const items = Object.values(localData.items);
+      const items = Object.values(localData.items || {});
       if (items.length > 0) {
         await supabaseStore.importItems(items);
       }
 
       // Step 3: Import locations to Supabase
       setMigrationStatus("Migrating locations...");
-      const locations = Object.values(localData.locations);
+      const locations = Object.values(localData.locations || {});
       for (const location of locations) {
         await supabaseStore.addLocation({ name: location.name });
       }
@@ -52,12 +51,12 @@ export function SupabaseMigration() {
 
       // Step 5: Import stock data
       setMigrationStatus("Migrating stock data...");
-      const stockEntries = Object.entries(localData.stockByLocation);
+      const stockEntries = Object.entries(localData.stockByLocation || {});
       for (const [key, quantity] of stockEntries) {
         const [sku, locationId] = key.split('::');
         
         // Find the new location ID by name
-        const localLocation = localData.locations[locationId];
+        const localLocation = localData.locations?.[locationId];
         if (localLocation) {
           const newLocation = Object.values(supabaseStore.locations).find(
             loc => loc.name === localLocation.name
@@ -119,20 +118,18 @@ export function SupabaseMigration() {
             </div>
           </div>
 
-          {localUser && (
-            <div className={`p-4 rounded-lg border ${
-              isDark 
-                ? "bg-green-500/10 border-green-500/30" 
-                : "bg-green-50 border-green-200"
-            }`}>
-              <h4 className={`text-sm font-semibold ${isDark ? "text-green-300" : "text-green-800"}`}>
-                Local Data Found
-              </h4>
-              <p className={`text-xs mt-1 ${isDark ? "text-green-200" : "text-green-700"}`}>
-                Found local data for user: <strong>{localUser.username}</strong>
-              </p>
-            </div>
-          )}
+          <div className={`p-4 rounded-lg border ${
+            isDark 
+              ? "bg-green-500/10 border-green-500/30" 
+              : "bg-green-50 border-green-200"
+          }`}>
+            <h4 className={`text-sm font-semibold ${isDark ? "text-green-300" : "text-green-800"}`}>
+              Local Data Available
+            </h4>
+            <p className={`text-xs mt-1 ${isDark ? "text-green-200" : "text-green-700"}`}>
+              Local data found and ready for migration
+            </p>
+          </div>
 
           <div className="flex gap-3">
             <Button

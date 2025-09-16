@@ -1113,3 +1113,43 @@ https://nextjs.org/docs/messages/module-not-found
  GET / 500 in 91ms
  GET / 200 in 390ms
  GET /login 200 in 184ms
+ GET / 200 in 1271ms
+ GET /login 200 in 52ms
+ ✓ Compiled /_not-found/page in 67ms
+ ⨯ Error: Failed to load chunk server/chunks/ssr/node_modules_547e43fd._.js from runtime for chunk server/app/_not-found/page.js
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:2:3) {
+  [cause]: Error: ENOENT: no such file or directory, open '/Users/jackmizzi/inventory-tracker/.next/server/chunks/ssr/node_modules_547e43fd._.js'
+      at Object.<anonymous> (.next/server/app/_not-found/page.js:2:3) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/Users/jackmizzi/inventory-tracker/.next/server/chunks/ssr/node_modules_547e43fd._.js'
+  }
+}
+ ⨯ Error: Failed to load chunk server/chunks/ssr/node_modules_547e43fd._.js from runtime for chunk server/app/_not-found/page.js
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:2:3) {
+  [cause]: Error: ENOENT: no such file or directory, open '/Users/jackmizzi/inventory-tracker/.next/server/chunks/ssr/node_modules_547e43fd._.js'
+      at Object.<anonymous> (.next/server/app/_not-found/page.js:2:3) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/Users/jackmizzi/inventory-tracker/.next/server/chunks/ssr/node_modules_547e43fd._.js'
+  }
+}
+ GET /favicon.ico 200 in 366ms
+ GET /apple-touch-icon-precomposed.png 500 in 396ms
+ GET /apple-touch-icon.png 500 in 388ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 413ms
+ GET /login 200 in 303ms
+ GET / 200 in 109ms
+ GET /login 200 in 39ms
+ GET / 200 in 234ms
+ GET /login 200 in 73ms
+ GET / 200 in 78ms
+ ✓ Compiled /admin in 94ms
+ GET /admin 200 in 200ms
+ GET / 200 in 57ms
+ GET /admin 200 in 70ms
+ ✓ Compiled in 188ms
+ ✓ Compiled in 329ms
+ ✓ Compiled in 212ms

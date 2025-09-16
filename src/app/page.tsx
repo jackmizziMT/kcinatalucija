@@ -1,14 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
 import { useSupabaseInventoryStore } from "@/store/supabaseStore";
-import { euro } from "@/lib/types";
-import { StockOps } from "@/components/StockOps";
-import { LocationsManager } from "@/components/LocationsManager";
-import { ImportExport } from "@/components/ImportExport";
-import { UsersManager } from "@/components/UsersManager";
-import { Card, CardBody, CardHeader } from "@/components/ui/Card";
-import { Button, Input, Label, Select } from "@/components/ui/Controls";
 import { ProductAdjuster } from "@/components/ProductAdjuster";
 import { AuthGuard } from "@/components/AuthGuard";
 import { useTheme } from "@/contexts/ThemeContext";
@@ -23,17 +15,8 @@ export default function Home() {
 }
 
 function HomeContent() {
-  const { items, locations, stockByLocation, addItem } = useSupabaseInventoryStore();
   const { theme } = useTheme();
   const { user } = useSupabaseAuth();
-  const [sku, setSku] = useState("");
-  const [name, setName] = useState("");
-  const [cost, setCost] = useState("0");
-  const [price, setPrice] = useState("0");
-  const [quantityKind, setQuantityKind] = useState<"unit" | "kg">("unit");
-
-  const locationList = useMemo(() => Object.values(locations), [locations]);
-  const itemList = useMemo(() => Object.values(items), [items]);
   const isDark = theme === "dark";
   const canEdit = user?.role !== 'viewer';
 
