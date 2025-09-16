@@ -79,7 +79,10 @@ export function ItemsManager() {
                   setTimeout(() => setAddMessage(""), 3000);
                 } catch (error) {
                   console.error('Error adding item:', error);
-                  setAddMessage(`Error: ${error instanceof Error ? error.message : 'Failed to add item'}`);
+                  const errorMessage = error instanceof Error ? error.message : 'Failed to add item';
+                  const errorDetails = error instanceof Error ? error.toString() : String(error);
+                  setAddMessage(`Error: ${errorMessage}`);
+                  console.error('Full error details:', errorDetails);
                 } finally {
                   setIsAdding(false);
                 }

@@ -66,6 +66,15 @@ export const useSupabaseInventoryStore = create<SupabaseInventoryStore>()((set, 
   addItem: async (item) => {
     try {
       console.log('Adding item:', item); // Debugging line
+      console.log('Supabase client:', supabase); // Debugging line
+      
+      // Test Supabase connection first
+      const { data: testData, error: testError } = await supabase
+        .from('items')
+        .select('count')
+        .limit(1);
+      
+      console.log('Supabase connection test:', { testData, testError }); // Debugging line
       
       const { data, error } = await supabase
         .from('items')
@@ -81,7 +90,10 @@ export const useSupabaseInventoryStore = create<SupabaseInventoryStore>()((set, 
 
       console.log('Supabase response:', { data, error }); // Debugging line
 
-      if (error) throw error;
+      if (error) {
+        console.error('Supabase error details:', error);
+        throw new Error(`Supabase error: ${error.message} (Code: ${error.code})`);
+      }
 
       set((state) => ({
         items: { ...state.items, [item.sku]: item }
