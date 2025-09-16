@@ -176,13 +176,20 @@ export const useSupabaseInventoryStore = create<SupabaseInventoryStore>()((set, 
   // Locations
   addLocation: async (location) => {
     try {
+      console.log('Adding location:', location);
+      
       const { data, error } = await supabase
         .from('locations')
         .insert({ name: location.name })
         .select()
         .single();
 
-      if (error) throw error;
+      console.log('Supabase response:', { data, error });
+
+      if (error) {
+        console.error('Supabase error details:', error);
+        throw error;
+      }
 
       set((state) => ({
         locations: { ...state.locations, [data.id]: { id: data.id, name: data.name } }
