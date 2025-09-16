@@ -38,7 +38,7 @@ export function SupabaseAuthProvider({ children }: { children: ReactNode }) {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSupabaseUser(session?.user ?? null);
       if (session?.user) {
-        loadAppUser(session.user.id);
+        loadAppUser(session.user.email!);
       } else {
         setUser(null);
         setIsLoading(false);
@@ -49,7 +49,7 @@ export function SupabaseAuthProvider({ children }: { children: ReactNode }) {
     const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
       setSupabaseUser(session?.user ?? null);
       if (session?.user) {
-        await loadAppUser(session.user.id);
+        await loadAppUser(session.user.email!);
       } else {
         setUser(null);
         setIsLoading(false);
@@ -59,12 +59,12 @@ export function SupabaseAuthProvider({ children }: { children: ReactNode }) {
     return () => subscription.unsubscribe();
   }, []);
 
-  const loadAppUser = async (userId: string) => {
+  const loadAppUser = async (email: string) => {
     try {
       const { data, error } = await supabase
         .from('app_users')
         .select('*')
-        .eq('id', userId)
+        .eq('email', email)
         .single();
 
       if (error) {
