@@ -1035,3 +1035,6 @@ https://nextjs.org/docs/messages/module-not-found
  GET /recovery 200 in 61ms
  GET / 200 in 999ms
  GET /login 200 in 103ms
+ ✓ Compiled in 90ms
+ ✓ Compiled in 227ms
+ ✓ Compiled in 140ms
