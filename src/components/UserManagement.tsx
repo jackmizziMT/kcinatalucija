@@ -196,9 +196,21 @@ export function UserManagement() {
       <Card>
         <CardHeader title="User Management" />
         <CardBody>
-          <p className={`text-sm ${isDark ? "text-white/70" : "text-gray-600"} mb-4`}>
-            User management functionality will be available once the Supabase auth system is fully integrated.
-          </p>
+          <div className={`p-4 rounded-lg border ${
+            isDark 
+              ? "bg-blue-500/10 border-blue-500/30 text-blue-300" 
+              : "bg-blue-50 border-blue-200 text-blue-700"
+          }`}>
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-lg">ℹ️</span>
+              <span className="font-medium">User Management Status</span>
+            </div>
+            <p className="text-sm">
+              User management functions are available for creating new users. 
+              Advanced features like editing and deleting existing users require 
+              Supabase admin permissions to be fully configured.
+            </p>
+          </div>
         </CardBody>
       </Card>
     </div>

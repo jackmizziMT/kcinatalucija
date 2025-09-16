@@ -48,36 +48,38 @@ export function ItemsManager() {
         <CardHeader title="Add Item" />
         <CardBody>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-4">
-            <Label>
-              <span className={`text-base font-medium ${isDark ? "text-white" : "text-gray-900"}`}>SKU</span>
-              <div className="relative">
-                <Input 
-                  placeholder="SKU" 
-                  value={sku} 
-                  onChange={(e) => handleSkuChange(e.target.value)}
-                  className={skuExists ? "border-red-500 focus:border-red-500" : ""}
-                />
-                {isCheckingSku && (
-                  <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-                    <div className="animate-spin h-3 w-3 border-2 border-blue-500 border-t-transparent rounded-full"></div>
-                  </div>
+            <div className={`${skuExists ? 'md:col-span-2' : ''}`}>
+              <Label>
+                <span className={`text-base font-medium ${isDark ? "text-white" : "text-gray-900"}`}>SKU</span>
+                <div className="relative">
+                  <Input 
+                    placeholder="SKU" 
+                    value={sku} 
+                    onChange={(e) => handleSkuChange(e.target.value)}
+                    className={skuExists ? "border-red-500 focus:border-red-500" : ""}
+                  />
+                  {isCheckingSku && (
+                    <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
+                      <div className="animate-spin h-3 w-3 border-2 border-blue-500 border-t-transparent rounded-full"></div>
+                    </div>
+                  )}
+                  {sku.trim().length > 0 && !isCheckingSku && (
+                    <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
+                      {skuExists ? (
+                        <span className="text-red-500 text-xs">⚠️</span>
+                      ) : (
+                        <span className="text-green-500 text-xs">✓</span>
+                      )}
+                    </div>
+                  )}
+                </div>
+                {skuExists && (
+                  <p className="text-red-500 text-sm mt-1">
+                    SKU "{sku}" already exists. Please use a different SKU.
+                  </p>
                 )}
-                {sku.trim().length > 0 && !isCheckingSku && (
-                  <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-                    {skuExists ? (
-                      <span className="text-red-500 text-xs">⚠️</span>
-                    ) : (
-                      <span className="text-green-500 text-xs">✓</span>
-                    )}
-                  </div>
-                )}
-              </div>
-              {skuExists && (
-                <p className="text-red-500 text-sm mt-1">
-                  SKU "{sku}" already exists. Please use a different SKU.
-                </p>
-              )}
-            </Label>
+              </Label>
+            </div>
             <Label>
               <span className={`text-base font-medium ${isDark ? "text-white" : "text-gray-900"}`}>Product Name</span>
               <Input placeholder="Product Name" value={name} onChange={(e) => setName(e.target.value)} />
