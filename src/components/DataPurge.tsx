@@ -22,13 +22,12 @@ export function DataPurge() {
     try {
       console.log('Starting data purge...');
       
-      // Delete all data from all tables in the correct order (respecting foreign keys)
+      // Delete only inventory-related data, keep users intact
       const tables = [
         'audit_trail',
         'stock_by_location', 
         'items',
-        'locations',
-        'app_users'
+        'locations'
       ];
       
       for (const table of tables) {
@@ -48,7 +47,7 @@ export function DataPurge() {
       const { syncFromDatabase } = useSupabaseInventoryStore.getState();
       await syncFromDatabase();
       
-      setPurgeMessage("✅ All data purged successfully! The app will refresh shortly.");
+      setPurgeMessage("✅ Inventory data purged successfully! Users and settings preserved. The app will refresh shortly.");
       
       // Refresh the page after a short delay
       setTimeout(() => {
@@ -67,8 +66,8 @@ export function DataPurge() {
   return (
     <Card>
       <CardHeader 
-        title="🗑️ Purge All Data" 
-        subtitle="Delete all data from the database and start fresh"
+        title="🗑️ Purge Inventory Data" 
+        subtitle="Delete all items, locations, stock, and audit trails (keeps users)"
       />
       <CardBody>
         <div className="space-y-4">
@@ -86,8 +85,8 @@ export function DataPurge() {
                   ⚠️ DANGER ZONE
                 </h4>
                 <p className={`text-xs mt-1 ${isDark ? "text-red-200" : "text-red-700"}`}>
-                  This will permanently delete ALL data including items, locations, stock, audit trails, and users. 
-                  This action cannot be undone!
+                  This will permanently delete ALL inventory data including items, locations, stock quantities, and audit trails. 
+                  Users and settings will be preserved. This action cannot be undone!
                 </p>
               </div>
             </div>
@@ -100,7 +99,7 @@ export function DataPurge() {
               disabled={isPurging}
               className="w-full"
             >
-              🗑️ Purge All Data
+              🗑️ Purge Inventory Data
             </Button>
           ) : (
             <div className="space-y-3">
@@ -110,21 +109,21 @@ export function DataPurge() {
                   : "bg-orange-100 border-orange-200 text-orange-700"
               }`}>
                 <p className="text-sm font-medium">
-                  Are you absolutely sure? Type "DELETE ALL" to confirm:
+                  Are you absolutely sure? Type "PURGE INVENTORY" to confirm:
                 </p>
               </div>
               
               <div className="flex gap-2">
                 <input
                   type="text"
-                  placeholder="Type DELETE ALL"
+                  placeholder="Type PURGE INVENTORY"
                   className={`flex-1 px-3 py-2 rounded-md border text-sm ${
                     isDark 
                       ? "bg-gray-800 border-gray-600 text-white placeholder-gray-400" 
                       : "bg-white border-gray-300 text-gray-900 placeholder-gray-500"
                   }`}
                   onKeyDown={(e) => {
-                    if (e.key === 'Enter' && e.currentTarget.value === 'DELETE ALL') {
+                    if (e.key === 'Enter' && e.currentTarget.value === 'PURGE INVENTORY') {
                       purgeAllData();
                     }
                   }}
@@ -162,7 +161,7 @@ export function DataPurge() {
           )}
 
           <div className={`text-xs ${isDark ? "text-white/60" : "text-gray-500"}`}>
-            <p><strong>Note:</strong> After purging, you'll need to recreate your admin user and basic setup.</p>
+            <p><strong>Note:</strong> After purging, you'll need to recreate your locations and items. Users and settings will remain intact.</p>
           </div>
         </div>
       </CardBody>
