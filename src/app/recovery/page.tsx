@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { useAuth } from "@/contexts/AuthContext";
+import { useSupabaseAuth } from "@/contexts/SupabaseAuthContext";
 import { useTheme } from "@/contexts/ThemeContext";
 import { Card, CardBody, CardHeader } from "@/components/ui/Card";
 import { Button, Input, Label } from "@/components/ui/Controls";
@@ -14,7 +14,7 @@ export default function RecoveryPage() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
-  const { resetAdminPassword, verifyAdminSecurityQuestion, isLoading } = useAuth();
+  const { verifySecurityQuestion, resetAdminPassword, isLoading } = useSupabaseAuth();
   const { theme } = useTheme();
   const router = useRouter();
   const isDark = theme === "dark";
@@ -28,7 +28,7 @@ export default function RecoveryPage() {
       return;
     }
 
-    const isValid = await verifyAdminSecurityQuestion(answer);
+    const isValid = await verifySecurityQuestion(answer);
     if (isValid) {
       setStep('password');
     } else {

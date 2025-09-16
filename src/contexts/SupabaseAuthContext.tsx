@@ -22,6 +22,7 @@ interface SupabaseAuthContextType {
   updateUserRole: (userId: string, role: 'admin' | 'editor' | 'viewer') => Promise<boolean>;
   updateSecurityQuestion: (question: string, answer: string) => Promise<boolean>;
   verifySecurityQuestion: (answer: string) => Promise<boolean>;
+  resetAdminPassword: (newPassword: string) => Promise<boolean>;
   isLoading: boolean;
 }
 
@@ -228,6 +229,26 @@ export function SupabaseAuthProvider({ children }: { children: ReactNode }) {
     return user.securityAnswer.toLowerCase().trim() === answer.toLowerCase().trim();
   };
 
+  const resetAdminPassword = async (newPassword: string): Promise<boolean> => {
+    if (!supabaseUser) return false;
+
+    try {
+      const { error } = await supabase.auth.updateUser({
+        password: newPassword
+      });
+
+      if (error) {
+        console.error('Error updating password:', error);
+        return false;
+      }
+
+      return true;
+    } catch (error) {
+      console.error('Error updating password:', error);
+      return false;
+    }
+  };
+
   return (
     <SupabaseAuthContext.Provider value={{
       user,
@@ -238,6 +259,7 @@ export function SupabaseAuthProvider({ children }: { children: ReactNode }) {
       updateUserRole,
       updateSecurityQuestion,
       verifySecurityQuestion,
+      resetAdminPassword,
       isLoading,
     }}>
       {children}

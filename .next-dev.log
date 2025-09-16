@@ -1061,3 +1061,55 @@ https://nextjs.org/docs/messages/module-not-found
  ✓ Compiled in 718ms
  ✓ Compiled in 478ms
  ✓ Compiled in 296ms
+ ✓ Compiled /login in 96ms
+ ⨯ Error: Failed to load chunk server/chunks/ssr/node_modules_next_dist_d7cd43d5._.js from runtime for chunk server/app/login/page.js
+    at Object.<anonymous> (.next/server/app/login/page.js:10:3) {
+  page: '/login',
+  [cause]: Error: ENOENT: no such file or directory, open '/Users/jackmizzi/inventory-tracker/.next/server/chunks/ssr/node_modules_next_dist_d7cd43d5._.js'
+      at Object.<anonymous> (.next/server/app/login/page.js:10:3) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/Users/jackmizzi/inventory-tracker/.next/server/chunks/ssr/node_modules_next_dist_d7cd43d5._.js'
+  }
+}
+ GET /login 500 in 266ms
+ ✓ Compiled / in 46ms
+ ⨯ Error: Failed to load chunk server/chunks/ssr/node_modules_next_dist_52ca1ccf._.js from runtime for chunk server/app/page.js
+    at Object.<anonymous> (.next/server/app/page.js:10:3) {
+  page: '/',
+  [cause]: Error: ENOENT: no such file or directory, open '/Users/jackmizzi/inventory-tracker/.next/server/chunks/ssr/node_modules_next_dist_52ca1ccf._.js'
+      at Object.<anonymous> (.next/server/app/page.js:10:3) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/Users/jackmizzi/inventory-tracker/.next/server/chunks/ssr/node_modules_next_dist_52ca1ccf._.js'
+  }
+}
+ GET / 500 in 172ms
+ ⨯ Error: Failed to load chunk server/chunks/ssr/node_modules_next_dist_52ca1ccf._.js from runtime for chunk server/app/page.js
+    at Object.<anonymous> (.next/server/app/page.js:10:3) {
+  page: '/',
+  [cause]: Error: ENOENT: no such file or directory, open '/Users/jackmizzi/inventory-tracker/.next/server/chunks/ssr/node_modules_next_dist_52ca1ccf._.js'
+      at Object.<anonymous> (.next/server/app/page.js:10:3) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/Users/jackmizzi/inventory-tracker/.next/server/chunks/ssr/node_modules_next_dist_52ca1ccf._.js'
+  }
+}
+ GET / 500 in 164ms
+ ⨯ Error: Failed to load chunk server/chunks/ssr/node_modules_next_dist_52ca1ccf._.js from runtime for chunk server/app/page.js
+    at Object.<anonymous> (.next/server/app/page.js:10:3) {
+  page: '/',
+  [cause]: Error: ENOENT: no such file or directory, open '/Users/jackmizzi/inventory-tracker/.next/server/chunks/ssr/node_modules_next_dist_52ca1ccf._.js'
+      at Object.<anonymous> (.next/server/app/page.js:10:3) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/Users/jackmizzi/inventory-tracker/.next/server/chunks/ssr/node_modules_next_dist_52ca1ccf._.js'
+  }
+}
+ GET / 500 in 91ms
+ GET / 200 in 390ms
+ GET /login 200 in 184ms
