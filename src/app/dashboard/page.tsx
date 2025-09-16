@@ -1,7 +1,8 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { useSupabaseInventoryStore } from "@/store/supabaseStore";
+import { AuditRecord } from "@/lib/types";
 import { Card, CardBody, CardHeader } from "@/components/ui/Card";
 import { Button, Input, Label, Select } from "@/components/ui/Controls";
 import { useTheme } from "@/contexts/ThemeContext";
@@ -130,9 +131,30 @@ function DashboardContent() {
     };
   };
 
-  const auditRecords = useMemo(() => {
-    if (reportType !== "audit") return [];
-    return getAuditTrail(getAuditFilters());
+  const [auditRecords, setAuditRecords] = useState<AuditRecord[]>([]);
+  const [loadingAudit, setLoadingAudit] = useState(false);
+
+  // Load audit records when filters change
+  useEffect(() => {
+    if (reportType !== "audit") {
+      setAuditRecords([]);
+      return;
+    }
+    
+    const loadAuditRecords = async () => {
+      setLoadingAudit(true);
+      try {
+        const records = await getAuditTrail(getAuditFilters());
+        setAuditRecords(records);
+      } catch (error) {
+        console.error('Error loading audit records:', error);
+        setAuditRecords([]);
+      } finally {
+        setLoadingAudit(false);
+      }
+    };
+    
+    loadAuditRecords();
   }, [reportType, auditFilter, auditDate, auditStartDate, auditEndDate, auditTypeFilter, auditSkuFilter, getAuditTrail]);
 
   // Export functions
@@ -534,7 +556,11 @@ function DashboardContent() {
 
             {/* Audit Records */}
             <div className="overflow-x-auto">
-              {auditRecords.length === 0 ? (
+              {loadingAudit ? (
+                <div className={`text-center py-8 ${isDark ? "text-white/60" : "text-gray-500"}`}>
+                  <p>Loading audit records...</p>
+                </div>
+              ) : auditRecords.length === 0 ? (
                 <div className={`text-center py-8 ${isDark ? "text-white/60" : "text-gray-500"}`}>
                   <p>No movements found for the selected criteria.</p>
                 </div>
