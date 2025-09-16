@@ -43,6 +43,9 @@ interface InventoryActions {
 
   // Sync
   syncFromDatabase: () => Promise<void>;
+  
+  // Initialize
+  initialize: () => Promise<void>;
 }
 
 export type SupabaseInventoryStore = InventoryState & InventoryActions;
@@ -642,6 +645,18 @@ export const useSupabaseInventoryStore = create<SupabaseInventoryStore>()((set, 
     } catch (error) {
       console.error('Error syncing from database:', error);
       throw error;
+    }
+  },
+
+  // Initialize - load data from Supabase when app starts
+  initialize: async () => {
+    try {
+      console.log('Initializing Supabase store...');
+      await get().syncFromDatabase();
+      console.log('Supabase store initialized successfully');
+    } catch (error) {
+      console.error('Error initializing Supabase store:', error);
+      // Don't throw - let the app continue with empty state
     }
   },
 }));
