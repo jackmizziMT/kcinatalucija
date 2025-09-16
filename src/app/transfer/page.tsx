@@ -23,6 +23,8 @@ function TransferContent() {
   const [toLocationId, setToLocationId] = useState("");
   const [quantity, setQuantity] = useState<number>(1);
   const [note, setNote] = useState("");
+  const [isTransferring, setIsTransferring] = useState(false);
+  const [transferMessage, setTransferMessage] = useState("");
 
   const itemList = useMemo(() => Object.values(items), [items]);
   const locationList = useMemo(() => Object.values(locations), [locations]);
@@ -129,12 +131,56 @@ function TransferContent() {
 
           <Button
             variant="primary"
-            disabled={!canTransfer}
-            onClick={() => transferStock(sku, fromLocationId, toLocationId, parsedQty, note)}
+            disabled={!canTransfer || isTransferring}
+            onClick={async () => {
+              setIsTransferring(true);
+              setTransferMessage("");
+              
+              try {
+                const fromLocation = locationList.find(loc => loc.id === fromLocationId);
+                const toLocation = locationList.find(loc => loc.id === toLocationId);
+                const item = itemList.find(item => item.sku === sku);
+                
+                await transferStock(sku, fromLocationId, toLocationId, parsedQty, note);
+                
+                setTransferMessage(`✅ Successfully transferred ${parsedQty} units of ${item?.name} from ${fromLocation?.name} to ${toLocation?.name}`);
+                
+                // Clear form after successful transfer
+                setQuantity(1);
+                setNote("");
+                
+                // Clear success message after 5 seconds
+                setTimeout(() => setTransferMessage(""), 5000);
+                
+              } catch (error) {
+                console.error('Transfer error:', error);
+                const errorMessage = error instanceof Error ? error.message : 'Transfer failed';
+                setTransferMessage(`❌ Error: ${errorMessage}`);
+                
+                // Clear error message after 5 seconds
+                setTimeout(() => setTransferMessage(""), 5000);
+              } finally {
+                setIsTransferring(false);
+              }
+            }}
             className="w-full md:w-auto"
           >
-            Transfer Stock
+            {isTransferring ? "Transferring..." : "Transfer Stock"}
           </Button>
+          
+          {transferMessage && (
+            <div className={`mt-4 p-3 rounded-lg border ${
+              transferMessage.includes("✅")
+                ? isDark 
+                  ? "bg-green-500/20 border-green-500/30 text-green-300" 
+                  : "bg-green-100 border-green-200 text-green-700"
+                : isDark 
+                  ? "bg-red-500/20 border-red-500/30 text-red-300" 
+                  : "bg-red-100 border-red-200 text-red-700"
+            }`}>
+              {transferMessage}
+            </div>
+          )}
         </CardBody>
       </Card>
     </main>
