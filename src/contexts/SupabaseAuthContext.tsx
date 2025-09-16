@@ -39,19 +39,56 @@ export function SupabaseAuthProvider({ children }: { children: ReactNode }) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Get initial session
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSupabaseUser(session?.user ?? null);
-      if (session?.user) {
-        loadAppUser(session.user.email!);
-      } else {
+    let isMounted = true;
+    
+    const initializeAuth = async () => {
+      try {
+        // Clear any existing auth state first
         setUser(null);
-        setIsLoading(false);
+        setSupabaseUser(null);
+        
+        // Get initial session with timeout
+        const sessionPromise = supabase.auth.getSession();
+        const timeoutPromise = new Promise((_, reject) => 
+          setTimeout(() => reject(new Error('Session timeout')), 10000)
+        );
+        
+        const { data: { session }, error } = await Promise.race([sessionPromise, timeoutPromise]) as any;
+        
+        if (!isMounted) return;
+        
+        if (error) {
+          console.error('Error getting session:', error);
+          setUser(null);
+          setSupabaseUser(null);
+          setIsLoading(false);
+          return;
+        }
+        
+        setSupabaseUser(session?.user ?? null);
+        if (session?.user) {
+          await loadAppUser(session.user.email!);
+        } else {
+          setUser(null);
+          setIsLoading(false);
+        }
+      } catch (error) {
+        console.error('Auth initialization error:', error);
+        if (isMounted) {
+          setUser(null);
+          setSupabaseUser(null);
+          setIsLoading(false);
+        }
       }
-    });
+    };
+
+    initializeAuth();
 
     // Listen for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+      if (!isMounted) return;
+      
+      console.log('Auth state change:', event, session?.user?.email);
       setSupabaseUser(session?.user ?? null);
       if (session?.user) {
         await loadAppUser(session.user.email!);
@@ -61,23 +98,37 @@ export function SupabaseAuthProvider({ children }: { children: ReactNode }) {
       }
     });
 
-    return () => subscription.unsubscribe();
+    return () => {
+      isMounted = false;
+      subscription.unsubscribe();
+    };
   }, []);
 
   const loadAppUser = async (email: string) => {
     try {
-      const { data, error } = await supabase
+      console.log('Loading app user for email:', email);
+      
+      // Add timeout to prevent hanging
+      const userPromise = supabase
         .from('app_users')
         .select('*')
         .eq('email', email)
         .single();
+        
+      const timeoutPromise = new Promise((_, reject) => 
+        setTimeout(() => reject(new Error('User load timeout')), 8000)
+      );
+      
+      const { data, error } = await Promise.race([userPromise, timeoutPromise]) as any;
 
       if (error) {
         console.error('Error loading app user:', error);
         setUser(null);
+        setIsLoading(false);
         return;
       }
 
+      console.log('App user loaded:', data.username);
       setUser({
         id: data.id,
         username: data.username,

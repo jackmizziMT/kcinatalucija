@@ -687,11 +687,19 @@ export const useSupabaseInventoryStore = create<SupabaseInventoryStore>()((set, 
   initialize: async () => {
     try {
       console.log('Initializing Supabase store...');
-      await get().syncFromDatabase();
+      
+      // Add timeout to prevent hanging
+      const syncPromise = get().syncFromDatabase();
+      const timeoutPromise = new Promise((_, reject) => 
+        setTimeout(() => reject(new Error('Sync timeout')), 15000)
+      );
+      
+      await Promise.race([syncPromise, timeoutPromise]);
       console.log('Supabase store initialized successfully');
     } catch (error) {
       console.error('Error initializing Supabase store:', error);
       // Don't throw - let the app continue with empty state
+      // This prevents the app from getting stuck
     }
   },
 }));

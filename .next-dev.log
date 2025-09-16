@@ -1579,3 +1579,41 @@ https://nextjs.org/docs/messages/module-not-found
   syscall: 'open',
   path: '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.c7w0ne588ph'
 }
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.dcycrn2jbj5'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.dcycrn2jbj5'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.a70vams4gbl'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.a70vams4gbl'
+}
+[Error: ENOENT: no such file or directory, open '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.dcycrn2jbj5'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.dcycrn2jbj5'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.79gng5d3xc6'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.79gng5d3xc6'
+}
+[Error: ENOENT: no such file or directory, open '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.g5lu5xfd0u'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.g5lu5xfd0u'
+}
+ ⚠ Found a change in next.config.ts. Restarting the server to apply the changes...
+   ▲ Next.js 15.5.3 (Turbopack)
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.103:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1335ms
