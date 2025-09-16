@@ -7,6 +7,7 @@ import { User } from '@supabase/supabase-js';
 interface AppUser {
   id: string;
   username: string;
+  email: string;
   role: 'admin' | 'editor' | 'viewer';
   securityQuestion?: string;
   securityAnswer?: string;
@@ -16,7 +17,7 @@ interface SupabaseAuthContextType {
   user: AppUser | null;
   supabaseUser: User | null;
   signUp: (email: string, password: string, username: string, role: 'admin' | 'editor' | 'viewer', securityQuestion?: string, securityAnswer?: string) => Promise<{ success: boolean; error?: string }>;
-  signIn: (email: string, password: string) => Promise<{ success: boolean; error?: string }>;
+  signIn: (username: string, password: string) => Promise<{ success: boolean; error?: string }>;
   signOut: () => Promise<void>;
   updateUserRole: (userId: string, role: 'admin' | 'editor' | 'viewer') => Promise<boolean>;
   updateSecurityQuestion: (question: string, answer: string) => Promise<boolean>;
@@ -133,15 +134,27 @@ export function SupabaseAuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const signIn = async (email: string, password: string): Promise<{ success: boolean; error?: string }> => {
+  const signIn = async (username: string, password: string): Promise<{ success: boolean; error?: string }> => {
     try {
+      // First, find the user by username in app_users table
+      const { data: appUser, error: appUserError } = await supabase
+        .from('app_users')
+        .select('*')
+        .eq('username', username)
+        .single();
+
+      if (appUserError || !appUser) {
+        return { success: false, error: 'Invalid username or password' };
+      }
+
+      // Now authenticate with Supabase Auth using the email
       const { error } = await supabase.auth.signInWithPassword({
-        email,
+        email: appUser.email,
         password,
       });
 
       if (error) {
-        return { success: false, error: error.message };
+        return { success: false, error: 'Invalid username or password' };
       }
 
       return { success: true };

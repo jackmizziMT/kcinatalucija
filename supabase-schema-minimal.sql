@@ -56,6 +56,7 @@ CREATE TABLE IF NOT EXISTS public.audit_trail (
 CREATE TABLE IF NOT EXISTS public.app_users (
     id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
     username TEXT NOT NULL UNIQUE,
+    email TEXT NOT NULL UNIQUE,
     role TEXT NOT NULL DEFAULT 'editor' CHECK (role IN ('admin', 'editor', 'viewer')),
     security_question TEXT,
     security_answer TEXT,
@@ -91,6 +92,6 @@ INSERT INTO public.locations (name) VALUES
 ON CONFLICT (name) DO NOTHING;
 
 -- Insert default admin user
-INSERT INTO public.app_users (username, role, security_question, security_answer) VALUES 
-    ('admin', 'admin', 'What is the name of your first pet?', 'admin')
+INSERT INTO public.app_users (username, email, role, security_question, security_answer) VALUES 
+    ('admin', 'admin@example.com', 'admin', 'What is the name of your first pet?', 'admin')
 ON CONFLICT (username) DO NOTHING;

@@ -13,7 +13,7 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const { login } = useSupabaseAuth();
+  const { signIn } = useSupabaseAuth();
   const { theme } = useTheme();
   const router = useRouter();
   const isDark = theme === 'dark';
@@ -24,11 +24,11 @@ export default function LoginPage() {
     setIsLoading(true);
 
     try {
-      const success = await login(username, password);
-      if (success) {
+      const result = await signIn(username, password);
+      if (result.success) {
         router.push('/');
       } else {
-        setError('Invalid username or password');
+        setError(result.error || 'Invalid username or password');
       }
     } catch (error) {
       setError('Login failed. Please try again.');
