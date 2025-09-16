@@ -30,6 +30,7 @@ export function ImportExport() {
       Papa.parse(file, {
         header: true,
         skipEmptyLines: true,
+        encoding: 'UTF-8',
         complete: async (results) => {
           try {
             const rows = results.data as any[];
