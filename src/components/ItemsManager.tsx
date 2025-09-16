@@ -8,7 +8,7 @@ import { Button, Input, Label, Select } from "@/components/ui/Controls";
 import { useTheme } from "@/contexts/ThemeContext";
 
 export function ItemsManager() {
-  const { items, locations, stockByLocation, addItem, checkSkuExists } = useSupabaseInventoryStore();
+  const { items, locations, stockByLocation, addItem, updateItem, removeItem, checkSkuExists } = useSupabaseInventoryStore();
   const { theme } = useTheme();
   const [sku, setSku] = useState("");
   const [name, setName] = useState("");
@@ -19,6 +19,9 @@ export function ItemsManager() {
   const [addMessage, setAddMessage] = useState("");
   const [skuExists, setSkuExists] = useState(false);
   const [isCheckingSku, setIsCheckingSku] = useState(false);
+  const [editingSku, setEditingSku] = useState<string | null>(null);
+  const [isUpdating, setIsUpdating] = useState(false);
+  const [isDeleting, setIsDeleting] = useState<string | null>(null);
 
   const locationList = useMemo(() => Object.values(locations), [locations]);
   const itemList = useMemo(() => Object.values(items), [items]);
@@ -47,8 +50,8 @@ export function ItemsManager() {
       <Card>
         <CardHeader title="Add Item" />
         <CardBody>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-4">
-            <div className={`${skuExists ? 'md:col-span-2' : ''}`}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="space-y-2">
               <Label>
                 <span className={`text-base font-medium ${isDark ? "text-white" : "text-gray-900"}`}>SKU</span>
                 <div className="relative">
@@ -73,85 +76,98 @@ export function ItemsManager() {
                     </div>
                   )}
                 </div>
-                {skuExists && (
-                  <p className="text-red-500 text-sm mt-1">
-                    SKU "{sku}" already exists. Please use a different SKU.
-                  </p>
-                )}
+              </Label>
+              {skuExists && (
+                <p className="text-red-500 text-sm">
+                  SKU "{sku}" already exists. Please use a different SKU.
+                </p>
+              )}
+            </div>
+            <div className="space-y-2">
+              <Label>
+                <span className={`text-base font-medium ${isDark ? "text-white" : "text-gray-900"}`}>Product Name</span>
+                <Input 
+                  placeholder="Product Name (supports Maltese: ĦħĠġŻż)" 
+                  value={name} 
+                  onChange={(e) => setName(e.target.value)} 
+                />
               </Label>
             </div>
-            <Label>
-              <span className={`text-base font-medium ${isDark ? "text-white" : "text-gray-900"}`}>Product Name</span>
-              <Input placeholder="Product Name" value={name} onChange={(e) => setName(e.target.value)} />
-            </Label>
-            <Label>
-              <span className={`text-base font-medium ${isDark ? "text-white" : "text-gray-900"}`}>Cost (EUR)</span>
-              <Input placeholder="Cost (EUR)" type="number" value={cost} onChange={(e) => setCost(e.target.value)} />
-            </Label>
-            <Label>
-              <span className={`text-base font-medium ${isDark ? "text-white" : "text-gray-900"}`}>Price (EUR)</span>
-              <Input placeholder="Price (EUR)" type="number" value={price} onChange={(e) => setPrice(e.target.value)} />
-            </Label>
-            <Label>
-              <span className={`text-base font-medium ${isDark ? "text-white" : "text-gray-900"}`}>Quantity Kind</span>
-              <Select value={quantityKind} onChange={(e) => setQuantityKind(e.target.value as any)}>
-                <option value="unit">Unit</option>
-                <option value="kg">Kg</option>
-              </Select>
-            </Label>
-            <Button
-              variant="primary"
-              disabled={isAdding || skuExists}
-              onClick={async () => {
-                if (!sku || !name) {
-                  setAddMessage("Please enter SKU and Product Name");
-                  return;
-                }
-                
-                if (skuExists) {
-                  setAddMessage(`SKU "${sku}" already exists. Please use a different SKU.`);
-                  return;
-                }
-                
-                setIsAdding(true);
-                setAddMessage("");
-                
-                try {
-                  const costCents = Math.round(parseFloat(cost) * 100) || 0;
-                  const priceCents = Math.round(parseFloat(price) * 100) || 0;
-                  await addItem({ sku, name, costPriceEuroCents: costCents, sellingPriceEuroCents: priceCents, quantityKind });
-                  
-                  setSku("");
-                  setName("");
-                  setCost("0");
-                  setPrice("0");
-                  setQuantityKind("unit");
-                  setAddMessage("Item added successfully!");
-                  
-                  // Clear success message after 3 seconds
-                  setTimeout(() => setAddMessage(""), 3000);
-                } catch (error) {
-                  console.error('Error adding item:', error);
-                  const errorMessage = error instanceof Error ? error.message : 'Failed to add item';
-                  const errorDetails = error instanceof Error ? error.toString() : String(error);
-                  
-                  // Handle specific error types
-                  if (errorMessage.includes('timeout')) {
-                    setAddMessage('Error: Request timed out. Please check your internet connection and try again.');
-                  } else if (errorMessage.includes('Supabase error')) {
-                    setAddMessage(`Error: ${errorMessage}`);
-                  } else {
-                    setAddMessage(`Error: ${errorMessage}`);
+            
+            <div className="grid grid-cols-2 gap-2">
+              <Label>
+                <span className={`text-base font-medium ${isDark ? "text-white" : "text-gray-900"}`}>Cost (EUR)</span>
+                <Input placeholder="Cost" type="number" step="0.01" value={cost} onChange={(e) => setCost(e.target.value)} />
+              </Label>
+              <Label>
+                <span className={`text-base font-medium ${isDark ? "text-white" : "text-gray-900"}`}>Price (EUR)</span>
+                <Input placeholder="Price" type="number" step="0.01" value={price} onChange={(e) => setPrice(e.target.value)} />
+              </Label>
+            </div>
+            
+            <div className="grid grid-cols-2 gap-2">
+              <Label>
+                <span className={`text-base font-medium ${isDark ? "text-white" : "text-gray-900"}`}>Quantity Kind</span>
+                <Select value={quantityKind} onChange={(e) => setQuantityKind(e.target.value as any)}>
+                  <option value="unit">Unit</option>
+                  <option value="kg">Kg</option>
+                </Select>
+              </Label>
+              <Button
+                variant="primary"
+                disabled={isAdding || skuExists}
+                onClick={async () => {
+                  if (!sku || !name) {
+                    setAddMessage("Please enter SKU and Product Name");
+                    return;
                   }
                   
-                  console.error('Full error details:', errorDetails);
-                } finally {
-                  setIsAdding(false);
-                }
-              }}
-            >
-              {isAdding ? "Adding..." : "Save"}
-            </Button>
+                  if (skuExists) {
+                    setAddMessage(`SKU "${sku}" already exists. Please use a different SKU.`);
+                    return;
+                  }
+                  
+                  setIsAdding(true);
+                  setAddMessage("");
+                  
+                  try {
+                    const costCents = Math.round(parseFloat(cost) * 100) || 0;
+                    const priceCents = Math.round(parseFloat(price) * 100) || 0;
+                    await addItem({ sku, name, costPriceEuroCents: costCents, sellingPriceEuroCents: priceCents, quantityKind });
+                    
+                    setSku("");
+                    setName("");
+                    setCost("0");
+                    setPrice("0");
+                    setQuantityKind("unit");
+                    setSkuExists(false);
+                    setAddMessage("Item added successfully!");
+                    
+                    // Clear success message after 3 seconds
+                    setTimeout(() => setAddMessage(""), 3000);
+                  } catch (error) {
+                    console.error('Error adding item:', error);
+                    const errorMessage = error instanceof Error ? error.message : 'Failed to add item';
+                    const errorDetails = error instanceof Error ? error.toString() : String(error);
+                    
+                    // Handle specific error types
+                    if (errorMessage.includes('timeout')) {
+                      setAddMessage('Error: Request timed out. Please check your internet connection and try again.');
+                    } else if (errorMessage.includes('Supabase error')) {
+                      setAddMessage(`Error: ${errorMessage}`);
+                    } else {
+                      setAddMessage(`Error: ${errorMessage}`);
+                    }
+                    
+                    console.error('Full error details:', errorDetails);
+                  } finally {
+                    setIsAdding(false);
+                  }
+                }}
+              >
+                {isAdding ? "Adding..." : "Save"}
+              </Button>
+            </div>
           </div>
           
           {addMessage && (
@@ -186,23 +202,162 @@ export function ItemsManager() {
                     <th key={loc.id} className="p-2">{loc.name}</th>
                   ))}
                   <th className="p-2">Total</th>
+                  <th className="p-2">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {itemList.map((it) => {
                   const perLocation = locationList.map((loc) => stockByLocation[`${it.sku}::${loc.id}`] || 0);
                   const total = perLocation.reduce((a, b) => a + b, 0);
+                  const isEditing = editingSku === it.sku;
+                  
                   return (
                     <tr key={it.sku} className="border-t">
                       <td className="p-2 font-mono">{it.sku}</td>
-                      <td className="p-2">{it.name}</td>
-                      <td className="p-2">{euro(it.costPriceEuroCents)}</td>
-                      <td className="p-2">{euro(it.sellingPriceEuroCents)}</td>
-                      <td className="p-2">{it.quantityKind}</td>
+                      <td className="p-2">
+                        {isEditing ? (
+                          <Input 
+                            value={name} 
+                            onChange={(e) => setName(e.target.value)}
+                            className="text-xs h-8"
+                          />
+                        ) : (
+                          it.name
+                        )}
+                      </td>
+                      <td className="p-2">
+                        {isEditing ? (
+                          <Input 
+                            type="number" 
+                            step="0.01"
+                            value={cost} 
+                            onChange={(e) => setCost(e.target.value)}
+                            className="text-xs h-8"
+                          />
+                        ) : (
+                          euro(it.costPriceEuroCents)
+                        )}
+                      </td>
+                      <td className="p-2">
+                        {isEditing ? (
+                          <Input 
+                            type="number" 
+                            step="0.01"
+                            value={price} 
+                            onChange={(e) => setPrice(e.target.value)}
+                            className="text-xs h-8"
+                          />
+                        ) : (
+                          euro(it.sellingPriceEuroCents)
+                        )}
+                      </td>
+                      <td className="p-2">
+                        {isEditing ? (
+                          <Select 
+                            value={quantityKind} 
+                            onChange={(e) => setQuantityKind(e.target.value as any)}
+                            className="text-xs h-8"
+                          >
+                            <option value="unit">Unit</option>
+                            <option value="kg">Kg</option>
+                          </Select>
+                        ) : (
+                          it.quantityKind
+                        )}
+                      </td>
                       {perLocation.map((qty, i) => (
                         <td key={i} className="p-2">{qty}</td>
                       ))}
                       <td className="p-2 font-medium">{total}</td>
+                      <td className="p-2">
+                        <div className="flex gap-1">
+                          {isEditing ? (
+                            <>
+                              <Button
+                                variant="primary"
+                                className="text-xs px-2 py-1 h-6"
+                                disabled={isUpdating}
+                                onClick={async () => {
+                                  setIsUpdating(true);
+                                  try {
+                                    const costCents = Math.round(parseFloat(cost) * 100) || 0;
+                                    const priceCents = Math.round(parseFloat(price) * 100) || 0;
+                                    await updateItem(it.sku, {
+                                      name,
+                                      costPriceEuroCents: costCents,
+                                      sellingPriceEuroCents: priceCents,
+                                      quantityKind
+                                    });
+                                    setEditingSku(null);
+                                    setAddMessage("Item updated successfully!");
+                                    setTimeout(() => setAddMessage(""), 3000);
+                                  } catch (error) {
+                                    console.error('Error updating item:', error);
+                                    setAddMessage(`Error updating item: ${error instanceof Error ? error.message : 'Unknown error'}`);
+                                    setTimeout(() => setAddMessage(""), 5000);
+                                  } finally {
+                                    setIsUpdating(false);
+                                  }
+                                }}
+                              >
+                                {isUpdating ? "..." : "Save"}
+                              </Button>
+                              <Button
+                                variant="default"
+                                className="text-xs px-2 py-1 h-6"
+                                onClick={() => {
+                                  setEditingSku(null);
+                                  setName("");
+                                  setCost("0");
+                                  setPrice("0");
+                                  setQuantityKind("unit");
+                                }}
+                              >
+                                Cancel
+                              </Button>
+                            </>
+                          ) : (
+                            <>
+                              <Button
+                                variant="default"
+                                className="text-xs px-2 py-1 h-6"
+                                onClick={() => {
+                                  setEditingSku(it.sku);
+                                  setName(it.name);
+                                  setCost((it.costPriceEuroCents / 100).toFixed(2));
+                                  setPrice((it.sellingPriceEuroCents / 100).toFixed(2));
+                                  setQuantityKind(it.quantityKind);
+                                }}
+                              >
+                                Edit
+                              </Button>
+                              <Button
+                                variant="danger"
+                                className="text-xs px-2 py-1 h-6"
+                                disabled={isDeleting === it.sku}
+                                onClick={async () => {
+                                  if (confirm(`Are you sure you want to delete "${it.name}" (${it.sku})? This will also remove all stock records.`)) {
+                                    setIsDeleting(it.sku);
+                                    try {
+                                      await removeItem(it.sku);
+                                      setAddMessage("Item deleted successfully!");
+                                      setTimeout(() => setAddMessage(""), 3000);
+                                    } catch (error) {
+                                      console.error('Error deleting item:', error);
+                                      setAddMessage(`Error deleting item: ${error instanceof Error ? error.message : 'Unknown error'}`);
+                                      setTimeout(() => setAddMessage(""), 5000);
+                                    } finally {
+                                      setIsDeleting(null);
+                                    }
+                                  }
+                                }}
+                              >
+                                {isDeleting === it.sku ? "..." : "Delete"}
+                              </Button>
+                            </>
+                          )}
+                        </div>
+                      </td>
                     </tr>
                   );
                 })}
