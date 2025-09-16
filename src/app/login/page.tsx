@@ -109,20 +109,6 @@ export default function LoginPage() {
               </div>
             </div>
 
-            <div className={`mt-6 p-4 rounded-lg border ${
-              isDark 
-                ? "bg-white/5 border-white/20" 
-                : "bg-gray-50 border-gray-200"
-            }`}>
-              <h3 className={`text-sm font-semibold mb-2 ${isDark ? "text-white" : "text-gray-900"}`}>
-                Demo Credentials:
-              </h3>
-              <div className={`text-xs space-y-1 ${isDark ? "text-white/80" : "text-gray-600"}`}>
-                <div><strong>Admin:</strong> admin / SecureAdmin2025! (Full access)</div>
-                <div><strong>Editor:</strong> Create users with editor role</div>
-                <div><strong>Viewer:</strong> Create users with viewer role (read-only)</div>
-              </div>
-            </div>
           </CardBody>
         </Card>
       </div>
