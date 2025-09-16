@@ -1,0 +1,1037 @@
+
+> inventory-tracker-private@0.1.0 dev
+> next dev --turbopack
+
+   ▲ Next.js 15.5.3 (Turbopack)
+   - Local:        http://localhost:3000
+   - Network:      http://172.31.254.48:3000
+
+ ✓ Starting...
+ ✓ Ready in 815ms
+ ○ Compiling / ...
+ ✓ Compiled / in 1826ms
+ GET / 200 in 2072ms
+ GET / 200 in 92ms
+ GET / 200 in 94ms
+ ✓ Compiled /_not-found/page in 168ms
+ GET /apple-touch-icon-precomposed.png 404 in 258ms
+ GET /apple-touch-icon.png 404 in 256ms
+ GET /favicon.ico 200 in 390ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 392ms
+ GET / 200 in 76ms
+ ✓ Compiled in 231ms
+ GET / 200 in 230ms
+ GET / 200 in 80ms
+ ✓ Compiled in 50ms
+ ✓ Compiled in 31ms
+ ✓ Compiled in 51ms
+ GET / 200 in 123ms
+ GET / 200 in 153ms
+ ✓ Compiled /items in 229ms
+ GET /items 200 in 289ms
+ ✓ Compiled in 250ms
+ ✓ Compiled / in 21ms
+ GET / 200 in 255ms
+ GET / 200 in 86ms
+ ✓ Compiled /admin in 155ms
+ GET /admin 200 in 214ms
+ GET / 200 in 93ms
+ GET / 200 in 100ms
+ GET / 200 in 80ms
+ GET / 200 in 69ms
+ GET / 200 in 91ms
+ GET / 200 in 240ms
+ ✓ Compiled in 114ms
+ ✓ Compiled in 112ms
+ ✓ Compiled in 56ms
+ ✓ Compiled / in 23ms
+ GET / 200 in 153ms
+ GET / 200 in 85ms
+ GET / 200 in 40ms
+ GET / 200 in 66ms
+ ✓ Compiled in 33ms
+ GET / 200 in 220ms
+ ✓ Compiled /admin in 25ms
+ GET /admin 200 in 93ms
+ GET / 200 in 56ms
+ GET / 200 in 60ms
+ GET /admin 200 in 59ms
+ ✓ Compiled /admin in 22ms
+ GET /admin 200 in 119ms
+ GET /admin 200 in 62ms
+ GET /admin 200 in 37ms
+ GET /admin 200 in 43ms
+ ✓ Compiled in 37ms
+ ✓ Compiled in 40ms
+ ✓ Compiled / in 25ms
+ GET / 200 in 114ms
+ GET /admin 200 in 47ms
+ GET / 200 in 48ms
+ ✓ Compiled in 42ms
+ ✓ Compiled in 82ms
+ GET / 200 in 107ms
+ GET / 200 in 52ms
+ GET / 200 in 84ms
+ GET / 200 in 38ms
+ GET / 200 in 189ms
+ GET /admin 200 in 93ms
+ GET / 200 in 42ms
+ ✓ Compiled in 77ms
+ ✓ Compiled / in 30ms
+ GET / 200 in 121ms
+ GET / 200 in 37ms
+ GET / 200 in 32ms
+ GET / 200 in 39ms
+ ✓ Compiled in 37ms
+ GET / 200 in 93ms
+ ✓ Compiled in 44ms
+ GET / 200 in 100ms
+ GET / 200 in 32ms
+ GET / 200 in 234ms
+ ✓ Compiled /transfer in 252ms
+ GET /transfer 200 in 299ms
+ GET / 200 in 52ms
+ GET / 200 in 50ms
+ GET /transfer 200 in 49ms
+ GET / 200 in 63ms
+ ✓ Compiled /dashboard in 185ms
+ GET /dashboard 200 in 217ms
+ GET / 200 in 46ms
+ ✓ Compiled in 117ms
+ GET /dashboard 200 in 51ms
+ GET /transfer 200 in 43ms
+ GET / 200 in 45ms
+ ✓ Compiled in 53ms
+ ✓ Compiled in 34ms
+ ✓ Compiled in 47ms
+ ✓ Compiled in 76ms
+ ✓ Compiled in 94ms
+ ✓ Compiled in 49ms
+ ✓ Compiled in 84ms
+ GET /dashboard 200 in 116ms
+ GET /transfer 200 in 105ms
+ GET / 200 in 95ms
+ GET /dashboard 200 in 50ms
+ GET / 200 in 42ms
+ ✓ Compiled in 82ms
+ GET / 200 in 235ms
+ GET /transfer 200 in 45ms
+ GET /dashboard 200 in 38ms
+ GET / 200 in 44ms
+ GET / 200 in 63ms
+ GET /dashboard 200 in 47ms
+ GET / 200 in 44ms
+ GET /transfer 200 in 48ms
+ GET /transfer 200 in 116ms
+ GET / 200 in 46ms
+ GET / 200 in 71ms
+ ✓ Compiled in 77ms
+ GET / 200 in 70ms
+ ✓ Compiled / in 28ms
+ GET / 200 in 160ms
+ GET / 200 in 105ms
+ GET / 200 in 33ms
+ GET / 200 in 37ms
+ GET / 200 in 36ms
+ GET / 200 in 35ms
+ GET / 200 in 171ms
+ GET / 200 in 77ms
+ ✓ Compiled /dashboard in 17ms
+ GET /dashboard 200 in 43ms
+ ✓ Compiled /transfer in 14ms
+ GET /transfer 200 in 46ms
+ GET / 200 in 36ms
+ GET / 200 in 63ms
+ GET / 200 in 77ms
+ GET /transfer 200 in 55ms
+ GET / 200 in 48ms
+ GET / 200 in 74ms
+ GET / 200 in 60ms
+ GET / 200 in 69ms
+ ✓ Compiled / in 18ms
+ GET / 200 in 194ms
+ GET / 200 in 34ms
+ GET / 200 in 69ms
+ GET / 200 in 70ms
+ GET / 200 in 32ms
+ GET / 200 in 35ms
+ GET / 200 in 146ms
+ GET / 200 in 84ms
+ ✓ Compiled /transfer in 16ms
+ GET /transfer 200 in 47ms
+ GET / 200 in 49ms
+ ✓ Compiled /dashboard in 16ms
+ GET /dashboard 200 in 47ms
+ GET /transfer 200 in 45ms
+ GET / 200 in 45ms
+ ✓ Compiled / in 16ms
+ GET / 200 in 95ms
+ GET / 200 in 38ms
+ GET / 200 in 82ms
+ GET / 200 in 36ms
+ GET / 200 in 36ms
+ GET / 200 in 35ms
+ GET / 200 in 162ms
+ GET / 200 in 81ms
+ ✓ Compiled /transfer in 19ms
+ GET /transfer 200 in 52ms
+ ✓ Compiled /admin in 26ms
+ GET /admin 200 in 86ms
+ ✓ Compiled /admin in 16ms
+ GET /admin 200 in 101ms
+ GET /admin 200 in 43ms
+ GET /admin 200 in 38ms
+ GET /admin 200 in 44ms
+ GET /admin 200 in 39ms
+ GET /admin 200 in 40ms
+ ✓ Compiled in 79ms
+ ✓ Compiled /admin in 51ms
+ GET /admin 200 in 180ms
+ GET /admin 200 in 40ms
+ GET /admin 200 in 39ms
+ GET /admin 200 in 46ms
+ ✓ Compiled / in 23ms
+ GET /admin 200 in 51ms
+ GET / 200 in 56ms
+ GET / 200 in 53ms
+ ✓ Compiled / in 17ms
+ GET / 200 in 100ms
+ GET / 200 in 39ms
+ GET / 200 in 36ms
+ GET / 200 in 40ms
+ GET / 200 in 36ms
+ GET / 200 in 35ms
+ ✓ Compiled / in 15ms
+ GET / 200 in 84ms
+ GET / 200 in 31ms
+ GET / 200 in 35ms
+ GET / 200 in 37ms
+ GET / 200 in 35ms
+ GET / 200 in 36ms
+ ✓ Compiled in 57ms
+ ✓ Compiled /transfer in 18ms
+ GET /transfer 200 in 47ms
+ ✓ Compiled in 44ms
+ ✓ Compiled /dashboard in 20ms
+ GET /dashboard 200 in 50ms
+ GET / 200 in 99ms
+ ✓ Compiled in 67ms
+ ✓ Compiled in 50ms
+ ✓ Compiled in 44ms
+ GET /transfer 200 in 107ms
+ GET /transfer 200 in 49ms
+ GET / 200 in 94ms
+ GET / 200 in 154ms
+ GET / 200 in 46ms
+ GET / 200 in 93ms
+ GET / 200 in 85ms
+ GET / 200 in 41ms
+ GET /transfer 200 in 47ms
+ GET /dashboard 200 in 105ms
+ ✓ Compiled /admin in 20ms
+ GET /admin 200 in 96ms
+ GET / 200 in 41ms
+ ✓ Compiled in 153ms
+ ✓ Compiled / in 30ms
+ GET / 200 in 202ms
+ GET / 200 in 49ms
+ GET / 200 in 61ms
+ GET / 200 in 72ms
+ GET / 200 in 165ms
+ GET / 200 in 59ms
+ ✓ Compiled / in 22ms
+ GET / 200 in 120ms
+ GET / 200 in 35ms
+ GET / 200 in 41ms
+ GET / 200 in 39ms
+ GET / 200 in 41ms
+ GET / 200 in 46ms
+ ✓ Compiled in 54ms
+ ✓ Compiled in 39ms
+ ✓ Compiled in 40ms
+ ✓ Compiled in 35ms
+ ✓ Compiled in 49ms
+ ✓ Compiled in 36ms
+ ✓ Compiled in 35ms
+ ✓ Compiled in 54ms
+ GET / 200 in 282ms
+ ✓ Compiled /transfer in 21ms
+ GET /transfer 200 in 103ms
+ ✓ Compiled /dashboard in 18ms
+ GET /dashboard 200 in 98ms
+ GET / 200 in 38ms
+ ✓ Compiled in 42ms
+ ✓ Compiled in 58ms
+ ✓ Compiled in 41ms
+ ✓ Compiled in 43ms
+ GET /transfer 200 in 136ms
+ ✓ Compiled in 39ms
+ ✓ Compiled in 43ms
+ ✓ Compiled in 43ms
+ GET / 200 in 79ms
+ GET / 200 in 46ms
+ GET / 200 in 76ms
+ GET /transfer 200 in 56ms
+ GET /dashboard 200 in 122ms
+ ✓ Compiled /dashboard in 21ms
+ GET /dashboard 200 in 116ms
+ GET /dashboard 200 in 40ms
+ GET /dashboard 200 in 43ms
+ GET /dashboard 200 in 35ms
+ GET /dashboard 200 in 36ms
+ GET /dashboard 200 in 42ms
+ ✓ Compiled in 45ms
+ ✓ Compiled in 254ms
+ ✓ Compiled /dashboard in 45ms
+ GET /dashboard 200 in 250ms
+ ✓ Compiled in 79ms
+ ✓ Compiled /dashboard in 18ms
+ GET /dashboard 200 in 97ms
+ GET /dashboard 200 in 35ms
+ GET /dashboard 200 in 39ms
+ GET /dashboard 200 in 42ms
+ GET /dashboard 200 in 36ms
+ GET /dashboard 200 in 39ms
+ ✓ Compiled /dashboard in 27ms
+ GET /dashboard 200 in 265ms
+ ✓ Compiled / in 17ms
+ GET / 200 in 93ms
+ ✓ Compiled in 73ms
+ GET / 200 in 109ms
+ GET / 200 in 60ms
+ GET / 200 in 221ms
+ ✓ Compiled in 161ms
+ GET /dashboard 200 in 225ms
+ ✓ Compiled in 70ms
+ ✓ Compiled in 53ms
+ ✓ Compiled in 92ms
+ GET / 200 in 287ms
+ ✓ Compiled in 52ms
+ ✓ Compiled in 155ms
+ GET /dashboard 200 in 84ms
+ ✓ Compiled in 132ms
+ ✓ Compiled in 63ms
+ GET / 200 in 161ms
+ ○ Compiling /transfer ...
+ ✓ Compiled /transfer in 719ms
+ ✓ Compiled in 1429ms
+ GET /transfer 200 in 4592ms
+ GET /transfer 200 in 640ms
+ GET /dashboard 200 in 119ms
+ ✓ Compiled in 56ms
+ ✓ Compiled in 52ms
+ GET /transfer 200 in 43ms
+ ✓ Compiled in 65ms
+ ✓ Compiled in 44ms
+ GET / 200 in 41ms
+ GET / 200 in 167ms
+ GET /dashboard 200 in 150ms
+ ✓ Compiled /admin in 27ms
+ GET /admin 200 in 107ms
+ GET / 200 in 49ms
+ ✓ Compiled in 56ms
+ GET /dashboard 200 in 219ms
+ GET /dashboard 200 in 43ms
+ GET / 200 in 55ms
+ GET /dashboard 200 in 53ms
+ GET /transfer 200 in 50ms
+ GET /dashboard 200 in 44ms
+ GET /admin 200 in 38ms
+ GET / 200 in 51ms
+ GET /dashboard 200 in 52ms
+ ✓ Compiled in 66ms
+ ✓ Compiled in 52ms
+ ✓ Compiled in 45ms
+ ✓ Compiled in 56ms
+ GET /transfer 200 in 74ms
+ GET /dashboard 200 in 52ms
+ GET /dashboard 200 in 56ms
+ GET /admin 200 in 120ms
+ GET / 200 in 104ms
+ GET /admin 200 in 194ms
+ GET / 200 in 101ms
+ GET / 200 in 53ms
+ GET /transfer 200 in 48ms
+ GET /dashboard 200 in 62ms
+ GET / 200 in 48ms
+ ✓ Compiled in 80ms
+ GET / 200 in 282ms
+ ✓ Compiled in 91ms
+ GET / 200 in 272ms
+ GET / 200 in 46ms
+ GET /transfer 200 in 60ms
+ GET / 200 in 39ms
+ GET / 200 in 82ms
+ GET / 200 in 81ms
+ ✓ Compiled in 59ms
+ ✓ Compiled in 53ms
+ GET / 200 in 283ms
+ GET / 200 in 79ms
+ ✓ Compiled in 53ms
+ GET / 200 in 228ms
+ ✓ Compiled in 65ms
+ GET / 200 in 249ms
+ ✓ Compiled in 51ms
+ GET / 200 in 240ms
+ GET /dashboard 200 in 55ms
+ GET /admin 200 in 68ms
+ GET / 200 in 50ms
+ GET /dashboard 200 in 57ms
+ GET / 200 in 55ms
+ GET /dashboard 200 in 54ms
+ ✓ Compiled in 121ms
+ GET /dashboard 200 in 237ms
+ GET /dashboard 200 in 64ms
+ ✓ Compiled in 65ms
+ GET /dashboard 200 in 210ms
+ GET / 200 in 50ms
+ ✓ Compiled in 60ms
+ GET /transfer 200 in 58ms
+ ✓ Compiled in 78ms
+ GET /dashboard 200 in 227ms
+ GET /dashboard 200 in 45ms
+ GET / 200 in 53ms
+ GET /dashboard 200 in 43ms
+ GET /admin 200 in 62ms
+ ✓ Compiled /api/template/xls in 227ms
+ GET /api/template/xls 200 in 500ms
+ GET /api/template/xls 200 in 232ms
+ GET /api/template/xls 200 in 290ms
+ ✓ Compiled /api/template/csv in 156ms
+ GET /api/template/csv 200 in 405ms
+ GET /api/template/csv 200 in 254ms
+ GET / 200 in 94ms
+ GET / 200 in 69ms
+ GET /admin 200 in 97ms
+ GET / 200 in 59ms
+ GET / 200 in 49ms
+ GET /transfer 200 in 51ms
+ GET / 200 in 43ms
+ GET /admin 200 in 59ms
+ ✓ Compiled in 60ms
+ GET /admin 200 in 230ms
+ GET /admin 200 in 116ms
+ ✓ Compiled in 84ms
+ GET / 200 in 63ms
+ ✓ Compiled / in 17ms
+ GET / 200 in 96ms
+ GET / 200 in 41ms
+ GET / 200 in 43ms
+ GET / 200 in 42ms
+ GET / 200 in 45ms
+ GET / 200 in 46ms
+ ✓ Compiled /dashboard in 13ms
+ GET /dashboard 200 in 47ms
+ ✓ Compiled /admin in 18ms
+ GET /admin 200 in 42ms
+ ✓ Compiled /admin in 61ms
+ GET /admin 200 in 303ms
+ ✓ Compiled in 40ms
+ ✓ Compiled in 120ms
+ ✓ Compiled in 51ms
+ ✓ Compiled /admin in 32ms
+ GET /admin 200 in 151ms
+ GET /admin 200 in 39ms
+ GET /admin 200 in 49ms
+ GET /admin 200 in 43ms
+ GET /admin 200 in 41ms
+ GET /admin 200 in 38ms
+ ✓ Compiled in 88ms
+ ✓ Compiled in 38ms
+ ✓ Compiled in 57ms
+ ✓ Compiled /login in 212ms
+ GET /login 200 in 304ms
+ GET /login 200 in 184ms
+ ✓ Compiled / in 21ms
+ GET / 200 in 110ms
+ GET /admin 200 in 93ms
+ GET /login 200 in 58ms
+ ⚠ Fast Refresh had to perform a full reload when ./src/contexts/AuthContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ✓ Compiled in 93ms
+ GET /login 200 in 290ms
+ ⚠ Fast Refresh had to perform a full reload when ./src/contexts/AuthContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ✓ Compiled in 60ms
+ GET /login 200 in 225ms
+ ⚠ Fast Refresh had to perform a full reload when ./src/contexts/AuthContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ✓ Compiled in 49ms
+ GET /login 200 in 234ms
+ ⚠ Fast Refresh had to perform a full reload when ./src/contexts/AuthContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ✓ Compiled in 83ms
+ GET /login 200 in 240ms
+ ⚠ Fast Refresh had to perform a full reload when ./src/contexts/AuthContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ✓ Compiled in 65ms
+ GET /login 200 in 225ms
+ ✓ Compiled in 177ms
+ ✓ Compiled in 42ms
+ GET / 200 in 160ms
+ ✓ Compiled in 118ms
+ GET /admin 200 in 102ms
+ ✓ Compiled in 59ms
+ ✓ Compiled in 182ms
+ ✓ Compiled in 45ms
+ ✓ Compiled in 50ms
+ GET / 200 in 165ms
+ GET /admin 200 in 48ms
+ ✓ Compiled in 63ms
+ ✓ Compiled in 51ms
+ GET /admin 200 in 200ms
+ GET /admin 200 in 175ms
+ GET /admin 200 in 94ms
+ GET / 200 in 124ms
+ GET /admin 200 in 41ms
+ GET /login 200 in 107ms
+ GET / 200 in 53ms
+ GET /login 200 in 42ms
+ GET / 200 in 53ms
+ GET /admin 200 in 51ms
+ ✓ Compiled in 100ms
+ GET /admin 200 in 409ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 44ms
+ GET /admin 200 in 200ms
+ GET /admin 200 in 81ms
+ GET /login 200 in 62ms
+ GET / 200 in 93ms
+ GET /login 200 in 102ms
+ GET / 200 in 47ms
+ GET /admin 200 in 60ms
+ GET /login 200 in 58ms
+ GET / 200 in 100ms
+ ✓ Compiled /transfer in 27ms
+ GET /transfer 200 in 124ms
+ GET / 200 in 51ms
+ GET / 200 in 59ms
+ GET /transfer 200 in 58ms
+ GET / 200 in 59ms
+ GET / 200 in 60ms
+ ✓ Compiled /dashboard in 35ms
+ GET /dashboard 200 in 109ms
+ GET /transfer 200 in 56ms
+ GET / 200 in 54ms
+ GET / 200 in 55ms
+ GET /dashboard 200 in 49ms
+ GET / 200 in 61ms
+ GET /login 200 in 59ms
+ GET / 200 in 51ms
+ GET /admin 200 in 54ms
+ GET / 200 in 54ms
+ GET / 200 in 48ms
+ GET /transfer 200 in 48ms
+ GET /dashboard 200 in 58ms
+ GET /admin 200 in 51ms
+ GET /dashboard 200 in 51ms
+ GET / 200 in 76ms
+ ✓ Compiled in 64ms
+ ✓ Compiled in 54ms
+ ✓ Compiled in 158ms
+ ✓ Compiled in 53ms
+ ✓ Compiled in 69ms
+ ✓ Compiled in 53ms
+ ✓ Compiled in 54ms
+ ✓ Compiled in 71ms
+ ✓ Compiled in 177ms
+ ✓ Compiled in 123ms
+ GET /dashboard 200 in 427ms
+ GET /dashboard 200 in 139ms
+ GET / 200 in 123ms
+ GET /transfer 200 in 116ms
+ GET /dashboard 200 in 55ms
+ GET / 200 in 119ms
+ GET / 200 in 62ms
+ GET /dashboard 200 in 52ms
+ ✓ Compiled in 150ms
+ ✓ Compiled in 82ms
+ ✓ Compiled in 54ms
+ ✓ Compiled in 54ms
+ ✓ Compiled in 169ms
+ ✓ Compiled in 178ms
+ ✓ Compiled in 55ms
+ ✓ Compiled in 80ms
+ ✓ Compiled in 52ms
+ ✓ Compiled in 155ms
+ ✓ Compiled in 88ms
+ ✓ Compiled in 48ms
+ ✓ Compiled in 53ms
+ ✓ Compiled in 43ms
+ GET /dashboard 200 in 253ms
+ GET / 200 in 101ms
+ GET /transfer 200 in 51ms
+ GET /dashboard 200 in 54ms
+ GET /dashboard 200 in 48ms
+ GET /dashboard 200 in 88ms
+ GET / 200 in 83ms
+ GET /admin 200 in 282ms
+ GET /dashboard 200 in 49ms
+ ✓ Compiled in 85ms
+ ✓ Compiled in 56ms
+ ✓ Compiled in 73ms
+ ✓ Compiled in 47ms
+ GET / 200 in 94ms
+ GET /dashboard 200 in 587ms
+ GET / 200 in 113ms
+ GET /dashboard 200 in 260ms
+ GET /dashboard 200 in 59ms
+ ✓ Compiled in 95ms
+ GET / 200 in 107ms
+ ✓ Compiled in 59ms
+ GET / 200 in 246ms
+ GET /dashboard 200 in 45ms
+ GET / 200 in 58ms
+ ✓ Compiled in 88ms
+ GET / 200 in 141ms
+ GET /transfer 200 in 45ms
+ GET /dashboard 200 in 58ms
+ GET /transfer 200 in 41ms
+ GET /dashboard 200 in 41ms
+ GET / 200 in 38ms
+ ✓ Compiled in 55ms
+ ✓ Compiled in 101ms
+ GET / 200 in 325ms
+ GET / 200 in 109ms
+ GET / 200 in 133ms
+ ✓ Compiled in 84ms
+ GET / 200 in 308ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 68ms
+ GET / 200 in 258ms
+ GET / 200 in 62ms
+ GET / 200 in 87ms
+ GET / 200 in 106ms
+ ✓ Compiled in 77ms
+ ✓ Compiled in 71ms
+ GET / 200 in 290ms
+ GET / 200 in 76ms
+ ✓ Compiled in 94ms
+ ✓ Compiled in 62ms
+ GET /dashboard 200 in 82ms
+ ✓ Compiled in 70ms
+ GET / 200 in 135ms
+ GET / 200 in 247ms
+ ✓ Compiled in 77ms
+ ✓ Compiled in 52ms
+ GET / 200 in 264ms
+ GET / 200 in 69ms
+ ✓ Compiled in 98ms
+ GET / 200 in 393ms
+ GET / 200 in 60ms
+ ✓ Compiled in 80ms
+ ✓ Compiled in 47ms
+ GET / 200 in 298ms
+ GET /dashboard 200 in 49ms
+ GET / 200 in 57ms
+ GET /dashboard 200 in 60ms
+ GET / 200 in 56ms
+ GET /dashboard 200 in 75ms
+ ✓ Compiled in 82ms
+ GET / 200 in 141ms
+ GET /login 200 in 413ms
+ ✓ Compiled in 181ms
+ ⚠ Fast Refresh had to perform a full reload when ./src/contexts/AuthContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /login 200 in 586ms
+ ⚠ Fast Refresh had to perform a full reload when ./src/contexts/AuthContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ✓ Compiled in 103ms
+ GET /login 200 in 789ms
+ ⚠ Fast Refresh had to perform a full reload when ./src/contexts/AuthContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ✓ Compiled in 91ms
+ GET /login 200 in 271ms
+ ✓ Compiled in 230ms
+ GET /login 200 in 165ms
+ GET /login 200 in 61ms
+ ✓ Compiled in 150ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 80ms
+ GET /login 200 in 296ms
+ ✓ Compiled /recovery in 389ms
+ GET /recovery 200 in 510ms
+ GET /login 200 in 192ms
+ GET /recovery 200 in 52ms
+ ✓ Compiled in 120ms
+ ✓ Compiled in 56ms
+ ✓ Compiled in 53ms
+ ✓ Compiled in 62ms
+ ✓ Compiled in 45ms
+ ✓ Compiled in 48ms
+ ✓ Compiled in 43ms
+ ✓ Compiled in 45ms
+ ✓ Compiled in 74ms
+ ✓ Compiled in 56ms
+ ✓ Compiled in 62ms
+ ✓ Compiled /recovery in 29ms
+ GET /recovery 200 in 258ms
+ ⚠ Fast Refresh had to perform a full reload when ./src/contexts/AuthContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⚠ Fast Refresh had to perform a full reload when ./src/contexts/AuthContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⚠ Fast Refresh had to perform a full reload when ./src/contexts/AuthContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⚠ Fast Refresh had to perform a full reload when ./src/contexts/AuthContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⚠ Fast Refresh had to perform a full reload when ./src/contexts/AuthContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⚠ Fast Refresh had to perform a full reload when ./src/contexts/AuthContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⚠ Fast Refresh had to perform a full reload when ./src/contexts/AuthContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⚠ Fast Refresh had to perform a full reload when ./src/contexts/AuthContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⚠ Fast Refresh had to perform a full reload when ./src/contexts/AuthContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⚠ Fast Refresh had to perform a full reload when ./src/contexts/AuthContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /login 200 in 184ms
+ GET /login 200 in 77ms
+ GET /recovery 200 in 55ms
+ GET / 200 in 99ms
+ GET /admin 200 in 118ms
+ ⚠ Fast Refresh had to perform a full reload when ./src/contexts/AuthContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ✓ Compiled in 91ms
+ GET /admin 200 in 279ms
+ ⚠ Fast Refresh had to perform a full reload when ./src/contexts/AuthContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ✓ Compiled in 67ms
+ GET /admin 200 in 253ms
+ GET /admin 200 in 125ms
+ ⚠ Fast Refresh had to perform a full reload when ./src/contexts/AuthContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ✓ Compiled in 52ms
+ GET /admin 200 in 201ms
+ ⚠ Fast Refresh had to perform a full reload when ./src/contexts/AuthContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ✓ Compiled in 51ms
+ GET /admin 200 in 320ms
+ ⚠ Fast Refresh had to perform a full reload when ./src/contexts/AuthContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ✓ Compiled in 53ms
+ GET /admin 200 in 196ms
+ ⚠ Fast Refresh had to perform a full reload when ./src/contexts/AuthContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ✓ Compiled in 55ms
+ ⨯ ReferenceError: verifyAdminSecurityQuestions is not defined
+    at AuthProvider (src/contexts/AuthContext.tsx:325:7)
+  323 |       changePassword, 
+  324 |       resetAdminPassword,
+> 325 |       verifyAdminSecurityQuestions,
+      |       ^
+  326 |       isLoading 
+  327 |     }}>
+  328 |       {children} {
+  digest: '2616673822'
+}
+ GET /admin 500 in 202ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload when ./src/contexts/AuthContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 73ms
+ GET /admin 200 in 200ms
+ GET /admin 200 in 142ms
+ ✓ Compiled in 75ms
+ ✓ Compiled in 135ms
+ ✓ Compiled in 85ms
+ ✓ Compiled in 61ms
+ ✓ Compiled in 84ms
+ ✓ Compiled in 187ms
+ ⨯ ./src/app/admin/page.tsx:7:1
+Module not found: Can't resolve '@/components/SecurityQuestionManager'
+[0m [90m  5 |[39m [36mimport[39m { [33mItemsManager[39m } [36mfrom[39m [32m"@/components/ItemsManager"[39m[33m;[39m
+ [90m  6 |[39m [36mimport[39m { [33mUserManagement[39m } [36mfrom[39m [32m"@/components/UserManagement"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  7 |[39m [36mimport[39m { [33mSecurityQuestionManager[39m } [36mfrom[39m [32m"@/components/SecurityQuestionManager"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  8 |[39m [36mimport[39m { [33mCard[39m[33m,[39m [33mCardBody[39m[33m,[39m [33mCardHeader[39m } [36mfrom[39m [32m"@/components/ui/Card"[39m[33m;[39m
+ [90m  9 |[39m [36mimport[39m [33mLink[39m [36mfrom[39m [32m"next/link"[39m[33m;[39m
+ [90m 10 |[39m [36mimport[39m { useTheme } [36mfrom[39m [32m"@/contexts/ThemeContext"[39m[33m;[39m[0m
+
+Import map: aliased to relative './src/components/SecurityQuestionManager' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./src/app/admin/page.tsx:7:1
+Module not found: Can't resolve '@/components/SecurityQuestionManager'
+[0m [90m  5 |[39m [36mimport[39m { [33mItemsManager[39m } [36mfrom[39m [32m"@/components/ItemsManager"[39m[33m;[39m
+ [90m  6 |[39m [36mimport[39m { [33mUserManagement[39m } [36mfrom[39m [32m"@/components/UserManagement"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  7 |[39m [36mimport[39m { [33mSecurityQuestionManager[39m } [36mfrom[39m [32m"@/components/SecurityQuestionManager"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  8 |[39m [36mimport[39m { [33mCard[39m[33m,[39m [33mCardBody[39m[33m,[39m [33mCardHeader[39m } [36mfrom[39m [32m"@/components/ui/Card"[39m[33m;[39m
+ [90m  9 |[39m [36mimport[39m [33mLink[39m [36mfrom[39m [32m"next/link"[39m[33m;[39m
+ [90m 10 |[39m [36mimport[39m { useTheme } [36mfrom[39m [32m"@/contexts/ThemeContext"[39m[33m;[39m[0m
+
+Import map: aliased to relative './src/components/SecurityQuestionManager' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./src/app/admin/page.tsx:7:1
+Module not found: Can't resolve '@/components/SecurityQuestionManager'
+[0m [90m  5 |[39m [36mimport[39m { [33mItemsManager[39m } [36mfrom[39m [32m"@/components/ItemsManager"[39m[33m;[39m
+ [90m  6 |[39m [36mimport[39m { [33mUserManagement[39m } [36mfrom[39m [32m"@/components/UserManagement"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  7 |[39m [36mimport[39m { [33mSecurityQuestionManager[39m } [36mfrom[39m [32m"@/components/SecurityQuestionManager"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  8 |[39m [36mimport[39m { [33mCard[39m[33m,[39m [33mCardBody[39m[33m,[39m [33mCardHeader[39m } [36mfrom[39m [32m"@/components/ui/Card"[39m[33m;[39m
+ [90m  9 |[39m [36mimport[39m [33mLink[39m [36mfrom[39m [32m"next/link"[39m[33m;[39m
+ [90m 10 |[39m [36mimport[39m { useTheme } [36mfrom[39m [32m"@/contexts/ThemeContext"[39m[33m;[39m[0m
+
+Import map: aliased to relative './src/components/SecurityQuestionManager' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./src/app/admin/page.tsx:7:1
+Module not found: Can't resolve '@/components/SecurityQuestionManager'
+[0m [90m  5 |[39m [36mimport[39m { [33mItemsManager[39m } [36mfrom[39m [32m"@/components/ItemsManager"[39m[33m;[39m
+ [90m  6 |[39m [36mimport[39m { [33mUserManagement[39m } [36mfrom[39m [32m"@/components/UserManagement"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  7 |[39m [36mimport[39m { [33mSecurityQuestionManager[39m } [36mfrom[39m [32m"@/components/SecurityQuestionManager"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  8 |[39m [36mimport[39m { [33mCard[39m[33m,[39m [33mCardBody[39m[33m,[39m [33mCardHeader[39m } [36mfrom[39m [32m"@/components/ui/Card"[39m[33m;[39m
+ [90m  9 |[39m [36mimport[39m [33mLink[39m [36mfrom[39m [32m"next/link"[39m[33m;[39m
+ [90m 10 |[39m [36mimport[39m { useTheme } [36mfrom[39m [32m"@/contexts/ThemeContext"[39m[33m;[39m[0m
+
+Import map: aliased to relative './src/components/SecurityQuestionManager' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./src/app/admin/page.tsx:7:1
+Module not found: Can't resolve '@/components/SecurityQuestionManager'
+[0m [90m  5 |[39m [36mimport[39m { [33mItemsManager[39m } [36mfrom[39m [32m"@/components/ItemsManager"[39m[33m;[39m
+ [90m  6 |[39m [36mimport[39m { [33mUserManagement[39m } [36mfrom[39m [32m"@/components/UserManagement"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  7 |[39m [36mimport[39m { [33mSecurityQuestionManager[39m } [36mfrom[39m [32m"@/components/SecurityQuestionManager"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  8 |[39m [36mimport[39m { [33mCard[39m[33m,[39m [33mCardBody[39m[33m,[39m [33mCardHeader[39m } [36mfrom[39m [32m"@/components/ui/Card"[39m[33m;[39m
+ [90m  9 |[39m [36mimport[39m [33mLink[39m [36mfrom[39m [32m"next/link"[39m[33m;[39m
+ [90m 10 |[39m [36mimport[39m { useTheme } [36mfrom[39m [32m"@/contexts/ThemeContext"[39m[33m;[39m[0m
+
+Import map: aliased to relative './src/components/SecurityQuestionManager' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./src/app/admin/page.tsx:7:1
+Module not found: Can't resolve '@/components/SecurityQuestionManager'
+[0m [90m  5 |[39m [36mimport[39m { [33mItemsManager[39m } [36mfrom[39m [32m"@/components/ItemsManager"[39m[33m;[39m
+ [90m  6 |[39m [36mimport[39m { [33mUserManagement[39m } [36mfrom[39m [32m"@/components/UserManagement"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  7 |[39m [36mimport[39m { [33mSecurityQuestionManager[39m } [36mfrom[39m [32m"@/components/SecurityQuestionManager"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  8 |[39m [36mimport[39m { [33mCard[39m[33m,[39m [33mCardBody[39m[33m,[39m [33mCardHeader[39m } [36mfrom[39m [32m"@/components/ui/Card"[39m[33m;[39m
+ [90m  9 |[39m [36mimport[39m [33mLink[39m [36mfrom[39m [32m"next/link"[39m[33m;[39m
+ [90m 10 |[39m [36mimport[39m { useTheme } [36mfrom[39m [32m"@/contexts/ThemeContext"[39m[33m;[39m[0m
+
+Import map: aliased to relative './src/components/SecurityQuestionManager' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./src/app/admin/page.tsx:7:1
+Module not found: Can't resolve '@/components/SecurityQuestionManager'
+[0m [90m  5 |[39m [36mimport[39m { [33mItemsManager[39m } [36mfrom[39m [32m"@/components/ItemsManager"[39m[33m;[39m
+ [90m  6 |[39m [36mimport[39m { [33mUserManagement[39m } [36mfrom[39m [32m"@/components/UserManagement"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  7 |[39m [36mimport[39m { [33mSecurityQuestionManager[39m } [36mfrom[39m [32m"@/components/SecurityQuestionManager"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  8 |[39m [36mimport[39m { [33mCard[39m[33m,[39m [33mCardBody[39m[33m,[39m [33mCardHeader[39m } [36mfrom[39m [32m"@/components/ui/Card"[39m[33m;[39m
+ [90m  9 |[39m [36mimport[39m [33mLink[39m [36mfrom[39m [32m"next/link"[39m[33m;[39m
+ [90m 10 |[39m [36mimport[39m { useTheme } [36mfrom[39m [32m"@/contexts/ThemeContext"[39m[33m;[39m[0m
+
+Import map: aliased to relative './src/components/SecurityQuestionManager' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./src/app/admin/page.tsx:7:1
+Module not found: Can't resolve '@/components/SecurityQuestionManager'
+[0m [90m  5 |[39m [36mimport[39m { [33mItemsManager[39m } [36mfrom[39m [32m"@/components/ItemsManager"[39m[33m;[39m
+ [90m  6 |[39m [36mimport[39m { [33mUserManagement[39m } [36mfrom[39m [32m"@/components/UserManagement"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  7 |[39m [36mimport[39m { [33mSecurityQuestionManager[39m } [36mfrom[39m [32m"@/components/SecurityQuestionManager"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  8 |[39m [36mimport[39m { [33mCard[39m[33m,[39m [33mCardBody[39m[33m,[39m [33mCardHeader[39m } [36mfrom[39m [32m"@/components/ui/Card"[39m[33m;[39m
+ [90m  9 |[39m [36mimport[39m [33mLink[39m [36mfrom[39m [32m"next/link"[39m[33m;[39m
+ [90m 10 |[39m [36mimport[39m { useTheme } [36mfrom[39m [32m"@/contexts/ThemeContext"[39m[33m;[39m[0m
+
+Import map: aliased to relative './src/components/SecurityQuestionManager' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./src/app/admin/page.tsx:7:1
+Module not found: Can't resolve '@/components/SecurityQuestionManager'
+[0m [90m  5 |[39m [36mimport[39m { [33mItemsManager[39m } [36mfrom[39m [32m"@/components/ItemsManager"[39m[33m;[39m
+ [90m  6 |[39m [36mimport[39m { [33mUserManagement[39m } [36mfrom[39m [32m"@/components/UserManagement"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  7 |[39m [36mimport[39m { [33mSecurityQuestionManager[39m } [36mfrom[39m [32m"@/components/SecurityQuestionManager"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  8 |[39m [36mimport[39m { [33mCard[39m[33m,[39m [33mCardBody[39m[33m,[39m [33mCardHeader[39m } [36mfrom[39m [32m"@/components/ui/Card"[39m[33m;[39m
+ [90m  9 |[39m [36mimport[39m [33mLink[39m [36mfrom[39m [32m"next/link"[39m[33m;[39m
+ [90m 10 |[39m [36mimport[39m { useTheme } [36mfrom[39m [32m"@/contexts/ThemeContext"[39m[33m;[39m[0m
+
+Import map: aliased to relative './src/components/SecurityQuestionManager' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./src/app/admin/page.tsx:7:1
+Module not found: Can't resolve '@/components/SecurityQuestionManager'
+[0m [90m  5 |[39m [36mimport[39m { [33mItemsManager[39m } [36mfrom[39m [32m"@/components/ItemsManager"[39m[33m;[39m
+ [90m  6 |[39m [36mimport[39m { [33mUserManagement[39m } [36mfrom[39m [32m"@/components/UserManagement"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  7 |[39m [36mimport[39m { [33mSecurityQuestionManager[39m } [36mfrom[39m [32m"@/components/SecurityQuestionManager"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  8 |[39m [36mimport[39m { [33mCard[39m[33m,[39m [33mCardBody[39m[33m,[39m [33mCardHeader[39m } [36mfrom[39m [32m"@/components/ui/Card"[39m[33m;[39m
+ [90m  9 |[39m [36mimport[39m [33mLink[39m [36mfrom[39m [32m"next/link"[39m[33m;[39m
+ [90m 10 |[39m [36mimport[39m { useTheme } [36mfrom[39m [32m"@/contexts/ThemeContext"[39m[33m;[39m[0m
+
+Import map: aliased to relative './src/components/SecurityQuestionManager' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./src/app/admin/page.tsx:7:1
+Module not found: Can't resolve '@/components/SecurityQuestionManager'
+[0m [90m  5 |[39m [36mimport[39m { [33mItemsManager[39m } [36mfrom[39m [32m"@/components/ItemsManager"[39m[33m;[39m
+ [90m  6 |[39m [36mimport[39m { [33mUserManagement[39m } [36mfrom[39m [32m"@/components/UserManagement"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  7 |[39m [36mimport[39m { [33mSecurityQuestionManager[39m } [36mfrom[39m [32m"@/components/SecurityQuestionManager"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  8 |[39m [36mimport[39m { [33mCard[39m[33m,[39m [33mCardBody[39m[33m,[39m [33mCardHeader[39m } [36mfrom[39m [32m"@/components/ui/Card"[39m[33m;[39m
+ [90m  9 |[39m [36mimport[39m [33mLink[39m [36mfrom[39m [32m"next/link"[39m[33m;[39m
+ [90m 10 |[39m [36mimport[39m { useTheme } [36mfrom[39m [32m"@/contexts/ThemeContext"[39m[33m;[39m[0m
+
+Import map: aliased to relative './src/components/SecurityQuestionManager' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./src/app/admin/page.tsx:7:1
+Module not found: Can't resolve '@/components/SecurityQuestionManager'
+[0m [90m  5 |[39m [36mimport[39m { [33mItemsManager[39m } [36mfrom[39m [32m"@/components/ItemsManager"[39m[33m;[39m
+ [90m  6 |[39m [36mimport[39m { [33mUserManagement[39m } [36mfrom[39m [32m"@/components/UserManagement"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  7 |[39m [36mimport[39m { [33mSecurityQuestionManager[39m } [36mfrom[39m [32m"@/components/SecurityQuestionManager"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  8 |[39m [36mimport[39m { [33mCard[39m[33m,[39m [33mCardBody[39m[33m,[39m [33mCardHeader[39m } [36mfrom[39m [32m"@/components/ui/Card"[39m[33m;[39m
+ [90m  9 |[39m [36mimport[39m [33mLink[39m [36mfrom[39m [32m"next/link"[39m[33m;[39m
+ [90m 10 |[39m [36mimport[39m { useTheme } [36mfrom[39m [32m"@/contexts/ThemeContext"[39m[33m;[39m[0m
+
+Import map: aliased to relative './src/components/SecurityQuestionManager' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ✓ Compiled in 67ms
+ ✓ Compiled in 36ms
+ ✓ Compiled in 87ms
+ ✓ Compiled /admin in 59ms
+ GET /admin 200 in 361ms
+ GET /recovery 200 in 230ms
+ GET /admin 200 in 187ms
+ GET /login 200 in 69ms
+ GET /recovery 200 in 57ms
+ GET /login 200 in 71ms
+ GET / 200 in 61ms
+ GET / 200 in 59ms
+ GET /login 200 in 158ms
+ GET / 200 in 59ms
+ GET /transfer 200 in 94ms
+ GET /dashboard 200 in 76ms
+ GET /login 200 in 72ms
+ GET /recovery 200 in 61ms
+ GET / 200 in 999ms
+ GET /login 200 in 103ms
