@@ -7,6 +7,7 @@ import { ItemsManager } from "@/components/ItemsManager";
 import { SecurityQuestionManager } from "@/components/SecurityQuestionManager";
 // import { DataBackup } from "@/components/DataBackup";
 import { SupabaseTest } from "@/components/SupabaseTest";
+import { DataPurge } from "@/components/DataPurge";
 import { Card, CardBody, CardHeader } from "@/components/ui/Card";
 import Link from "next/link";
 import { useTheme } from "@/contexts/ThemeContext";
@@ -29,10 +30,11 @@ function AdminContent() {
       <h1 className={`text-2xl md:text-3xl font-bold ${isDark ? "text-white" : "text-gray-900"}`}>Admin</h1>
       <SecurityQuestionManager />
       <SupabaseTest />
-      {/* <DataBackup /> */}
-      {/* <UserManagement /> */}
       <ItemsManager />
       <LocationsManager />
+      <DataPurge />
+      {/* <DataBackup /> */}
+      {/* <UserManagement /> */}
       <Card>
         <CardHeader title="Batch Update" subtitle="Import CSV or export state" />
         <CardBody>
