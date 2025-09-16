@@ -47,7 +47,7 @@ export function ItemsManager() {
       <Card>
         <CardHeader title="Add Item" />
         <CardBody>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-4">
             <Label>
               <span className={`text-base font-medium ${isDark ? "text-white" : "text-gray-900"}`}>SKU</span>
               <div className="relative">
@@ -58,16 +58,16 @@ export function ItemsManager() {
                   className={skuExists ? "border-red-500 focus:border-red-500" : ""}
                 />
                 {isCheckingSku && (
-                  <div className="absolute right-2 top-1/2 transform -translate-y-1/2">
-                    <div className="animate-spin h-4 w-4 border-2 border-blue-500 border-t-transparent rounded-full"></div>
+                  <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
+                    <div className="animate-spin h-3 w-3 border-2 border-blue-500 border-t-transparent rounded-full"></div>
                   </div>
                 )}
                 {sku.trim().length > 0 && !isCheckingSku && (
-                  <div className="absolute right-2 top-1/2 transform -translate-y-1/2">
+                  <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
                     {skuExists ? (
-                      <span className="text-red-500 text-sm">⚠️</span>
+                      <span className="text-red-500 text-xs">⚠️</span>
                     ) : (
-                      <span className="text-green-500 text-sm">✓</span>
+                      <span className="text-green-500 text-xs">✓</span>
                     )}
                   </div>
                 )}

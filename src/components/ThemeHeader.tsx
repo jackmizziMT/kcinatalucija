@@ -90,14 +90,33 @@ export function ThemeHeader() {
           </button>
           
           {user && (
-            <button
-              onClick={signOut}
-              className={`ml-2 px-3 py-2 rounded-md text-sm transition-colors ${
-                isDark ? "bg-red-500/20 text-red-300 hover:bg-red-500/30" : "bg-red-100 text-red-700 hover:bg-red-200"
-              }`}
-            >
-              Logout
-            </button>
+            <>
+              <div className={`hidden md:flex items-center px-3 py-2 rounded-md text-sm ${
+                isDark 
+                  ? "bg-white/10 text-white border border-white/20" 
+                  : "bg-gray-100 text-gray-700 border border-gray-300"
+              }`}>
+                <span className="text-xs opacity-75 mr-1">👤</span>
+                <span className="font-medium">{user.username}</span>
+                <span className={`ml-2 px-2 py-0.5 rounded text-xs ${
+                  user.role === 'admin' 
+                    ? "bg-purple-100 text-purple-700" 
+                    : user.role === 'editor'
+                    ? "bg-blue-100 text-blue-700"
+                    : "bg-gray-100 text-gray-700"
+                }`}>
+                  {user.role}
+                </span>
+              </div>
+              <button
+                onClick={signOut}
+                className={`ml-2 px-3 py-2 rounded-md text-sm transition-colors ${
+                  isDark ? "bg-red-500/20 text-red-300 hover:bg-red-500/30" : "bg-red-100 text-red-700 hover:bg-red-200"
+                }`}
+              >
+                Logout
+              </button>
+            </>
           )}
         </div>
       </div>

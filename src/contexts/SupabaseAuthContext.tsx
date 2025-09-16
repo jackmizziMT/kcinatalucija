@@ -23,6 +23,10 @@ interface SupabaseAuthContextType {
   updateSecurityQuestion: (question: string, answer: string) => Promise<boolean>;
   verifySecurityQuestion: (answer: string) => Promise<boolean>;
   resetAdminPassword: (newPassword: string) => Promise<boolean>;
+  createUser: (userData: { username: string; email: string; password: string; role: 'admin' | 'editor' | 'viewer' }) => Promise<void>;
+  updateUser: (userId: string, updates: { username?: string; email?: string; role?: 'admin' | 'editor' | 'viewer' }) => Promise<void>;
+  deleteUser: (userId: string) => Promise<void>;
+  resetUserPassword: (userId: string, newPassword: string) => Promise<void>;
   isLoading: boolean;
 }
 
@@ -250,6 +254,81 @@ export function SupabaseAuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  // User management functions
+  const createUser = async (userData: { username: string; email: string; password: string; role: 'admin' | 'editor' | 'viewer' }) => {
+    try {
+      // Create user in Supabase Auth
+      const { data: authData, error: authError } = await supabase.auth.admin.createUser({
+        email: userData.email,
+        password: userData.password,
+        email_confirm: true,
+      });
+
+      if (authError) throw authError;
+
+      // Create user in app_users table
+      const { error: appUserError } = await supabase
+        .from('app_users')
+        .insert({
+          id: authData.user.id,
+          username: userData.username,
+          email: userData.email,
+          role: userData.role,
+        });
+
+      if (appUserError) throw appUserError;
+    } catch (error) {
+      console.error('Error creating user:', error);
+      throw error;
+    }
+  };
+
+  const updateUser = async (userId: string, updates: { username?: string; email?: string; role?: 'admin' | 'editor' | 'viewer' }) => {
+    try {
+      const { error } = await supabase
+        .from('app_users')
+        .update(updates)
+        .eq('id', userId);
+
+      if (error) throw error;
+    } catch (error) {
+      console.error('Error updating user:', error);
+      throw error;
+    }
+  };
+
+  const deleteUser = async (userId: string) => {
+    try {
+      // Delete from app_users table first
+      const { error: appUserError } = await supabase
+        .from('app_users')
+        .delete()
+        .eq('id', userId);
+
+      if (appUserError) throw appUserError;
+
+      // Delete from Supabase Auth
+      const { error: authError } = await supabase.auth.admin.deleteUser(userId);
+      if (authError) throw authError;
+    } catch (error) {
+      console.error('Error deleting user:', error);
+      throw error;
+    }
+  };
+
+  const resetUserPassword = async (userId: string, newPassword: string) => {
+    try {
+      const { error } = await supabase.auth.admin.updateUserById(userId, {
+        password: newPassword,
+      });
+
+      if (error) throw error;
+    } catch (error) {
+      console.error('Error resetting password:', error);
+      throw error;
+    }
+  };
+
   return (
     <SupabaseAuthContext.Provider value={{
       user,
@@ -261,6 +340,10 @@ export function SupabaseAuthProvider({ children }: { children: ReactNode }) {
       updateSecurityQuestion,
       verifySecurityQuestion,
       resetAdminPassword,
+      createUser,
+      updateUser,
+      deleteUser,
+      resetUserPassword,
       isLoading,
     }}>
       {children}
