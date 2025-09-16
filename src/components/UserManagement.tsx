@@ -39,21 +39,34 @@ export function UserManagement() {
         role: newRole,
       });
 
-      setMessage(`✅ User "${newUsername}" created successfully`);
+      setMessage(`✅ User "${newUsername}" created successfully! They can now log in with their email and password.`);
       setNewUsername("");
       setNewPassword("");
       setNewEmail("");
       setNewRole("editor");
 
-      // Clear success message after 3 seconds
-      setTimeout(() => setMessage(""), 3000);
+      // Clear success message after 5 seconds
+      setTimeout(() => setMessage(""), 5000);
     } catch (error) {
       console.error('Error creating user:', error);
-      const errorMessage = error instanceof Error ? error.message : 'Failed to create user';
+      let errorMessage = 'Failed to create user';
+      
+      if (error instanceof Error) {
+        errorMessage = error.message;
+        // Provide user-friendly error messages
+        if (errorMessage.includes('User already registered')) {
+          errorMessage = 'A user with this email already exists. Please use a different email address.';
+        } else if (errorMessage.includes('Password')) {
+          errorMessage = 'Password requirements not met. Please use a stronger password.';
+        } else if (errorMessage.includes('email')) {
+          errorMessage = 'Invalid email address. Please check the format.';
+        }
+      }
+      
       setMessage(`❌ Error: ${errorMessage}`);
       
-      // Clear error message after 5 seconds
-      setTimeout(() => setMessage(""), 5000);
+      // Clear error message after 7 seconds
+      setTimeout(() => setMessage(""), 7000);
     } finally {
       setIsCreating(false);
     }
@@ -206,9 +219,9 @@ export function UserManagement() {
               <span className="font-medium">User Management Status</span>
             </div>
             <p className="text-sm">
-              User management functions are available for creating new users. 
-              Advanced features like editing and deleting existing users require 
-              Supabase admin permissions to be fully configured.
+              ✅ <strong>Available:</strong> Create new users (username, email, password, role)<br/>
+              ⚠️ <strong>Limited:</strong> Edit/delete users require admin privileges<br/>
+              ℹ️ <strong>Note:</strong> New users can log in immediately after creation
             </p>
           </div>
         </CardBody>

@@ -172,9 +172,24 @@ export function SupabaseAuthProvider({ children }: { children: ReactNode }) {
 
   const signOut = async (): Promise<void> => {
     try {
-      await supabase.auth.signOut();
+      console.log('Signing out...');
+      const { error } = await supabase.auth.signOut();
+      
+      if (error) {
+        console.error('Sign out error:', error);
+        throw error;
+      }
+      
+      // Manually clear the user state
+      setUser(null);
+      setSupabaseUser(null);
+      
+      console.log('Signed out successfully');
     } catch (error) {
       console.error('Sign out error:', error);
+      // Even if there's an error, clear the local state
+      setUser(null);
+      setSupabaseUser(null);
     }
   };
 
@@ -257,14 +272,17 @@ export function SupabaseAuthProvider({ children }: { children: ReactNode }) {
   // User management functions
   const createUser = async (userData: { username: string; email: string; password: string; role: 'admin' | 'editor' | 'viewer' }) => {
     try {
-      // Create user in Supabase Auth
-      const { data: authData, error: authError } = await supabase.auth.admin.createUser({
+      // Use regular signup flow instead of admin functions
+      const { data: authData, error: authError } = await supabase.auth.signUp({
         email: userData.email,
         password: userData.password,
-        email_confirm: true,
       });
 
       if (authError) throw authError;
+
+      if (!authData.user) {
+        throw new Error('User creation failed - no user data returned');
+      }
 
       // Create user in app_users table
       const { error: appUserError } = await supabase
@@ -299,7 +317,8 @@ export function SupabaseAuthProvider({ children }: { children: ReactNode }) {
 
   const deleteUser = async (userId: string) => {
     try {
-      // Delete from app_users table first
+      // For now, only delete from app_users table
+      // Full user deletion requires admin privileges
       const { error: appUserError } = await supabase
         .from('app_users')
         .delete()
@@ -307,9 +326,8 @@ export function SupabaseAuthProvider({ children }: { children: ReactNode }) {
 
       if (appUserError) throw appUserError;
 
-      // Delete from Supabase Auth
-      const { error: authError } = await supabase.auth.admin.deleteUser(userId);
-      if (authError) throw authError;
+      // Note: Full deletion from Supabase Auth requires admin privileges
+      // This will disable the user in our app but not remove them from Supabase Auth
     } catch (error) {
       console.error('Error deleting user:', error);
       throw error;
@@ -318,11 +336,9 @@ export function SupabaseAuthProvider({ children }: { children: ReactNode }) {
 
   const resetUserPassword = async (userId: string, newPassword: string) => {
     try {
-      const { error } = await supabase.auth.admin.updateUserById(userId, {
-        password: newPassword,
-      });
-
-      if (error) throw error;
+      // For now, we can't reset passwords without admin privileges
+      // This would require the user to use the password reset flow
+      throw new Error('Password reset requires admin privileges. Users should use the "Forgot Password" flow instead.');
     } catch (error) {
       console.error('Error resetting password:', error);
       throw error;
