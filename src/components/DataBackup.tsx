@@ -18,13 +18,14 @@ export function DataBackup() {
   const isDark = theme === "dark";
 
   const exportAllData = () => {
+    const exportedState = JSON.parse(exportState());
     const allData = {
       timestamp: new Date().toISOString(),
       version: "1.0",
-      data: exportState(),
+      data: exportedState,
       users: Object.values(users),
       metadata: {
-        totalItems: Object.keys(exportState().items || {}).length,
+        totalItems: Object.keys(exportedState.items || {}).length,
         totalLocations: Object.keys(locations).length,
         totalStockEntries: Object.keys(stockByLocation).length,
         totalAdjustments: adjustments.length,
@@ -47,7 +48,7 @@ export function DataBackup() {
   };
 
   const exportItemsOnly = () => {
-    const data = exportState();
+    const data = JSON.parse(exportState());
     const itemsOnly = {
       timestamp: new Date().toISOString(),
       type: "items-only",
