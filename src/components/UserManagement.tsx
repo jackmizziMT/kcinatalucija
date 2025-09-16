@@ -1,13 +1,22 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSupabaseAuth } from "@/contexts/SupabaseAuthContext";
 import { Card, CardBody, CardHeader } from "@/components/ui/Card";
 import { Button, Input, Label, Select } from "@/components/ui/Controls";
 import { useTheme } from "@/contexts/ThemeContext";
 
+interface AppUser {
+  id: string;
+  username: string;
+  email: string;
+  role: 'admin' | 'editor' | 'viewer';
+  securityQuestion?: string;
+  securityAnswer?: string;
+}
+
 export function UserManagement() {
-  const { user, createUser, updateUser, deleteUser, resetUserPassword } = useSupabaseAuth();
+  const { user, createUser, updateUser, deleteUser, resetUserPassword, getAllUsers } = useSupabaseAuth();
   const { theme } = useTheme();
   const [newUsername, setNewUsername] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -19,8 +28,28 @@ export function UserManagement() {
   const [editUsername, setEditUsername] = useState("");
   const [editRole, setEditRole] = useState<"admin" | "editor" | "viewer">("editor");
   const [editEmail, setEditEmail] = useState("");
+  const [users, setUsers] = useState<AppUser[]>([]);
+  const [loadingUsers, setLoadingUsers] = useState(false);
 
   const isDark = theme === "dark";
+
+  // Load users on component mount
+  useEffect(() => {
+    loadUsers();
+  }, []);
+
+  const loadUsers = async () => {
+    setLoadingUsers(true);
+    try {
+      const userList = await getAllUsers();
+      setUsers(userList);
+    } catch (error) {
+      console.error('Error loading users:', error);
+      setMessage('Failed to load users');
+    } finally {
+      setLoadingUsers(false);
+    }
+  };
 
   const handleCreateUser = async () => {
     if (!newUsername || !newPassword || !newEmail) {
@@ -44,6 +73,9 @@ export function UserManagement() {
       setNewPassword("");
       setNewEmail("");
       setNewRole("editor");
+
+      // Reload users list
+      loadUsers();
 
       // Clear success message after 5 seconds
       setTimeout(() => setMessage(""), 5000);
@@ -86,6 +118,9 @@ export function UserManagement() {
       setEditEmail("");
       setEditRole("editor");
 
+      // Reload users list
+      loadUsers();
+
       // Clear success message after 3 seconds
       setTimeout(() => setMessage(""), 3000);
     } catch (error) {
@@ -106,6 +141,9 @@ export function UserManagement() {
     try {
       await deleteUser(userId);
       setMessage(`✅ User "${username}" deleted successfully`);
+
+      // Reload users list
+      loadUsers();
 
       // Clear success message after 3 seconds
       setTimeout(() => setMessage(""), 3000);
@@ -205,6 +243,90 @@ export function UserManagement() {
           {message}
         </div>
       )}
+
+      <Card>
+        <CardHeader title="User List" />
+        <CardBody>
+          {loadingUsers ? (
+            <div className="text-center py-4">
+              <div className={`inline-block animate-spin rounded-full h-6 w-6 border-b-2 ${
+                isDark ? "border-white" : "border-gray-900"
+              }`}></div>
+              <p className={`mt-2 text-sm ${isDark ? "text-white/60" : "text-gray-500"}`}>
+                Loading users...
+              </p>
+            </div>
+          ) : (
+            <div className="space-y-3">
+              {users.length === 0 ? (
+                <div className={`text-center py-4 ${isDark ? "text-white/60" : "text-gray-500"}`}>
+                  No users found
+                </div>
+              ) : (
+                users.map((userItem) => (
+                  <div key={userItem.id} className={`p-3 rounded-lg border ${
+                    isDark 
+                      ? "bg-white/5 border-white/10" 
+                      : "bg-gray-50 border-gray-200"
+                  }`}>
+                    <div className="flex items-center justify-between">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2">
+                          <span className={`font-medium ${isDark ? "text-white" : "text-gray-900"}`}>
+                            {userItem.username}
+                          </span>
+                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                            userItem.role === 'admin' 
+                              ? isDark 
+                                ? "bg-red-500/20 text-red-300 border border-red-500/30" 
+                                : "bg-red-100 text-red-700 border border-red-200"
+                              : userItem.role === 'editor'
+                              ? isDark 
+                                ? "bg-blue-500/20 text-blue-300 border border-blue-500/30" 
+                                : "bg-blue-100 text-blue-700 border border-blue-200"
+                              : isDark 
+                                ? "bg-green-500/20 text-green-300 border border-green-500/30" 
+                                : "bg-green-100 text-green-700 border border-green-200"
+                          }`}>
+                            {userItem.role}
+                          </span>
+                        </div>
+                        <p className={`text-sm mt-1 ${isDark ? "text-white/60" : "text-gray-500"}`}>
+                          {userItem.email}
+                        </p>
+                      </div>
+                      <div className="flex gap-2">
+                        <Button
+                          variant="secondary"
+                          size="sm"
+                          onClick={() => {
+                            setEditingUser(userItem);
+                            setEditUsername(userItem.username);
+                            setEditEmail(userItem.email);
+                            setEditRole(userItem.role);
+                          }}
+                          disabled={userItem.id === user?.id}
+                        >
+                          Edit
+                        </Button>
+                        <Button
+                          variant="secondary"
+                          size="sm"
+                          onClick={() => handleDeleteUser(userItem.id, userItem.username)}
+                          disabled={userItem.id === user?.id}
+                          className="text-red-600 hover:text-red-700 hover:bg-red-50 dark:text-red-400 dark:hover:text-red-300 dark:hover:bg-red-500/10"
+                        >
+                          Delete
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+          )}
+        </CardBody>
+      </Card>
 
       <Card>
         <CardHeader title="User Management" />

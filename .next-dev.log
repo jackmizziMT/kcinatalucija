@@ -1158,3 +1158,336 @@ https://nextjs.org/docs/messages/module-not-found
  ✓ Compiled in 218ms
  ✓ Compiled in 80ms
  ✓ Compiled in 1011ms
+ ✓ Compiled / in 155ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.4v4l08vlu9d'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.4v4l08vlu9d'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.x7qua488fya'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.x7qua488fya'
+}
+[Error: ENOENT: no such file or directory, open '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.4v4l08vlu9d'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.4v4l08vlu9d'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.pivn2yfin2s'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.pivn2yfin2s'
+}
+[Error: ENOENT: no such file or directory, open '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.u7609t162dm'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.u7609t162dm'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.ijcp5m4qfvc'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.ijcp5m4qfvc'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.70uv9pl8sut'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.70uv9pl8sut'
+}
+ ✓ Compiled /_not-found/page in 68ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.ifa06eiwbuk'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.ifa06eiwbuk'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.c9nawtfkqzp'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.c9nawtfkqzp'
+}
+[Error: ENOENT: no such file or directory, open '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.iuylmcuxvyh'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.iuylmcuxvyh'
+}
+[Error: ENOENT: no such file or directory, open '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.udzjmps4lkd'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.udzjmps4lkd'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.2bhghadc7q5'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.2bhghadc7q5'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.rqsgx1ruxxj'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.rqsgx1ruxxj'
+}
+[Error: ENOENT: no such file or directory, open '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.583isw7b6xt'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.583isw7b6xt'
+}
+[Error: ENOENT: no such file or directory, open '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.1026ggmni0s9'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/jackmizzi/inventory-tracker/.next/static/development/_buildManifest.js.tmp.1026ggmni0s9'
+}
+ ✓ Compiled in 127ms
+ ⨯ ./src/app/layout.tsx:10:1
+Module not found: Can't resolve '../package.json'
+[0m [90m  8 |[39m [36mimport[39m { [33mSupabaseInitializer[39m } [36mfrom[39m [32m"@/components/SupabaseInitializer"[39m[33m;[39m
+ [90m  9 |[39m [36mimport[39m { [33mFooter[39m } [36mfrom[39m [32m"@/components/Footer"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 10 |[39m [36mimport[39m packageJson [36mfrom[39m [32m"../package.json"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 11 |[39m
+ [90m 12 |[39m [36mconst[39m geistSans [33m=[39m [33mGeist[39m({
+ [90m 13 |[39m   variable[33m:[39m [32m"--font-geist-sans"[39m[33m,[39m[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./src/app/layout.tsx:10:1
+Module not found: Can't resolve '../package.json'
+[0m [90m  8 |[39m [36mimport[39m { [33mSupabaseInitializer[39m } [36mfrom[39m [32m"@/components/SupabaseInitializer"[39m[33m;[39m
+ [90m  9 |[39m [36mimport[39m { [33mFooter[39m } [36mfrom[39m [32m"@/components/Footer"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 10 |[39m [36mimport[39m packageJson [36mfrom[39m [32m"../package.json"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 11 |[39m
+ [90m 12 |[39m [36mconst[39m geistSans [33m=[39m [33mGeist[39m({
+ [90m 13 |[39m   variable[33m:[39m [32m"--font-geist-sans"[39m[33m,[39m[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./src/app/layout.tsx:10:1
+Module not found: Can't resolve '../package.json'
+[0m [90m  8 |[39m [36mimport[39m { [33mSupabaseInitializer[39m } [36mfrom[39m [32m"@/components/SupabaseInitializer"[39m[33m;[39m
+ [90m  9 |[39m [36mimport[39m { [33mFooter[39m } [36mfrom[39m [32m"@/components/Footer"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 10 |[39m [36mimport[39m packageJson [36mfrom[39m [32m"../package.json"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 11 |[39m
+ [90m 12 |[39m [36mconst[39m geistSans [33m=[39m [33mGeist[39m({
+ [90m 13 |[39m   variable[33m:[39m [32m"--font-geist-sans"[39m[33m,[39m[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./src/app/layout.tsx:10:1
+Module not found: Can't resolve '../package.json'
+[0m [90m  8 |[39m [36mimport[39m { [33mSupabaseInitializer[39m } [36mfrom[39m [32m"@/components/SupabaseInitializer"[39m[33m;[39m
+ [90m  9 |[39m [36mimport[39m { [33mFooter[39m } [36mfrom[39m [32m"@/components/Footer"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 10 |[39m [36mimport[39m packageJson [36mfrom[39m [32m"../package.json"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 11 |[39m
+ [90m 12 |[39m [36mconst[39m geistSans [33m=[39m [33mGeist[39m({
+ [90m 13 |[39m   variable[33m:[39m [32m"--font-geist-sans"[39m[33m,[39m[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./src/app/layout.tsx:10:1
+Module not found: Can't resolve '../package.json'
+[0m [90m  8 |[39m [36mimport[39m { [33mSupabaseInitializer[39m } [36mfrom[39m [32m"@/components/SupabaseInitializer"[39m[33m;[39m
+ [90m  9 |[39m [36mimport[39m { [33mFooter[39m } [36mfrom[39m [32m"@/components/Footer"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 10 |[39m [36mimport[39m packageJson [36mfrom[39m [32m"../package.json"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 11 |[39m
+ [90m 12 |[39m [36mconst[39m geistSans [33m=[39m [33mGeist[39m({
+ [90m 13 |[39m   variable[33m:[39m [32m"--font-geist-sans"[39m[33m,[39m[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./src/app/layout.tsx:10:1
+Module not found: Can't resolve '../package.json'
+[0m [90m  8 |[39m [36mimport[39m { [33mSupabaseInitializer[39m } [36mfrom[39m [32m"@/components/SupabaseInitializer"[39m[33m;[39m
+ [90m  9 |[39m [36mimport[39m { [33mFooter[39m } [36mfrom[39m [32m"@/components/Footer"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 10 |[39m [36mimport[39m packageJson [36mfrom[39m [32m"../package.json"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 11 |[39m
+ [90m 12 |[39m [36mconst[39m geistSans [33m=[39m [33mGeist[39m({
+ [90m 13 |[39m   variable[33m:[39m [32m"--font-geist-sans"[39m[33m,[39m[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./src/app/layout.tsx:10:1
+Module not found: Can't resolve '../package.json'
+[0m [90m  8 |[39m [36mimport[39m { [33mSupabaseInitializer[39m } [36mfrom[39m [32m"@/components/SupabaseInitializer"[39m[33m;[39m
+ [90m  9 |[39m [36mimport[39m { [33mFooter[39m } [36mfrom[39m [32m"@/components/Footer"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 10 |[39m [36mimport[39m packageJson [36mfrom[39m [32m"../package.json"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 11 |[39m
+ [90m 12 |[39m [36mconst[39m geistSans [33m=[39m [33mGeist[39m({
+ [90m 13 |[39m   variable[33m:[39m [32m"--font-geist-sans"[39m[33m,[39m[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./src/app/layout.tsx:10:1
+Module not found: Can't resolve '../package.json'
+[0m [90m  8 |[39m [36mimport[39m { [33mSupabaseInitializer[39m } [36mfrom[39m [32m"@/components/SupabaseInitializer"[39m[33m;[39m
+ [90m  9 |[39m [36mimport[39m { [33mFooter[39m } [36mfrom[39m [32m"@/components/Footer"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 10 |[39m [36mimport[39m packageJson [36mfrom[39m [32m"../package.json"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 11 |[39m
+ [90m 12 |[39m [36mconst[39m geistSans [33m=[39m [33mGeist[39m({
+ [90m 13 |[39m   variable[33m:[39m [32m"--font-geist-sans"[39m[33m,[39m[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./src/app/layout.tsx:10:1
+Module not found: Can't resolve '../package.json'
+[0m [90m  8 |[39m [36mimport[39m { [33mSupabaseInitializer[39m } [36mfrom[39m [32m"@/components/SupabaseInitializer"[39m[33m;[39m
+ [90m  9 |[39m [36mimport[39m { [33mFooter[39m } [36mfrom[39m [32m"@/components/Footer"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 10 |[39m [36mimport[39m packageJson [36mfrom[39m [32m"../package.json"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 11 |[39m
+ [90m 12 |[39m [36mconst[39m geistSans [33m=[39m [33mGeist[39m({
+ [90m 13 |[39m   variable[33m:[39m [32m"--font-geist-sans"[39m[33m,[39m[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./src/app/layout.tsx:10:1
+Module not found: Can't resolve '../package.json'
+[0m [90m  8 |[39m [36mimport[39m { [33mSupabaseInitializer[39m } [36mfrom[39m [32m"@/components/SupabaseInitializer"[39m[33m;[39m
+ [90m  9 |[39m [36mimport[39m { [33mFooter[39m } [36mfrom[39m [32m"@/components/Footer"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 10 |[39m [36mimport[39m packageJson [36mfrom[39m [32m"../package.json"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 11 |[39m
+ [90m 12 |[39m [36mconst[39m geistSans [33m=[39m [33mGeist[39m({
+ [90m 13 |[39m   variable[33m:[39m [32m"--font-geist-sans"[39m[33m,[39m[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./src/app/layout.tsx:10:1
+Module not found: Can't resolve '../package.json'
+[0m [90m  8 |[39m [36mimport[39m { [33mSupabaseInitializer[39m } [36mfrom[39m [32m"@/components/SupabaseInitializer"[39m[33m;[39m
+ [90m  9 |[39m [36mimport[39m { [33mFooter[39m } [36mfrom[39m [32m"@/components/Footer"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 10 |[39m [36mimport[39m packageJson [36mfrom[39m [32m"../package.json"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 11 |[39m
+ [90m 12 |[39m [36mconst[39m geistSans [33m=[39m [33mGeist[39m({
+ [90m 13 |[39m   variable[33m:[39m [32m"--font-geist-sans"[39m[33m,[39m[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./src/app/layout.tsx:10:1
+Module not found: Can't resolve '../package.json'
+[0m [90m  8 |[39m [36mimport[39m { [33mSupabaseInitializer[39m } [36mfrom[39m [32m"@/components/SupabaseInitializer"[39m[33m;[39m
+ [90m  9 |[39m [36mimport[39m { [33mFooter[39m } [36mfrom[39m [32m"@/components/Footer"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 10 |[39m [36mimport[39m packageJson [36mfrom[39m [32m"../package.json"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 11 |[39m
+ [90m 12 |[39m [36mconst[39m geistSans [33m=[39m [33mGeist[39m({
+ [90m 13 |[39m   variable[33m:[39m [32m"--font-geist-sans"[39m[33m,[39m[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./src/app/layout.tsx:10:1
+Module not found: Can't resolve '../package.json'
+[0m [90m  8 |[39m [36mimport[39m { [33mSupabaseInitializer[39m } [36mfrom[39m [32m"@/components/SupabaseInitializer"[39m[33m;[39m
+ [90m  9 |[39m [36mimport[39m { [33mFooter[39m } [36mfrom[39m [32m"@/components/Footer"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 10 |[39m [36mimport[39m packageJson [36mfrom[39m [32m"../package.json"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 11 |[39m
+ [90m 12 |[39m [36mconst[39m geistSans [33m=[39m [33mGeist[39m({
+ [90m 13 |[39m   variable[33m:[39m [32m"--font-geist-sans"[39m[33m,[39m[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./src/app/layout.tsx:10:1
+Module not found: Can't resolve '../package.json'
+[0m [90m  8 |[39m [36mimport[39m { [33mSupabaseInitializer[39m } [36mfrom[39m [32m"@/components/SupabaseInitializer"[39m[33m;[39m
+ [90m  9 |[39m [36mimport[39m { [33mFooter[39m } [36mfrom[39m [32m"@/components/Footer"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 10 |[39m [36mimport[39m packageJson [36mfrom[39m [32m"../package.json"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 11 |[39m
+ [90m 12 |[39m [36mconst[39m geistSans [33m=[39m [33mGeist[39m({
+ [90m 13 |[39m   variable[33m:[39m [32m"--font-geist-sans"[39m[33m,[39m[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./src/app/layout.tsx:10:1
+Module not found: Can't resolve '../package.json'
+[0m [90m  8 |[39m [36mimport[39m { [33mSupabaseInitializer[39m } [36mfrom[39m [32m"@/components/SupabaseInitializer"[39m[33m;[39m
+ [90m  9 |[39m [36mimport[39m { [33mFooter[39m } [36mfrom[39m [32m"@/components/Footer"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 10 |[39m [36mimport[39m packageJson [36mfrom[39m [32m"../package.json"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 11 |[39m
+ [90m 12 |[39m [36mconst[39m geistSans [33m=[39m [33mGeist[39m({
+ [90m 13 |[39m   variable[33m:[39m [32m"--font-geist-sans"[39m[33m,[39m[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./src/app/layout.tsx:10:1
+Module not found: Can't resolve '../package.json'
+[0m [90m  8 |[39m [36mimport[39m { [33mSupabaseInitializer[39m } [36mfrom[39m [32m"@/components/SupabaseInitializer"[39m[33m;[39m
+ [90m  9 |[39m [36mimport[39m { [33mFooter[39m } [36mfrom[39m [32m"@/components/Footer"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 10 |[39m [36mimport[39m packageJson [36mfrom[39m [32m"../package.json"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 11 |[39m
+ [90m 12 |[39m [36mconst[39m geistSans [33m=[39m [33mGeist[39m({
+ [90m 13 |[39m   variable[33m:[39m [32m"--font-geist-sans"[39m[33m,[39m[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+

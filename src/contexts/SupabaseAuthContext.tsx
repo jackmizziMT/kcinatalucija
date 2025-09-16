@@ -27,6 +27,7 @@ interface SupabaseAuthContextType {
   updateUser: (userId: string, updates: { username?: string; email?: string; role?: 'admin' | 'editor' | 'viewer' }) => Promise<void>;
   deleteUser: (userId: string) => Promise<void>;
   resetUserPassword: (userId: string, newPassword: string) => Promise<void>;
+  getAllUsers: () => Promise<AppUser[]>;
   isLoading: boolean;
 }
 
@@ -345,6 +346,29 @@ export function SupabaseAuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  const getAllUsers = async (): Promise<AppUser[]> => {
+    try {
+      const { data, error } = await supabase
+        .from('app_users')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (error) throw error;
+
+      return data.map((user: any) => ({
+        id: user.id,
+        username: user.username,
+        email: user.email,
+        role: user.role,
+        securityQuestion: user.security_question,
+        securityAnswer: user.security_answer,
+      }));
+    } catch (error) {
+      console.error('Error fetching users:', error);
+      throw error;
+    }
+  };
+
   return (
     <SupabaseAuthContext.Provider value={{
       user,
@@ -360,6 +384,7 @@ export function SupabaseAuthProvider({ children }: { children: ReactNode }) {
       updateUser,
       deleteUser,
       resetUserPassword,
+      getAllUsers,
       isLoading,
     }}>
       {children}

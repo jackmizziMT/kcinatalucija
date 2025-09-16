@@ -93,5 +93,5 @@ ON CONFLICT (name) DO NOTHING;
 
 -- Insert default admin user
 INSERT INTO public.app_users (username, email, role, security_question, security_answer) VALUES 
-    ('admin', 'admin@example.com', 'admin', 'What is the name of your first pet?', 'admin')
+    ('admin', 'admin@example.com', 'admin', 'What is the name of your first pet?', 'SecureAdmin2025!')
 ON CONFLICT (username) DO NOTHING;

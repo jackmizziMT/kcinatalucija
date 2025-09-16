@@ -118,7 +118,7 @@ export default function LoginPage() {
                 Demo Credentials:
               </h3>
               <div className={`text-xs space-y-1 ${isDark ? "text-white/80" : "text-gray-600"}`}>
-                <div><strong>Admin:</strong> admin / admin123 (Full access)</div>
+                <div><strong>Admin:</strong> admin / SecureAdmin2025! (Full access)</div>
                 <div><strong>Editor:</strong> Create users with editor role</div>
                 <div><strong>Viewer:</strong> Create users with viewer role (read-only)</div>
               </div>

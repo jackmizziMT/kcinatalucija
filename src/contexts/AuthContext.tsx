@@ -33,11 +33,11 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 const DEFAULT_ADMIN: User = {
   id: 'admin-default',
   username: 'admin',
-  password: 'admin123',
+  password: 'SecureAdmin2025!',
   role: 'admin',
   createdAt: new Date().toISOString(),
   securityQuestion: "What is the name of your first pet?",
-  securityAnswer: "admin"
+  securityAnswer: "SecureAdmin2025!"
 };
 
 export function AuthProvider({ children }: { children: ReactNode }) {
