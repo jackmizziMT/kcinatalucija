@@ -98,9 +98,37 @@ export function SupabaseAuthProvider({ children }: { children: ReactNode }) {
       }
     });
 
+    // Set up periodic session refresh to maintain persistence
+    const refreshInterval = setInterval(async () => {
+      if (!isMounted) return;
+      
+      try {
+        const { data: { session }, error } = await supabase.auth.getSession();
+        if (error) {
+          console.log('Session refresh error:', error);
+          return;
+        }
+        
+        if (session && session.expires_at) {
+          const expiresAt = new Date(session.expires_at * 1000);
+          const now = new Date();
+          const timeUntilExpiry = expiresAt.getTime() - now.getTime();
+          
+          // If session expires in less than 5 minutes, refresh it
+          if (timeUntilExpiry < 5 * 60 * 1000) {
+            console.log('Refreshing session before expiry');
+            await supabase.auth.refreshSession();
+          }
+        }
+      } catch (error) {
+        console.log('Session refresh check failed:', error);
+      }
+    }, 2 * 60 * 1000); // Check every 2 minutes
+
     return () => {
       isMounted = false;
       subscription.unsubscribe();
+      clearInterval(refreshInterval);
     };
   }, []);
 

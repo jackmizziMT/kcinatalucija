@@ -18,58 +18,76 @@ export function ThemeHeader() {
       }`}
     >
       <div className="mx-auto max-w-2xl md:max-w-5xl px-4 md:px-6 h-14 flex items-center justify-between">
-        <h1 className="text-lg md:text-xl font-semibold tracking-tight">
-          <span className="text-[var(--primary)]">Kċina</span> 
-          <span className={isDark ? "text-white" : "text-gray-900"}> ta' Luċija</span>
+        <h1 className="text-lg md:text-xl font-bold tracking-tight">
+          <span className="text-[var(--primary)]">KTL</span> 
+          <span className={isDark ? "text-white" : "text-gray-900"}> Stock</span>
         </h1>
         
         <div className="flex items-center gap-1 md:gap-2">
           {user && (
-            <nav className="flex items-center gap-1 md:gap-2">
-            <Link 
-              href="/" 
-              className={`px-3 md:px-4 py-2 rounded-md text-sm md:text-base border border-transparent transition-colors ${
-                isDark 
-                  ? "text-white hover:bg-white/10 hover:text-white hover:border-white/20" 
-                  : "text-gray-700 hover:bg-gray-100 hover:text-gray-900 hover:border-gray-300"
-              }`}
-            >
-              Home
-            </Link>
-            <Link 
-              href="/transfer" 
-              className={`px-3 md:px-4 py-2 rounded-md text-sm md:text-base border border-transparent transition-colors ${
-                isDark 
-                  ? "text-white hover:bg-white/10 hover:text-white hover:border-white/20" 
-                  : "text-gray-700 hover:bg-gray-100 hover:text-gray-900 hover:border-gray-300"
-              }`}
-            >
-              Transfer
-            </Link>
-            <Link 
-              href="/dashboard" 
-              className={`px-3 md:px-4 py-2 rounded-md text-sm md:text-base border border-transparent transition-colors ${
-                isDark 
-                  ? "text-white hover:bg-white/10 hover:text-white hover:border-white/20" 
-                  : "text-gray-700 hover:bg-gray-100 hover:text-gray-900 hover:border-gray-300"
-              }`}
-            >
-              Reports
-            </Link>
-            {user?.role === 'admin' && (
-              <Link 
-                href="/admin" 
-                className="px-3 md:px-4 py-2 rounded-md text-sm md:text-base bg-[var(--primary)] text-white hover:bg-[var(--primary2)] transition-colors"
-              >
-                Admin
-              </Link>
-            )}
-          </nav>
+            <>
+              {/* Navigation - hidden on small screens to save space */}
+              <nav className="hidden md:flex items-center gap-1">
+                <Link 
+                  href="/" 
+                  className={`px-3 py-2 rounded-md text-sm border border-transparent transition-colors ${
+                    isDark 
+                      ? "text-white hover:bg-white/10 hover:text-white hover:border-white/20" 
+                      : "text-gray-700 hover:bg-gray-100 hover:text-gray-900 hover:border-gray-300"
+                  }`}
+                >
+                  Home
+                </Link>
+                <Link 
+                  href="/transfer" 
+                  className={`px-3 py-2 rounded-md text-sm border border-transparent transition-colors ${
+                    isDark 
+                      ? "text-white hover:bg-white/10 hover:text-white hover:border-white/20" 
+                      : "text-gray-700 hover:bg-gray-100 hover:text-gray-900 hover:border-gray-300"
+                  }`}
+                >
+                  Transfer
+                </Link>
+                <Link 
+                  href="/dashboard" 
+                  className={`px-3 py-2 rounded-md text-sm border border-transparent transition-colors ${
+                    isDark 
+                      ? "text-white hover:bg-white/10 hover:text-white hover:border-white/20" 
+                      : "text-gray-700 hover:bg-gray-100 hover:text-gray-900 hover:border-gray-300"
+                  }`}
+                >
+                  Reports
+                </Link>
+                {user?.role === 'admin' && (
+                  <Link 
+                    href="/admin" 
+                    className="px-3 py-2 rounded-md text-sm bg-[var(--primary)] text-white hover:bg-[var(--primary2)] transition-colors"
+                  >
+                    Admin
+                  </Link>
+                )}
+              </nav>
+              
+              {/* Mobile navigation menu */}
+              <div className="md:hidden">
+                <Link 
+                  href="/" 
+                  className={`px-2 py-1 rounded text-xs border border-transparent transition-colors ${
+                    isDark 
+                      ? "text-white hover:bg-white/10" 
+                      : "text-gray-700 hover:bg-gray-100"
+                  }`}
+                >
+                  📱
+                </Link>
+              </div>
+            </>
           )}
           
+          {/* Theme toggle */}
           <button
             onClick={toggleTheme}
-            className={`ml-2 p-2 rounded-md border transition-colors ${
+            className={`p-2 rounded-md border transition-colors ${
               isDark 
                 ? "border-white/20 bg-white/10 text-white hover:bg-white/20" 
                 : "border-gray-300 bg-gray-100 text-gray-700 hover:bg-gray-200"
@@ -77,12 +95,10 @@ export function ThemeHeader() {
             title={`Switch to ${isDark ? "light" : "dark"} mode`}
           >
             {isDark ? (
-              // Sun icon for light mode
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
               </svg>
             ) : (
-              // Moon icon for dark mode
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
               </svg>
@@ -91,7 +107,8 @@ export function ThemeHeader() {
           
           {user && (
             <>
-              <div className={`hidden md:flex items-center px-3 py-2 rounded-md text-sm ${
+              {/* User info - hidden on small screens */}
+              <div className={`hidden lg:flex items-center px-3 py-2 rounded-md text-sm ${
                 isDark 
                   ? "bg-white/10 text-white border border-white/20" 
                   : "bg-gray-100 text-gray-700 border border-gray-300"
@@ -108,13 +125,17 @@ export function ThemeHeader() {
                   {user.role}
                 </span>
               </div>
+              
+              {/* Logout button - always visible */}
               <button
                 onClick={signOut}
-                className={`ml-2 px-3 py-2 rounded-md text-sm transition-colors ${
-                  isDark ? "bg-red-500/20 text-red-300 hover:bg-red-500/30" : "bg-red-100 text-red-700 hover:bg-red-200"
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                  isDark ? "bg-red-500/20 text-red-300 hover:bg-red-500/30 border border-red-500/30" : "bg-red-100 text-red-700 hover:bg-red-200 border border-red-300"
                 }`}
+                title="Logout"
               >
-                Logout
+                <span className="hidden sm:inline">Logout</span>
+                <span className="sm:hidden">🚪</span>
               </button>
             </>
           )}

@@ -5,11 +5,16 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
   auth: {
-    // Add cache busting and better session handling
+    // Enhanced session persistence settings
     persistSession: true,
     autoRefreshToken: true,
     detectSessionInUrl: true,
-    flowType: 'pkce'
+    flowType: 'pkce',
+    // Extend session duration and improve persistence
+    storage: typeof window !== 'undefined' ? window.localStorage : undefined,
+    storageKey: 'ktl-stock-auth-token',
+    // Debug session events
+    debug: process.env.NODE_ENV === 'development'
   },
   // Add global fetch options for better error handling and UTF-8 support
   global: {

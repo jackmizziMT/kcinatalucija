@@ -252,66 +252,103 @@ function DashboardContent() {
       </div>
 
       <Card>
-        <CardHeader title="Select Report Type" />
+        <CardHeader 
+          title="Choose What You Want to See" 
+          subtitle="Select the type of information you need"
+        />
         <CardBody>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
             <Button
               variant={reportType === "location" ? "primary" : "default"}
               onClick={() => setReportType("location")}
-              className="p-4 text-left"
+              className="p-6 text-left h-auto"
             >
-              <div>
-                <div className="font-medium">Location Report</div>
-                <div className="text-sm opacity-80">View all items in a specific location</div>
+              <div className="flex items-start gap-3">
+                <div className="text-2xl">📍</div>
+                <div>
+                  <div className="font-semibold text-lg mb-1">Location Report</div>
+                  <div className="text-sm opacity-80">See what's in stock at each location</div>
+                  <div className="text-xs opacity-60 mt-1">Perfect for checking what you have in each place</div>
+                </div>
               </div>
             </Button>
             <Button
               variant={reportType === "product" ? "primary" : "default"}
               onClick={() => setReportType("product")}
-              className="p-4 text-left"
+              className="p-6 text-left h-auto"
             >
-              <div>
-                <div className="font-medium">Product Report</div>
-                <div className="text-sm opacity-80">View a product across all locations</div>
+              <div className="flex items-start gap-3">
+                <div className="text-2xl">📦</div>
+                <div>
+                  <div className="font-semibold text-lg mb-1">Product Report</div>
+                  <div className="text-sm opacity-80">Track a specific item across all locations</div>
+                  <div className="text-xs opacity-60 mt-1">Great for finding where a product is stored</div>
+                </div>
               </div>
             </Button>
             <Button
               variant={reportType === "audit" ? "primary" : "default"}
               onClick={() => setReportType("audit")}
-              className="p-4 text-left"
+              className="p-6 text-left h-auto"
             >
-              <div>
-                <div className="font-medium">Audit Trail</div>
-                <div className="text-sm opacity-80">View all inventory movements and changes</div>
+              <div className="flex items-start gap-3">
+                <div className="text-2xl">📋</div>
+                <div>
+                  <div className="font-semibold text-lg mb-1">Activity History</div>
+                  <div className="text-sm opacity-80">See all changes and movements</div>
+                  <div className="text-xs opacity-60 mt-1">Track what was added, removed, or moved</div>
+                </div>
               </div>
             </Button>
           </div>
 
           {reportType === "location" && (
-            <div className="mb-4">
+            <div className={`p-4 rounded-lg border ${
+              isDark ? "bg-white/5 border-white/20" : "bg-gray-50 border-gray-200"
+            }`}>
               <Label>
-                <span className={`text-base font-medium ${isDark ? "text-white" : "text-gray-900"}`}>Select Location</span>
-                <Select value={selectedLocationId} onChange={(e) => setSelectedLocationId(e.target.value)}>
-                  <option value="">Choose a location</option>
-                  <option value="all">All Locations</option>
+                <span className={`text-lg font-semibold ${isDark ? "text-white" : "text-gray-900"} mb-2 block`}>
+                  📍 Which location do you want to check?
+                </span>
+                <Select 
+                  value={selectedLocationId} 
+                  onChange={(e) => setSelectedLocationId(e.target.value)}
+                  className="text-base"
+                >
+                  <option value="">👆 Please choose a location</option>
+                  <option value="all">🌍 All Locations (see everything)</option>
                   {locationList.map((loc) => (
-                    <option key={loc.id} value={loc.id}>{loc.name}</option>
+                    <option key={loc.id} value={loc.id}>📍 {loc.name}</option>
                   ))}
                 </Select>
+                <div className={`text-sm mt-2 ${isDark ? "text-white/60" : "text-gray-500"}`}>
+                  💡 Tip: Choose "All Locations" to see everything at once
+                </div>
               </Label>
             </div>
           )}
 
           {reportType === "product" && (
-            <div className="mb-4">
+            <div className={`p-4 rounded-lg border ${
+              isDark ? "bg-white/5 border-white/20" : "bg-gray-50 border-gray-200"
+            }`}>
               <Label>
-                <span className={`text-base font-medium ${isDark ? "text-white" : "text-gray-900"}`}>Select Product</span>
-                <Select value={selectedSku} onChange={(e) => setSelectedSku(e.target.value)}>
-                  <option value="">Choose a product</option>
+                <span className={`text-lg font-semibold ${isDark ? "text-white" : "text-gray-900"} mb-2 block`}>
+                  📦 Which product do you want to track?
+                </span>
+                <Select 
+                  value={selectedSku} 
+                  onChange={(e) => setSelectedSku(e.target.value)}
+                  className="text-base"
+                >
+                  <option value="">👆 Please choose a product</option>
                   {itemList.map((item) => (
-                    <option key={item.sku} value={item.sku}>{`${item.sku} — ${item.name}`}</option>
+                    <option key={item.sku} value={item.sku}>📦 {item.sku} — {item.name}</option>
                   ))}
                 </Select>
+                <div className={`text-sm mt-2 ${isDark ? "text-white/60" : "text-gray-500"}`}>
+                  💡 Tip: This will show you where this product is stored across all locations
+                </div>
               </Label>
             </div>
           )}
@@ -474,80 +511,112 @@ function DashboardContent() {
           </div>
           <CardBody>
             {/* Audit Filters */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
-              <Label>
-                <span className={`text-base font-medium ${isDark ? "text-white" : "text-gray-900"}`}>Time Period</span>
-                <Select
-                  value={auditFilter}
-                  onChange={(e) => setAuditFilter(e.target.value as any)}
-                >
-                  <option value="today">Today</option>
-                  <option value="week">This Week</option>
-                  <option value="month">This Month</option>
-                  <option value="date">Specific Date</option>
-                  <option value="range">Date Range</option>
-                </Select>
-              </Label>
-
-              {auditFilter === "date" && (
+            <div className={`p-4 rounded-lg border ${
+              isDark ? "bg-white/5 border-white/20" : "bg-gray-50 border-gray-200"
+            }`}>
+              <h3 className={`text-lg font-semibold mb-4 ${isDark ? "text-white" : "text-gray-900"}`}>
+                🔍 Filter the activity history
+              </h3>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 <Label>
-                  <span className={`text-base font-medium ${isDark ? "text-white" : "text-gray-900"}`}>Date</span>
-                  <Input
-                    type="date"
-                    value={auditDate}
-                    onChange={(e) => setAuditDate(e.target.value)}
-                  />
+                  <span className={`text-base font-medium ${isDark ? "text-white" : "text-gray-900"}`}>
+                    📅 When did it happen?
+                  </span>
+                  <Select
+                    value={auditFilter}
+                    onChange={(e) => setAuditFilter(e.target.value as any)}
+                    className="text-base"
+                  >
+                    <option value="today">📅 Today</option>
+                    <option value="week">📆 This Week</option>
+                    <option value="month">🗓️ This Month</option>
+                    <option value="date">📝 Specific Date</option>
+                    <option value="range">📊 Date Range</option>
+                  </Select>
                 </Label>
-              )}
 
-              {auditFilter === "range" && (
-                <>
+                {auditFilter === "date" && (
                   <Label>
-                    <span className={`text-base font-medium ${isDark ? "text-white" : "text-gray-900"}`}>Start Date</span>
+                    <span className={`text-base font-medium ${isDark ? "text-white" : "text-gray-900"}`}>
+                      📅 Choose the date
+                    </span>
                     <Input
                       type="date"
-                      value={auditStartDate}
-                      onChange={(e) => setAuditStartDate(e.target.value)}
+                      value={auditDate}
+                      onChange={(e) => setAuditDate(e.target.value)}
+                      className="text-base"
                     />
                   </Label>
-                  <Label>
-                    <span className={`text-base font-medium ${isDark ? "text-white" : "text-gray-900"}`}>End Date</span>
-                    <Input
-                      type="date"
-                      value={auditEndDate}
-                      onChange={(e) => setAuditEndDate(e.target.value)}
-                    />
-                  </Label>
-                </>
-              )}
+                )}
 
-              <Label>
-                <span className={`text-base font-medium ${isDark ? "text-white" : "text-gray-900"}`}>Movement Type</span>
-                <Select
-                  value={auditTypeFilter}
-                  onChange={(e) => setAuditTypeFilter(e.target.value as any)}
-                >
-                  <option value="all">All Types</option>
-                  <option value="add">Add Stock</option>
-                  <option value="deduct">Deduct Stock</option>
-                  <option value="transfer">Transfer</option>
-                </Select>
-              </Label>
+                {auditFilter === "range" && (
+                  <>
+                    <Label>
+                      <span className={`text-base font-medium ${isDark ? "text-white" : "text-gray-900"}`}>
+                        📅 From this date
+                      </span>
+                      <Input
+                        type="date"
+                        value={auditStartDate}
+                        onChange={(e) => setAuditStartDate(e.target.value)}
+                        className="text-base"
+                      />
+                    </Label>
+                    <Label>
+                      <span className={`text-base font-medium ${isDark ? "text-white" : "text-gray-900"}`}>
+                        📅 To this date
+                      </span>
+                      <Input
+                        type="date"
+                        value={auditEndDate}
+                        onChange={(e) => setAuditEndDate(e.target.value)}
+                        className="text-base"
+                      />
+                    </Label>
+                  </>
+                )}
 
-              <Label>
-                <span className={`text-base font-medium ${isDark ? "text-white" : "text-gray-900"}`}>Item (SKU)</span>
-                <Select
-                  value={auditSkuFilter}
-                  onChange={(e) => setAuditSkuFilter(e.target.value)}
-                >
-                  <option value="">All Items</option>
-                  {itemList.map((item) => (
-                    <option key={item.sku} value={item.sku}>
-                      {item.name} ({item.sku})
-                    </option>
-                  ))}
-                </Select>
-              </Label>
+                <Label>
+                  <span className={`text-base font-medium ${isDark ? "text-white" : "text-gray-900"}`}>
+                    🔄 What type of activity?
+                  </span>
+                  <Select
+                    value={auditTypeFilter}
+                    onChange={(e) => setAuditTypeFilter(e.target.value as any)}
+                    className="text-base"
+                  >
+                    <option value="all">🔄 All Activities</option>
+                    <option value="add">➕ Items Added</option>
+                    <option value="deduct">➖ Items Removed</option>
+                    <option value="transfer">🚚 Items Moved</option>
+                  </Select>
+                </Label>
+
+                <Label>
+                  <span className={`text-base font-medium ${isDark ? "text-white" : "text-gray-900"}`}>
+                    📦 Which specific item?
+                  </span>
+                  <Select
+                    value={auditSkuFilter}
+                    onChange={(e) => setAuditSkuFilter(e.target.value)}
+                    className="text-base"
+                  >
+                    <option value="">📦 All Items</option>
+                    {itemList.map((item) => (
+                      <option key={item.sku} value={item.sku}>
+                        📦 {item.name} ({item.sku})
+                      </option>
+                    ))}
+                  </Select>
+                </Label>
+              </div>
+              
+              <div className={`text-sm mt-4 p-3 rounded-lg ${
+                isDark ? "bg-blue-500/10 text-blue-300 border border-blue-500/20" : "bg-blue-50 text-blue-700 border border-blue-200"
+              }`}>
+                💡 <strong>Tip:</strong> You can combine these filters to find exactly what you're looking for. For example, see all items added today, or all movements of a specific product this week.
+              </div>
             </div>
 
             {/* Audit Records */}

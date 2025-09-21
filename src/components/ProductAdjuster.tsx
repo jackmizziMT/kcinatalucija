@@ -105,13 +105,16 @@ export function ProductAdjuster({ canEdit = true }: ProductAdjusterProps) {
 
   return (
     <Card>
-      <CardHeader title="Manage Quantities" />
+      <CardHeader 
+        title="Quick Stock Updates" 
+        subtitle="Select a product and adjust stock levels easily"
+      />
       <CardBody>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-end mb-4">
+        <div className="mb-6">
           <Label>
-            <span className={`text-base font-medium ${isDark ? "text-white" : "text-gray-900"}`}>Product</span>
-            <Select value={sku} onChange={(e) => setSku(e.target.value)}>
-              {itemList.length === 0 && <option value="">No items</option>}
+            <span className={`text-lg font-semibold ${isDark ? "text-white" : "text-gray-900"}`}>Choose Product</span>
+            <Select value={sku} onChange={(e) => setSku(e.target.value)} className="text-base">
+              {itemList.length === 0 && <option value="">No items available</option>}
               {itemList.map((it) => (
                 <option key={it.sku} value={it.sku}>{`${it.sku} — ${it.name}`}</option>
               ))}
@@ -154,59 +157,87 @@ export function ProductAdjuster({ canEdit = true }: ProductAdjusterProps) {
                   </div>
                   
                   {canEdit ? (
-                    <div className="flex flex-col sm:flex-row gap-3">
-                      <div className="flex items-center justify-center gap-2">
+                    <div className="flex flex-col gap-4">
+                      {/* Quick +1/-1 buttons */}
+                      <div className="flex items-center justify-center gap-4">
                         <button 
-                          onClick={() => addStock(sku, loc.id, 1, "added item", undefined)} 
-                          className="px-4 py-3 text-base font-semibold min-w-[60px] rounded-lg shadow-sm hover:shadow-md transition-all duration-200 bg-green-500 hover:bg-green-600 text-white border-green-500 border rounded-lg active:scale-[.99] disabled:cursor-not-allowed"
+                          onClick={() => addStock(sku, loc.id, 1, "Quick add 1 item", undefined)} 
+                          className="flex items-center justify-center gap-2 px-6 py-4 text-lg font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 bg-green-500 hover:bg-green-600 text-white border-2 border-green-500 hover:border-green-600 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
+                          title="Add 1 item to stock"
                         >
-                          +1
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                          </svg>
+                          Add 1
                         </button>
-                        <Input
-                          type="number"
-                          min={1}
-                          step={1}
-                          className={`w-24 text-center text-base font-medium transition-all duration-300 ${
-                            animatingStocks[`${sku}::${loc.id}`] === 'increase' 
-                              ? 'ring-2 ring-green-500/50 bg-green-50 dark:bg-green-500/10' 
-                              : animatingStocks[`${sku}::${loc.id}`] === 'decrease'
-                              ? 'ring-2 ring-red-500/50 bg-red-50 dark:bg-red-500/10'
-                              : ''
-                          }`}
-                          value={qty}
-                          onChange={(e) => setQty(loc.id, e.target.value === "" ? 0 : Math.floor(Number(e.target.value)))}
-                        />
+                        
                         <button 
                           onClick={() => {
                             const currentStock = getCurrent(loc.id);
                             if (currentStock > 0) {
-                              deductStock(sku, loc.id, 1, "deducted item", undefined);
+                              deductStock(sku, loc.id, 1, "Quick deduct 1 item", undefined);
                             }
                           }} 
-                          className="px-4 py-3 text-base font-semibold min-w-[60px] rounded-lg shadow-sm hover:shadow-md transition-all duration-200 bg-red-500 hover:bg-red-600 text-white border-red-500 border rounded-lg active:scale-[.99] disabled:cursor-not-allowed"
+                          disabled={current === 0}
+                          className="flex items-center justify-center gap-2 px-6 py-4 text-lg font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 bg-red-500 hover:bg-red-600 text-white border-2 border-red-500 hover:border-red-600 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
+                          title="Remove 1 item from stock"
                         >
-                          -1
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 12H6" />
+                          </svg>
+                          Remove 1
                         </button>
                       </div>
                       
-                      <div className="flex items-center gap-2">
-                        <Button 
-                          variant="muted" 
-                          disabled={!canAdjust} 
-                          onClick={() => addStock(sku, loc.id, qty, "added item", undefined)}
-                          className="flex-1 sm:flex-none px-3 py-2 text-sm border-2 border-green-500 text-green-500 hover:bg-green-500 hover:text-white"
-                        >
-                          Add
-                        </Button>
-                        <Button
-                          variant="muted"
-                          disabled={!canAdjust || insufficient}
-                          title={insufficient ? `Insufficient stock (have ${current})` : undefined}
-                          onClick={() => deductStock(sku, loc.id, qty, "deducted item", undefined)}
-                          className="flex-1 sm:flex-none px-3 py-2 text-sm border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white"
-                        >
-                          Deduct
-                        </Button>
+                      {/* Bulk adjustment section */}
+                      <div className={`p-4 rounded-lg border ${
+                        isDark ? "bg-white/5 border-white/20" : "bg-gray-50 border-gray-200"
+                      }`}>
+                        <div className="text-center mb-3">
+                          <span className={`text-sm font-medium ${isDark ? "text-white/80" : "text-gray-600"}`}>
+                            Need to add/remove more items?
+                          </span>
+                        </div>
+                        
+                        <div className="flex items-center justify-center gap-3">
+                          <div className="flex items-center gap-2">
+                            <span className={`text-sm font-medium ${isDark ? "text-white" : "text-gray-700"}`}>Quantity:</span>
+                            <Input
+                              type="number"
+                              min={1}
+                              step={1}
+                              className={`w-20 text-center text-base font-medium transition-all duration-300 ${
+                                animatingStocks[`${sku}::${loc.id}`] === 'increase' 
+                                  ? 'ring-2 ring-green-500/50 bg-green-50 dark:bg-green-500/10' 
+                                  : animatingStocks[`${sku}::${loc.id}`] === 'decrease'
+                                  ? 'ring-2 ring-red-500/50 bg-red-50 dark:bg-red-500/10'
+                                  : ''
+                              }`}
+                              value={qty}
+                              onChange={(e) => setQty(loc.id, e.target.value === "" ? 0 : Math.floor(Number(e.target.value)))}
+                            />
+                          </div>
+                          
+                          <div className="flex items-center gap-2">
+                            <Button 
+                              variant="default" 
+                              disabled={!canAdjust} 
+                              onClick={() => addStock(sku, loc.id, qty, `Added ${qty} items`, undefined)}
+                              className="px-4 py-2 text-sm bg-green-500 hover:bg-green-600 text-white border-green-500"
+                            >
+                              Add {qty}
+                            </Button>
+                            <Button
+                              variant="default"
+                              disabled={!canAdjust || insufficient}
+                              title={insufficient ? `Insufficient stock (have ${current})` : undefined}
+                              onClick={() => deductStock(sku, loc.id, qty, `Deducted ${qty} items`, undefined)}
+                              className="px-4 py-2 text-sm bg-red-500 hover:bg-red-600 text-white border-red-500"
+                            >
+                              Remove {qty}
+                            </Button>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   ) : (
