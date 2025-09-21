@@ -25,9 +25,10 @@ export function ProductAdjuster({ canEdit = true }: ProductAdjusterProps) {
   const itemList = useMemo(() => Object.values(items), [items]);
   const locationList = useMemo(() => Object.values(locations), [locations]);
 
-  useEffect(() => {
-    if (!sku && itemList.length > 0) setSku(itemList[0].sku);
-  }, [itemList, sku]);
+  // Remove auto-selection of first item - let user choose explicitly
+  // useEffect(() => {
+  //   if (!sku && itemList.length > 0) setSku(itemList[0].sku);
+  // }, [itemList, sku]);
 
   useEffect(() => {
     setQtyByLoc((prev) => {
@@ -116,6 +117,7 @@ export function ProductAdjuster({ canEdit = true }: ProductAdjusterProps) {
           <Label>
             <span className={`text-lg font-semibold ${isDark ? "text-white" : "text-gray-900"}`}>Choose Product</span>
             <Select value={sku} onChange={(e) => setSku(e.target.value)} className="text-base">
+              <option value="">👆 Select a product to manage stock</option>
               {itemList.length === 0 && <option value="">No items available</option>}
               {itemList.map((it) => (
                 <option key={it.sku} value={it.sku}>{`${it.sku} — ${it.name}`}</option>
@@ -124,12 +126,32 @@ export function ProductAdjuster({ canEdit = true }: ProductAdjusterProps) {
           </Label>
         </div>
 
-        <div className={`rounded-lg border divide-y ${
-          isDark 
-            ? "border-white/20 divide-white/10" 
-            : "border-gray-200 divide-gray-200"
-        }`}>
-          {locationList.map((loc) => {
+        {!sku && (
+          <div className={`text-center py-12 rounded-lg border-2 border-dashed ${
+            isDark 
+              ? "border-white/20 bg-white/5" 
+              : "border-gray-300 bg-gray-50"
+          }`}>
+            <div className="text-4xl mb-4">📦</div>
+            <h3 className={`text-xl font-semibold mb-2 ${isDark ? "text-white" : "text-gray-900"}`}>
+              Select a Product to Get Started
+            </h3>
+            <p className={`text-base ${isDark ? "text-white/70" : "text-gray-600"}`}>
+              Choose a product from the dropdown above to view and manage stock levels across all locations.
+            </p>
+            <div className={`mt-4 text-sm ${isDark ? "text-white/60" : "text-gray-500"}`}>
+              💡 This prevents accidental stock changes when navigating to the home page
+            </div>
+          </div>
+        )}
+
+        {sku && (
+          <div className={`rounded-lg border divide-y ${
+            isDark 
+              ? "border-white/20 divide-white/10" 
+              : "border-gray-200 divide-gray-200"
+          }`}>
+            {locationList.map((loc) => {
             const qty = Math.max(0, Math.floor(qtyByLoc[loc.id] ?? 1));
             const current = getCurrent(loc.id);
             const canAdjust = Boolean(sku && qty > 0 && items[sku]);
@@ -272,7 +294,8 @@ export function ProductAdjuster({ canEdit = true }: ProductAdjusterProps) {
               </div>
             );
           })}
-        </div>
+          </div>
+        )}
       </CardBody>
     </Card>
   );
