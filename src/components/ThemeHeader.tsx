@@ -1,12 +1,14 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useSupabaseAuth } from "@/contexts/SupabaseAuthContext";
 
 export function ThemeHeader() {
   const { theme, toggleTheme } = useTheme();
   const { user, signOut } = useSupabaseAuth();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const isDark = theme === "dark";
 
   return (
@@ -68,18 +70,25 @@ export function ThemeHeader() {
                 )}
               </nav>
               
-              {/* Mobile navigation menu */}
+              {/* Mobile hamburger menu */}
               <div className="md:hidden">
-                <Link 
-                  href="/" 
-                  className={`px-2 py-1 rounded text-xs border border-transparent transition-colors ${
+                <button
+                  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                  className={`p-2 rounded-md border transition-colors ${
                     isDark 
-                      ? "text-white hover:bg-white/10" 
-                      : "text-gray-700 hover:bg-gray-100"
+                      ? "border-white/20 bg-white/10 text-white hover:bg-white/20" 
+                      : "border-gray-300 bg-gray-100 text-gray-700 hover:bg-gray-200"
                   }`}
+                  title="Menu"
                 >
-                  📱
-                </Link>
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    {isMobileMenuOpen ? (
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    ) : (
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                    )}
+                  </svg>
+                </button>
               </div>
             </>
           )}
@@ -141,6 +150,85 @@ export function ThemeHeader() {
           )}
         </div>
       </div>
+      
+      {/* Mobile menu dropdown */}
+      {isMobileMenuOpen && (
+        <div className={`md:hidden border-t ${
+          isDark 
+            ? "border-white/10 bg-black/80 backdrop-blur-md" 
+            : "border-gray-200 bg-white/90 backdrop-blur-md"
+        }`}>
+          <div className="px-4 py-3 space-y-2">
+            <Link 
+              href="/" 
+              className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                isDark 
+                  ? "text-white hover:bg-white/10" 
+                  : "text-gray-700 hover:bg-gray-100"
+              }`}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              🏠 Home
+            </Link>
+            <Link 
+              href="/transfer" 
+              className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                isDark 
+                  ? "text-white hover:bg-white/10" 
+                  : "text-gray-700 hover:bg-gray-100"
+              }`}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              🚚 Transfer
+            </Link>
+            <Link 
+              href="/dashboard" 
+              className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                isDark 
+                  ? "text-white hover:bg-white/10" 
+                  : "text-gray-700 hover:bg-gray-100"
+              }`}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              📊 Reports
+            </Link>
+            {user?.role === 'admin' && (
+              <Link 
+                href="/admin" 
+                className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                  isDark 
+                    ? "text-white bg-[var(--primary)]/20 hover:bg-[var(--primary)]/30" 
+                    : "text-gray-700 bg-[var(--primary)]/10 hover:bg-[var(--primary)]/20"
+                }`}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                ⚙️ Admin
+              </Link>
+            )}
+            
+            {/* Mobile user info */}
+            <div className={`px-3 py-2 rounded-md text-sm ${
+              isDark 
+                ? "bg-white/5 text-white/80" 
+                : "bg-gray-50 text-gray-600"
+            }`}>
+              <div className="flex items-center gap-2">
+                <span>👤</span>
+                <span className="font-medium">{user?.username}</span>
+                <span className={`px-2 py-0.5 rounded text-xs ${
+                  user?.role === 'admin' 
+                    ? "bg-purple-100 text-purple-700" 
+                    : user?.role === 'editor'
+                    ? "bg-blue-100 text-blue-700"
+                    : "bg-gray-100 text-gray-700"
+                }`}>
+                  {user?.role}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 }
