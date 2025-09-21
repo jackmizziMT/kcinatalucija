@@ -362,49 +362,53 @@ function DashboardContent() {
             title={selectedLocationId === "all" ? "Stock in All Locations" : `Stock in ${locationList.find(l => l.id === selectedLocationId)?.name}`}
             subtitle={`${locationReport.length} items with stock`}
           />
-          <div className="p-4 md:p-5 border-b border-white/10">
-            <Button
-              variant="primary"
-              onClick={exportLocationReport}
-              disabled={locationReport.length === 0}
-              className="flex items-center gap-2"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-              Export CSV
-            </Button>
-          </div>
           <CardBody>
             {locationReport.length === 0 ? (
               <p className={`text-center py-8 text-base ${isDark ? "text-white/60" : "text-gray-500"}`}>No stock found in this location.</p>
             ) : (
-              <div className="overflow-x-auto">
-                <table className="min-w-full text-base">
-                  <thead>
-                    <tr className={`text-left border-b ${isDark ? "border-white/20" : "border-gray-200"}`}>
-                      <th className={`p-3 font-semibold ${isDark ? "text-white" : "text-gray-900"}`}>SKU</th>
-                      <th className={`p-3 font-semibold ${isDark ? "text-white" : "text-gray-900"}`}>Product Name</th>
-                      {selectedLocationId === "all" && (
-                        <th className={`p-3 font-semibold ${isDark ? "text-white" : "text-gray-900"}`}>Location</th>
-                      )}
-                      <th className={`p-3 font-semibold ${isDark ? "text-white" : "text-gray-900"}`}>Quantity</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {locationReport.map((item, index) => (
-                      <tr key={selectedLocationId === "all" ? `${item.sku}-${item.locationName}-${index}` : `${item.sku}-${selectedLocationId}`} className={`border-b ${isDark ? "border-white/10" : "border-gray-200"}`}>
-                        <td className={`p-3 font-mono ${isDark ? "text-white" : "text-gray-900"}`}>{item.sku}</td>
-                        <td className={`p-3 ${isDark ? "text-white" : "text-gray-900"}`}>{item.name}</td>
+              <>
+                <div className="overflow-x-auto">
+                  <table className="min-w-full text-base">
+                    <thead>
+                      <tr className={`text-left border-b ${isDark ? "border-white/20" : "border-gray-200"}`}>
+                        <th className={`p-3 font-semibold ${isDark ? "text-white" : "text-gray-900"}`}>SKU</th>
+                        <th className={`p-3 font-semibold ${isDark ? "text-white" : "text-gray-900"}`}>Product Name</th>
                         {selectedLocationId === "all" && (
-                          <td className={`p-3 ${isDark ? "text-white" : "text-gray-900"}`}>{item.locationName}</td>
+                          <th className={`p-3 font-semibold ${isDark ? "text-white" : "text-gray-900"}`}>Location</th>
                         )}
-                        <td className="p-3 font-semibold text-[var(--primary)]">{item.quantity}</td>
+                        <th className={`p-3 font-semibold ${isDark ? "text-white" : "text-gray-900"}`}>Quantity</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+                    </thead>
+                    <tbody>
+                      {locationReport.map((item, index) => (
+                        <tr key={selectedLocationId === "all" ? `${item.sku}-${item.locationName}-${index}` : `${item.sku}-${selectedLocationId}`} className={`border-b ${isDark ? "border-white/10" : "border-gray-200"}`}>
+                          <td className={`p-3 font-mono ${isDark ? "text-white" : "text-gray-900"}`}>{item.sku}</td>
+                          <td className={`p-3 ${isDark ? "text-white" : "text-gray-900"}`}>{item.name}</td>
+                          {selectedLocationId === "all" && (
+                            <td className={`p-3 ${isDark ? "text-white" : "text-gray-900"}`}>{item.locationName}</td>
+                          )}
+                          <td className="p-3 font-semibold text-[var(--primary)]">{item.quantity}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                
+                {/* Export button in less prominent position */}
+                <div className="mt-4 pt-4 border-t border-white/10">
+                  <button
+                    onClick={exportLocationReport}
+                    disabled={locationReport.length === 0}
+                    className={`text-sm px-3 py-2 rounded-md transition-colors ${
+                      isDark 
+                        ? "text-white/60 hover:text-white/80 hover:bg-white/5" 
+                        : "text-gray-500 hover:text-gray-700 hover:bg-gray-50"
+                    } disabled:opacity-50 disabled:cursor-not-allowed`}
+                  >
+                    📥 Export to CSV
+                  </button>
+                </div>
+              </>
             )}
           </CardBody>
         </Card>
@@ -417,19 +421,6 @@ function DashboardContent() {
             title={`${selectedItem.sku} — ${selectedItem.name}`}
             subtitle={`Stock across all locations`}
           />
-          <div className="p-4 md:p-5 border-b border-white/10">
-            <Button
-              variant="primary"
-              onClick={exportProductReport}
-              disabled={productReport.length === 0}
-              className="flex items-center gap-2"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-              Export CSV
-            </Button>
-          </div>
           <CardBody>
             {/* Product Details */}
             <div className={`mb-4 p-3 rounded-lg border ${
@@ -485,6 +476,21 @@ function DashboardContent() {
                 </tfoot>
               </table>
             </div>
+            
+            {/* Export button in less prominent position */}
+            <div className="mt-4 pt-4 border-t border-white/10">
+              <button
+                onClick={exportProductReport}
+                disabled={productReport.length === 0}
+                className={`text-sm px-3 py-2 rounded-md transition-colors ${
+                  isDark 
+                    ? "text-white/60 hover:text-white/80 hover:bg-white/5" 
+                    : "text-gray-500 hover:text-gray-700 hover:bg-gray-50"
+                } disabled:opacity-50 disabled:cursor-not-allowed`}
+              >
+                📥 Export to CSV
+              </button>
+            </div>
           </CardBody>
         </Card>
       )}
@@ -496,19 +502,6 @@ function DashboardContent() {
             title="Audit Trail" 
             subtitle="Complete history of all inventory movements and changes"
           />
-          <div className="p-4 md:p-5 border-b border-white/10">
-            <Button
-              variant="primary"
-              onClick={exportAuditReport}
-              disabled={auditRecords.length === 0}
-              className="flex items-center gap-2"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-              Export CSV
-            </Button>
-          </div>
           <CardBody>
             {/* Audit Filters */}
             <div className={`p-4 rounded-lg border ${
@@ -630,61 +623,78 @@ function DashboardContent() {
                   <p>No movements found for the selected criteria.</p>
                 </div>
               ) : (
-                <table className="min-w-full text-base">
-                  <thead>
-                    <tr className={`text-left border-b ${isDark ? "border-white/20" : "border-gray-200"}`}>
-                      <th className={`p-3 font-semibold ${isDark ? "text-white" : "text-gray-900"}`}>Date & Time</th>
-                      <th className={`p-3 font-semibold ${isDark ? "text-white" : "text-gray-900"}`}>Type</th>
-                      <th className={`p-3 font-semibold ${isDark ? "text-white" : "text-gray-900"}`}>Item</th>
-                      <th className={`p-3 font-semibold ${isDark ? "text-white" : "text-gray-900"}`}>Location</th>
-                      <th className={`p-3 font-semibold ${isDark ? "text-white" : "text-gray-900"}`}>Quantity</th>
-                      <th className={`p-3 font-semibold ${isDark ? "text-white" : "text-gray-900"}`}>Note</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {auditRecords.map((record) => (
-                      <tr key={record.id} className={`border-b ${isDark ? "border-white/10" : "border-gray-200"}`}>
-                        <td className={`p-3 ${isDark ? "text-white" : "text-gray-900"}`}>
-                          {new Date(record.timestampIso).toLocaleString()}
-                        </td>
-                        <td className="p-3">
-                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                            record.type === "add" 
-                              ? "bg-green-100 text-green-800" 
-                              : record.type === "deduct"
-                              ? "bg-red-100 text-red-800"
-                              : "bg-blue-100 text-blue-800"
-                          }`}>
-                            {record.type === "add" ? "Add" : record.type === "deduct" ? "Deduct" : "Transfer"}
-                          </span>
-                        </td>
-                        <td className={`p-3 ${isDark ? "text-white" : "text-gray-900"}`}>
-                          <div>
-                            <div className="font-medium">{record.itemName || record.sku}</div>
-                            <div className="text-sm opacity-70">{record.sku}</div>
-                          </div>
-                        </td>
-                        <td className={`p-3 ${isDark ? "text-white" : "text-gray-900"}`}>
-                          {record.type === "transfer" ? (
-                            <div className="text-sm">
-                              {record.fromLocationName} → {record.toLocationName}
-                            </div>
-                          ) : (
-                            <div className="text-sm">
-                              {record.locationName}
-                            </div>
-                          )}
-                        </td>
-                        <td className={`p-3 font-semibold text-[var(--primary)] ${isDark ? "text-white" : "text-gray-900"}`}>
-                          {record.quantity}
-                        </td>
-                        <td className={`p-3 ${isDark ? "text-white/80" : "text-gray-600"}`}>
-                          {record.note || "-"}
-                        </td>
+                <>
+                  <table className="min-w-full text-base">
+                    <thead>
+                      <tr className={`text-left border-b ${isDark ? "border-white/20" : "border-gray-200"}`}>
+                        <th className={`p-3 font-semibold ${isDark ? "text-white" : "text-gray-900"}`}>Date & Time</th>
+                        <th className={`p-3 font-semibold ${isDark ? "text-white" : "text-gray-900"}`}>Type</th>
+                        <th className={`p-3 font-semibold ${isDark ? "text-white" : "text-gray-900"}`}>Item</th>
+                        <th className={`p-3 font-semibold ${isDark ? "text-white" : "text-gray-900"}`}>Location</th>
+                        <th className={`p-3 font-semibold ${isDark ? "text-white" : "text-gray-900"}`}>Quantity</th>
+                        <th className={`p-3 font-semibold ${isDark ? "text-white" : "text-gray-900"}`}>Note</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody>
+                      {auditRecords.map((record) => (
+                        <tr key={record.id} className={`border-b ${isDark ? "border-white/10" : "border-gray-200"}`}>
+                          <td className={`p-3 ${isDark ? "text-white" : "text-gray-900"}`}>
+                            {new Date(record.timestampIso).toLocaleString()}
+                          </td>
+                          <td className="p-3">
+                            <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                              record.type === "add" 
+                                ? "bg-green-100 text-green-800" 
+                                : record.type === "deduct"
+                                ? "bg-red-100 text-red-800"
+                                : "bg-blue-100 text-blue-800"
+                            }`}>
+                              {record.type === "add" ? "Add" : record.type === "deduct" ? "Deduct" : "Transfer"}
+                            </span>
+                          </td>
+                          <td className={`p-3 ${isDark ? "text-white" : "text-gray-900"}`}>
+                            <div>
+                              <div className="font-medium">{record.itemName || record.sku}</div>
+                              <div className="text-sm opacity-70">{record.sku}</div>
+                            </div>
+                          </td>
+                          <td className={`p-3 ${isDark ? "text-white" : "text-gray-900"}`}>
+                            {record.type === "transfer" ? (
+                              <div className="text-sm">
+                                {record.fromLocationName} → {record.toLocationName}
+                              </div>
+                            ) : (
+                              <div className="text-sm">
+                                {record.locationName}
+                              </div>
+                            )}
+                          </td>
+                          <td className={`p-3 font-semibold text-[var(--primary)] ${isDark ? "text-white" : "text-gray-900"}`}>
+                            {record.quantity}
+                          </td>
+                          <td className={`p-3 ${isDark ? "text-white/80" : "text-gray-600"}`}>
+                            {record.note || "-"}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                  
+                  {/* Export button in less prominent position */}
+                  <div className="mt-4 pt-4 border-t border-white/10">
+                    <button
+                      onClick={exportAuditReport}
+                      disabled={auditRecords.length === 0}
+                      className={`text-sm px-3 py-2 rounded-md transition-colors ${
+                        isDark 
+                          ? "text-white/60 hover:text-white/80 hover:bg-white/5" 
+                          : "text-gray-500 hover:text-gray-700 hover:bg-gray-50"
+                      } disabled:opacity-50 disabled:cursor-not-allowed`}
+                    >
+                      📥 Export to CSV
+                    </button>
+                  </div>
+                </>
               )}
             </div>
           </CardBody>
