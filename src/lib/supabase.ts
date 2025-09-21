@@ -14,9 +14,7 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
     storage: typeof window !== 'undefined' ? window.localStorage : undefined,
     storageKey: 'ktl-stock-auth-token',
     // Debug session events
-    debug: process.env.NODE_ENV === 'development',
-    // Additional persistence settings
-    multiTab: true // Allow session sharing across tabs
+    debug: process.env.NODE_ENV === 'development'
   },
   // Add global fetch options for better error handling and UTF-8 support
   global: {
