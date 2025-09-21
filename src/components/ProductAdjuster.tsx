@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState, useRef } from "react";
+import { useRouter } from "next/navigation";
 import { useSupabaseInventoryStore } from "@/store/supabaseStore";
 import { Card, CardBody, CardHeader } from "@/components/ui/Card";
 import { Button, Input, Label, Select } from "@/components/ui/Controls";
@@ -13,6 +14,7 @@ interface ProductAdjusterProps {
 export function ProductAdjuster({ canEdit = true }: ProductAdjusterProps) {
   const { items, locations, stockByLocation, addStock, deductStock } = useSupabaseInventoryStore();
   const { theme } = useTheme();
+  const router = useRouter();
   const [sku, setSku] = useState("");
   const [qtyByLoc, setQtyByLoc] = useState<Record<string, number>>({});
   const [animatingStocks, setAnimatingStocks] = useState<Record<string, 'increase' | 'decrease' | null>>({});
@@ -141,19 +143,40 @@ export function ProductAdjuster({ canEdit = true }: ProductAdjusterProps) {
                 <div className="flex flex-col gap-3">
                   <div className="flex items-center justify-between">
                     <div className={`text-base font-semibold ${isDark ? "text-white" : "text-gray-900"}`}>{loc.name}</div>
-                    <div className={`px-3 py-1 rounded-full text-base font-bold transition-all duration-500 ease-in-out ${
-                      isDark 
-                        ? "bg-[var(--primary)]/20 text-[var(--primary)] border border-[var(--primary)]/30" 
-                        : "bg-[var(--primary)]/10 text-[var(--primary)] border border-[var(--primary)]/20"
-                    } ${
-                      animatingStocks[`${sku}::${loc.id}`] === 'increase' 
-                        ? 'scale-110 bg-green-500/20 text-green-500 border-green-500/30 shadow-lg shadow-green-500/20' 
-                        : animatingStocks[`${sku}::${loc.id}`] === 'decrease'
-                        ? 'scale-110 bg-red-500/20 text-red-500 border-red-500/30 shadow-lg shadow-red-500/20'
-                        : ''
-                    }`}>
-                      {current} in stock
-                    </div>
+                    <button
+                      onClick={() => {
+                        // Navigate to reports page with this product pre-selected
+                        router.push(`/dashboard?sku=${sku}&report=product`);
+                      }}
+                      className={`px-4 py-2 rounded-lg text-base font-bold transition-all duration-500 ease-in-out cursor-pointer hover:scale-105 active:scale-95 ${
+                        current === 0
+                          ? isDark 
+                            ? "bg-red-500/20 text-red-400 border-2 border-red-500/30 hover:bg-red-500/30 hover:shadow-lg hover:shadow-red-500/20" 
+                            : "bg-red-100 text-red-600 border-2 border-red-300 hover:bg-red-200 hover:shadow-lg hover:shadow-red-300/20"
+                          : current < 5
+                          ? isDark 
+                            ? "bg-yellow-500/20 text-yellow-400 border-2 border-yellow-500/30 hover:bg-yellow-500/30 hover:shadow-lg hover:shadow-yellow-500/20" 
+                            : "bg-yellow-100 text-yellow-600 border-2 border-yellow-300 hover:bg-yellow-200 hover:shadow-lg hover:shadow-yellow-300/20"
+                          : isDark 
+                            ? "bg-green-500/20 text-green-400 border-2 border-green-500/30 hover:bg-green-500/30 hover:shadow-lg hover:shadow-green-500/20" 
+                            : "bg-green-100 text-green-600 border-2 border-green-300 hover:bg-green-200 hover:shadow-lg hover:shadow-green-300/20"
+                      } ${
+                        animatingStocks[`${sku}::${loc.id}`] === 'increase' 
+                          ? 'scale-110 bg-green-500/30 text-green-500 border-green-500/50 shadow-lg shadow-green-500/30' 
+                          : animatingStocks[`${sku}::${loc.id}`] === 'decrease'
+                          ? 'scale-110 bg-red-500/30 text-red-500 border-red-500/50 shadow-lg shadow-red-500/30'
+                          : ''
+                      }`}
+                      title={`Click to view detailed report for ${items[sku]?.name || sku} in ${loc.name}`}
+                    >
+                      <div className="flex items-center gap-2">
+                        <span className="text-lg">
+                          {current === 0 ? "⚠️" : current < 5 ? "⚡" : "✅"}
+                        </span>
+                        <span>{current} in stock</span>
+                        <span className="text-xs opacity-75">📊</span>
+                      </div>
+                    </button>
                   </div>
                   
                   {canEdit ? (

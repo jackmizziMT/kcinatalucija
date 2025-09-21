@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { useSupabaseInventoryStore } from "@/store/supabaseStore";
 import { AuditRecord } from "@/lib/types";
 import { Card, CardBody, CardHeader } from "@/components/ui/Card";
@@ -19,6 +20,7 @@ export default function DashboardPage() {
 function DashboardContent() {
   const { items, locations, stockByLocation, getAuditTrail } = useSupabaseInventoryStore();
   const { theme } = useTheme();
+  const searchParams = useSearchParams();
   const [reportType, setReportType] = useState<"location" | "product" | "audit">("location");
   const [selectedLocationId, setSelectedLocationId] = useState("");
   const [selectedSku, setSelectedSku] = useState("");
@@ -33,6 +35,24 @@ function DashboardContent() {
 
   const itemList = useMemo(() => Object.values(items), [items]);
   const locationList = useMemo(() => Object.values(locations), [locations]);
+
+  // Handle URL parameters for pre-selecting product and report type
+  useEffect(() => {
+    const skuParam = searchParams.get('sku');
+    const reportParam = searchParams.get('report');
+    
+    if (skuParam && items[skuParam]) {
+      setSelectedSku(skuParam);
+    }
+    
+    if (reportParam === 'product') {
+      setReportType('product');
+    } else if (reportParam === 'audit') {
+      setReportType('audit');
+    } else if (reportParam === 'location') {
+      setReportType('location');
+    }
+  }, [searchParams, items]);
 
   // Location-based report: show all items and quantities for selected location
   const locationReport = useMemo(() => {
@@ -393,22 +413,25 @@ function DashboardContent() {
                     </tbody>
                   </table>
                 </div>
-                
-                {/* Export button in less prominent position */}
-                <div className="mt-4 pt-4 border-t border-white/10">
+              </>
+            )}
+            
+            {/* Export button at very bottom */}
+            {locationReport.length > 0 && (
+              <div className="mt-2 pt-2 border-t border-white/5">
+                <div className="text-right">
                   <button
                     onClick={exportLocationReport}
-                    disabled={locationReport.length === 0}
-                    className={`text-sm px-3 py-2 rounded-md transition-colors ${
+                    className={`text-xs px-2 py-1 rounded transition-colors ${
                       isDark 
-                        ? "text-white/60 hover:text-white/80 hover:bg-white/5" 
-                        : "text-gray-500 hover:text-gray-700 hover:bg-gray-50"
-                    } disabled:opacity-50 disabled:cursor-not-allowed`}
+                        ? "text-white/40 hover:text-white/60" 
+                        : "text-gray-400 hover:text-gray-600"
+                    }`}
                   >
-                    📥 Export to CSV
+                    📥 Export CSV
                   </button>
                 </div>
-              </>
+              </div>
             )}
           </CardBody>
         </Card>
@@ -477,20 +500,23 @@ function DashboardContent() {
               </table>
             </div>
             
-            {/* Export button in less prominent position */}
-            <div className="mt-4 pt-4 border-t border-white/10">
-              <button
-                onClick={exportProductReport}
-                disabled={productReport.length === 0}
-                className={`text-sm px-3 py-2 rounded-md transition-colors ${
-                  isDark 
-                    ? "text-white/60 hover:text-white/80 hover:bg-white/5" 
-                    : "text-gray-500 hover:text-gray-700 hover:bg-gray-50"
-                } disabled:opacity-50 disabled:cursor-not-allowed`}
-              >
-                📥 Export to CSV
-              </button>
-            </div>
+            {/* Export button at very bottom */}
+            {productReport.length > 0 && (
+              <div className="mt-2 pt-2 border-t border-white/5">
+                <div className="text-right">
+                  <button
+                    onClick={exportProductReport}
+                    className={`text-xs px-2 py-1 rounded transition-colors ${
+                      isDark 
+                        ? "text-white/40 hover:text-white/60" 
+                        : "text-gray-400 hover:text-gray-600"
+                    }`}
+                  >
+                    📥 Export CSV
+                  </button>
+                </div>
+              </div>
+            )}
           </CardBody>
         </Card>
       )}
@@ -679,24 +705,27 @@ function DashboardContent() {
                       ))}
                     </tbody>
                   </table>
-                  
-                  {/* Export button in less prominent position */}
-                  <div className="mt-4 pt-4 border-t border-white/10">
-                    <button
-                      onClick={exportAuditReport}
-                      disabled={auditRecords.length === 0}
-                      className={`text-sm px-3 py-2 rounded-md transition-colors ${
-                        isDark 
-                          ? "text-white/60 hover:text-white/80 hover:bg-white/5" 
-                          : "text-gray-500 hover:text-gray-700 hover:bg-gray-50"
-                      } disabled:opacity-50 disabled:cursor-not-allowed`}
-                    >
-                      📥 Export to CSV
-                    </button>
-                  </div>
                 </>
               )}
             </div>
+            
+            {/* Export button at very bottom */}
+            {auditRecords.length > 0 && (
+              <div className="mt-2 pt-2 border-t border-white/5">
+                <div className="text-right">
+                  <button
+                    onClick={exportAuditReport}
+                    className={`text-xs px-2 py-1 rounded transition-colors ${
+                      isDark 
+                        ? "text-white/40 hover:text-white/60" 
+                        : "text-gray-400 hover:text-gray-600"
+                    }`}
+                  >
+                    📥 Export CSV
+                  </button>
+                </div>
+              </div>
+            )}
           </CardBody>
         </Card>
       )}
