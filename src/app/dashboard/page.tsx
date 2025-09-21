@@ -271,32 +271,38 @@ function DashboardContent() {
         </div>
       </div>
 
-      {/* Compact Report Type Selector */}
-      <div className="mb-4">
-        <div className="flex flex-wrap gap-2">
-          <Button
-            variant={reportType === "location" ? "primary" : "default"}
-            onClick={() => setReportType("location")}
-            className="px-3 py-2 text-sm"
-          >
-            📍 Location Report
-          </Button>
-          <Button
-            variant={reportType === "product" ? "primary" : "default"}
-            onClick={() => setReportType("product")}
-            className="px-3 py-2 text-sm"
-          >
-            📦 Product Report
-          </Button>
-          <Button
-            variant={reportType === "audit" ? "primary" : "default"}
-            onClick={() => setReportType("audit")}
-            className="px-3 py-2 text-sm"
-          >
-            📋 Activity Log
-          </Button>
-        </div>
-      </div>
+      <Card>
+        <CardHeader 
+          title="Reports" 
+          subtitle="Choose what you want to see"
+        />
+        <CardBody>
+          {/* Compact Report Type Selector */}
+          <div className="mb-4">
+            <div className="flex flex-wrap gap-2">
+              <Button
+                variant={reportType === "location" ? "primary" : "default"}
+                onClick={() => setReportType("location")}
+                className="px-3 py-2 text-sm"
+              >
+                📍 Location Report
+              </Button>
+              <Button
+                variant={reportType === "product" ? "primary" : "default"}
+                onClick={() => setReportType("product")}
+                className="px-3 py-2 text-sm"
+              >
+                📦 Product Report
+              </Button>
+              <Button
+                variant={reportType === "audit" ? "primary" : "default"}
+                onClick={() => setReportType("audit")}
+                className="px-3 py-2 text-sm"
+              >
+                📋 Activity Log
+              </Button>
+            </div>
+          </div>
 
           {reportType === "location" && (
             <div className={`p-3 rounded border ${
