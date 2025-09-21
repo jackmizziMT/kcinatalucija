@@ -516,7 +516,7 @@ function DashboardContent() {
                   </span>
                   <Select
                     value={auditFilter}
-                    onChange={(e) => setAuditFilter(e.target.value as any)}
+                    onChange={(e) => setAuditFilter(e.target.value as "today" | "week" | "month" | "date" | "range")}
                     className="text-sm"
                   >
                     <option value="today">Today</option>
@@ -574,7 +574,7 @@ function DashboardContent() {
                   </span>
                   <Select
                     value={auditTypeFilter}
-                    onChange={(e) => setAuditTypeFilter(e.target.value as any)}
+                    onChange={(e) => setAuditTypeFilter(e.target.value as "all" | "add" | "deduct" | "transfer")}
                     className="text-sm"
                   >
                     <option value="all">All Activities</option>
