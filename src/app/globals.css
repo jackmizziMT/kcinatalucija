@@ -29,21 +29,21 @@ body {
   color: var(--foreground);
   font-family: var(--font-geist-sans), 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
   background-image: 
-    radial-gradient(circle at 20% 20%, rgba(0, 160, 176, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(237, 201, 81, 0.06) 0%, transparent 50%),
-    radial-gradient(circle at 40% 60%, rgba(235, 104, 65, 0.05) 0%, transparent 50%),
-    radial-gradient(circle at 60% 40%, rgba(204, 42, 54, 0.04) 0%, transparent 50%);
+    radial-gradient(circle at 20% 20%, rgba(151, 7, 71, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(232, 197, 71, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 40% 60%, rgba(146, 191, 177, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 60% 40%, rgba(8, 75, 131, 0.04) 0%, transparent 50%);
   background-size: 600px 600px, 400px 400px, 500px 500px, 700px 700px;
   background-position: 0 0, 200px 200px, 100px 300px, 300px 100px;
   background-attachment: fixed;
   background-repeat: no-repeat;
 }
 
-/* Brand palette */
+/* Brand palette - Updated KTL Stock Colors */
 :root {
-  --neutral: #4f372d;
-  --primary: #00a0b0;
-  --primary2: #eb6841;
-  --accent: #edc951;
-  --danger: #cc2a36;
+  --neutral: #084B83;  /* Deep blue for neutral elements */
+  --primary: #970747;  /* Deep red as main primary color */
+  --primary2: #E8C547; /* Golden yellow as secondary primary */
+  --accent: #92BFB1;   /* Soft teal as accent color */
+  --danger: #084B83;   /* Deep blue for danger/errors */
 }

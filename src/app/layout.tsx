@@ -20,8 +20,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Inventory Tracker",
-  description: "Fast, mobile-first inventory management",
+  title: "KTL Stock - Inventory Tracker",
+  description: "Fast, mobile-first inventory management for Kċina ta' Luċija",
+  icons: {
+    icon: '/favicon.svg',
+    shortcut: '/favicon.svg',
+    apple: '/favicon.svg',
+  },
 };
 
 export default function RootLayout({
