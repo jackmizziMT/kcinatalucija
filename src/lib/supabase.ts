@@ -8,13 +8,16 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
     // Enhanced session persistence settings
     persistSession: true,
     autoRefreshToken: true,
-    detectSessionInUrl: true,
+    detectSessionInUrl: false, // Disable to prevent URL-based session detection issues
     flowType: 'pkce',
     // Extend session duration and improve persistence
     storage: typeof window !== 'undefined' ? window.localStorage : undefined,
     storageKey: 'ktl-stock-auth-token',
     // Debug session events
-    debug: process.env.NODE_ENV === 'development'
+    debug: process.env.NODE_ENV === 'development',
+    // Additional persistence settings
+    multiTab: true, // Allow session sharing across tabs
+    lock: false // Disable auth lock to prevent session conflicts
   },
   // Add global fetch options for better error handling and UTF-8 support
   global: {

@@ -98,7 +98,7 @@ export function SupabaseAuthProvider({ children }: { children: ReactNode }) {
       }
     });
 
-    // Set up periodic session refresh to maintain persistence
+    // Set up periodic session refresh to maintain persistence (less aggressive)
     const refreshInterval = setInterval(async () => {
       if (!isMounted) return;
       
@@ -114,8 +114,8 @@ export function SupabaseAuthProvider({ children }: { children: ReactNode }) {
           const now = new Date();
           const timeUntilExpiry = expiresAt.getTime() - now.getTime();
           
-          // If session expires in less than 5 minutes, refresh it
-          if (timeUntilExpiry < 5 * 60 * 1000) {
+          // If session expires in less than 15 minutes, refresh it (more conservative)
+          if (timeUntilExpiry < 15 * 60 * 1000) {
             console.log('Refreshing session before expiry');
             await supabase.auth.refreshSession();
           }
@@ -123,7 +123,7 @@ export function SupabaseAuthProvider({ children }: { children: ReactNode }) {
       } catch (error) {
         console.log('Session refresh check failed:', error);
       }
-    }, 2 * 60 * 1000); // Check every 2 minutes
+    }, 5 * 60 * 1000); // Check every 5 minutes instead of 2
 
     return () => {
       isMounted = false;

@@ -19,8 +19,8 @@ export function ThemeHeader() {
           : "border-gray-200 bg-white/80"
       }`}
     >
-      <div className="mx-auto max-w-2xl md:max-w-5xl px-4 md:px-6 h-14 flex items-center justify-between">
-        <h1 className="text-lg md:text-xl font-bold tracking-tight">
+      <div className="mx-auto max-w-2xl md:max-w-5xl px-4 md:px-6 h-12 flex items-center justify-between">
+        <h1 className="text-base md:text-lg font-bold tracking-tight">
           <span className="text-[var(--primary)]">KTL</span> 
           <span className={isDark ? "text-white" : "text-gray-900"}> Stock</span>
         </h1>
@@ -32,7 +32,7 @@ export function ThemeHeader() {
               <nav className="hidden md:flex items-center gap-1">
                 <Link 
                   href="/" 
-                  className={`px-3 py-2 rounded-md text-sm border border-transparent transition-colors ${
+                  className={`px-2 py-1 rounded-md text-xs border border-transparent transition-colors ${
                     isDark 
                       ? "text-white hover:bg-white/10 hover:text-white hover:border-white/20" 
                       : "text-gray-700 hover:bg-gray-100 hover:text-gray-900 hover:border-gray-300"
@@ -42,7 +42,7 @@ export function ThemeHeader() {
                 </Link>
                 <Link 
                   href="/transfer" 
-                  className={`px-3 py-2 rounded-md text-sm border border-transparent transition-colors ${
+                  className={`px-2 py-1 rounded-md text-xs border border-transparent transition-colors ${
                     isDark 
                       ? "text-white hover:bg-white/10 hover:text-white hover:border-white/20" 
                       : "text-gray-700 hover:bg-gray-100 hover:text-gray-900 hover:border-gray-300"
@@ -52,7 +52,7 @@ export function ThemeHeader() {
                 </Link>
                 <Link 
                   href="/dashboard" 
-                  className={`px-3 py-2 rounded-md text-sm border border-transparent transition-colors ${
+                  className={`px-2 py-1 rounded-md text-xs border border-transparent transition-colors ${
                     isDark 
                       ? "text-white hover:bg-white/10 hover:text-white hover:border-white/20" 
                       : "text-gray-700 hover:bg-gray-100 hover:text-gray-900 hover:border-gray-300"
