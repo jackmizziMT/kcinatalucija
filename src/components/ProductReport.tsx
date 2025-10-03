@@ -5,6 +5,7 @@ import { useSupabaseInventoryStore } from "@/store/supabaseStore";
 import { Card, CardBody, CardHeader } from "@/components/ui/Card";
 import { Button, Select } from "@/components/ui/Controls";
 import { useTheme } from "@/contexts/ThemeContext";
+import { useSupabaseAuth } from "@/contexts/SupabaseAuthContext";
 
 interface ProductReportProps {
   selectedSku?: string;
@@ -13,9 +14,11 @@ interface ProductReportProps {
 }
 
 export function ProductReport({ selectedSku, onSkuChange, showProductSelector = true }: ProductReportProps) {
-  const { items, locations, stockByLocation } = useSupabaseInventoryStore();
+  const { items, locations, stockByLocation, addStock, deductStock } = useSupabaseInventoryStore();
   const { theme } = useTheme();
+  const { user } = useSupabaseAuth();
   const [internalSelectedSku, setInternalSelectedSku] = useState(selectedSku || "");
+  const [adjustingStocks, setAdjustingStocks] = useState<Record<string, boolean>>({});
 
   const itemList = useMemo(() => Object.values(items), [items]);
   const locationList = useMemo(() => Object.values(locations), [locations]);
@@ -74,6 +77,31 @@ export function ProductReport({ selectedSku, onSkuChange, showProductSelector = 
     exportToCSV(exportData, `Product_Report_${sku}_${productName}_${new Date().toISOString().split('T')[0]}`);
   };
 
+  // Quick stock adjustment functions
+  const canEdit = user?.role !== 'viewer';
+  
+  const handleQuickAdjust = async (locationId: string, operation: 'add' | 'deduct') => {
+    if (!currentSku || !canEdit) return;
+    
+    const stockKey = `${currentSku}::${locationId}`;
+    setAdjustingStocks(prev => ({ ...prev, [stockKey]: true }));
+    
+    try {
+      if (operation === 'add') {
+        await addStock(currentSku, locationId, 1, 'Quick add from home page');
+      } else {
+        const currentStock = stockByLocation[stockKey] || 0;
+        if (currentStock > 0) {
+          await deductStock(currentSku, locationId, 1, 'Quick deduct from home page');
+        }
+      }
+    } catch (error) {
+      console.error('Error adjusting stock:', error);
+    } finally {
+      setAdjustingStocks(prev => ({ ...prev, [stockKey]: false }));
+    }
+  };
+
   return (
     <div className="space-y-6">
       {/* Product Selection */}
@@ -111,15 +139,56 @@ export function ProductReport({ selectedSku, onSkuChange, showProductSelector = 
                   <tr className={`text-left border-b ${isDark ? "border-white/20" : "border-gray-200"}`}>
                     <th className={`p-3 font-semibold ${isDark ? "text-white" : "text-gray-900"}`}>Location</th>
                     <th className={`p-3 font-semibold text-center ${isDark ? "text-white" : "text-gray-900"}`}>Quantity</th>
+                    {canEdit && (
+                      <th className={`p-3 font-semibold text-center ${isDark ? "text-white" : "text-gray-900"}`}>Quick Adjust</th>
+                    )}
                   </tr>
                 </thead>
                 <tbody>
-                  {productReport.map((item) => (
-                    <tr key={item.locationId} className={`border-b ${isDark ? "border-white/10" : "border-gray-200"}`}>
-                      <td className={`p-3 ${isDark ? "text-white" : "text-gray-900"}`}>{item.locationName}</td>
-                      <td className="p-3 font-semibold text-[var(--primary)] text-center">{item.quantity}</td>
-                    </tr>
-                  ))}
+                  {productReport.map((item) => {
+                    const stockKey = `${currentSku}::${item.locationId}`;
+                    const isAdjusting = adjustingStocks[stockKey];
+                    return (
+                      <tr key={item.locationId} className={`border-b ${isDark ? "border-white/10" : "border-gray-200"}`}>
+                        <td className={`p-3 ${isDark ? "text-white" : "text-gray-900"}`}>{item.locationName}</td>
+                        <td className="p-3 font-semibold text-[var(--primary)] text-center">{item.quantity}</td>
+                        {canEdit && (
+                          <td className="p-3 text-center">
+                            <div className="flex items-center justify-center gap-1">
+                              <button
+                                onClick={() => handleQuickAdjust(item.locationId, 'add')}
+                                disabled={isAdjusting}
+                                className={`px-2 py-1 rounded text-sm font-bold transition-colors ${
+                                  isAdjusting 
+                                    ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                                    : isDark
+                                    ? "bg-green-500/20 text-green-400 hover:bg-green-500/30 border border-green-500/30"
+                                    : "bg-green-100 text-green-700 hover:bg-green-200 border border-green-300"
+                                }`}
+                                title="Add 1 item"
+                              >
+                                {isAdjusting ? "..." : "+"}
+                              </button>
+                              <button
+                                onClick={() => handleQuickAdjust(item.locationId, 'deduct')}
+                                disabled={isAdjusting || item.quantity === 0}
+                                className={`px-2 py-1 rounded text-sm font-bold transition-colors ${
+                                  isAdjusting || item.quantity === 0
+                                    ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                                    : isDark
+                                    ? "bg-red-500/20 text-red-400 hover:bg-red-500/30 border border-red-500/30"
+                                    : "bg-red-100 text-red-700 hover:bg-red-200 border border-red-300"
+                                }`}
+                                title="Remove 1 item"
+                              >
+                                {isAdjusting ? "..." : "−"}
+                              </button>
+                            </div>
+                          </td>
+                        )}
+                      </tr>
+                    );
+                  })}
                 </tbody>
                 <tfoot>
                   <tr className={`border-t-2 font-bold ${
@@ -138,6 +207,13 @@ export function ProductReport({ selectedSku, onSkuChange, showProductSelector = 
                     <td className="p-3 text-lg font-bold text-[var(--primary)] bg-[var(--primary)]/10 rounded-md text-center">
                       {productReport.reduce((sum, item) => sum + item.quantity, 0)}
                     </td>
+                    {canEdit && (
+                      <td className="p-3 text-center">
+                        <div className={`text-xs ${isDark ? "text-white/60" : "text-gray-500"}`}>
+                          {canEdit ? "Quick adjust" : ""}
+                        </div>
+                      </td>
+                    )}
                   </tr>
                 </tfoot>
               </table>

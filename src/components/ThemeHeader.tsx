@@ -41,6 +41,16 @@ export function ThemeHeader() {
                   Home
                 </Link>
                 <Link 
+                  href="/manage-stock" 
+                  className={`px-2 py-1 rounded-md text-xs border border-transparent transition-colors ${
+                    isDark 
+                      ? "text-white hover:bg-white/10 hover:text-white hover:border-white/20" 
+                      : "text-gray-700 hover:bg-gray-100 hover:text-gray-900 hover:border-gray-300"
+                  }`}
+                >
+                  Manage Stock
+                </Link>
+                <Link 
                   href="/transfer" 
                   className={`px-2 py-1 rounded-md text-xs border border-transparent transition-colors ${
                     isDark 
@@ -169,6 +179,17 @@ export function ThemeHeader() {
               onClick={() => setIsMobileMenuOpen(false)}
             >
               🏠 Home
+            </Link>
+            <Link 
+              href="/manage-stock" 
+              className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                isDark 
+                  ? "text-white hover:bg-white/10" 
+                  : "text-gray-700 hover:bg-gray-100"
+              }`}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              📦 Manage Stock
             </Link>
             <Link 
               href="/transfer" 
