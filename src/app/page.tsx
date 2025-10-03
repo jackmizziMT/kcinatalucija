@@ -1,6 +1,6 @@
 "use client";
 
-import { ProductAdjuster } from "@/components/ProductAdjuster";
+import { ProductReport } from "@/components/ProductReport";
 import { AuthGuard } from "@/components/AuthGuard";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useSupabaseAuth } from "@/contexts/SupabaseAuthContext";
@@ -17,7 +17,6 @@ function HomeContent() {
   const { theme } = useTheme();
   const { user } = useSupabaseAuth();
   const isDark = theme === "dark";
-  const canEdit = user?.role !== 'viewer';
 
   return (
     <main className="space-y-6 md:space-y-8">
@@ -31,8 +30,8 @@ function HomeContent() {
         <div className="relative z-10">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
             <div>
-              <h1 className={`text-2xl md:text-3xl font-bold ${isDark ? "text-white" : "text-gray-900"}`}>Stock Master</h1>
-              <p className={`text-base md:text-lg ${isDark ? "text-white/90" : "text-gray-700"}`}>Manage inventory quantities across all locations.</p>
+              <h1 className={`text-2xl md:text-3xl font-bold ${isDark ? "text-white" : "text-gray-900"}`}>Inventory Overview</h1>
+              <p className={`text-base md:text-lg ${isDark ? "text-white/90" : "text-gray-700"}`}>View product inventory across all locations.</p>
             </div>
             <div className="flex items-center gap-2">
               <span className="inline-block h-3 w-3 rounded-full bg-[var(--primary)]"></span>
@@ -43,7 +42,7 @@ function HomeContent() {
           </div>
         </div>
       </div>
-        <ProductAdjuster canEdit={canEdit} />
+      <ProductReport />
     </main>
   );
 }
