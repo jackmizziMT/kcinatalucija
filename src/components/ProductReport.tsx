@@ -285,4 +285,39 @@ export function ProductReport({ selectedSku, onSkuChange, showProductSelector = 
                         <div className="flex items-center justify-center gap-1">
                           <button
                             onClick={() => handleBookedAdjust(1)}
-                            className={`
+                            className={`px-2 py-1 rounded text-sm font-bold transition-colors ${
+                              isDark
+                                ? "bg-orange-500/20 text-orange-400 hover:bg-orange-500/30 border border-orange-500/30"
+                                : "bg-orange-100 text-orange-700 hover:bg-orange-200 border border-orange-300"
+                            }`}
+                            title="Add 1 booking"
+                          >
+                            +
+                          </button>
+                          <button
+                            onClick={() => handleBookedAdjust(-1)}
+                            disabled={bookedQuantity === 0}
+                            className={`px-2 py-1 rounded text-sm font-bold transition-colors ${
+                              bookedQuantity === 0
+                                ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                                : isDark
+                                ? "bg-orange-500/20 text-orange-400 hover:bg-orange-500/30 border border-orange-500/30"
+                                : "bg-orange-100 text-orange-700 hover:bg-orange-200 border border-orange-300"
+                            }`}
+                            title="Remove 1 booking"
+                          >
+                            -
+                          </button>
+                        </div>
+                      </td>
+                    )}
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </CardBody>
+        </Card>
+      )}
+    </div>
+  );
+}
