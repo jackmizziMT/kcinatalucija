@@ -20,6 +20,7 @@ export function ProductReport({ selectedSku, onSkuChange, showProductSelector = 
   const [internalSelectedSku, setInternalSelectedSku] = useState(selectedSku || "");
   const [adjustingStocks, setAdjustingStocks] = useState<Record<string, boolean>>({});
   const [bookedBySku, setBookedBySku] = useState<Record<string, number>>({});
+  const [bookedNotesBySku, setBookedNotesBySku] = useState<Record<string, string>>({});
 
   const itemList = useMemo(() => Object.values(items), [items]);
   const locationList = useMemo(() => Object.values(locations), [locations]);
@@ -82,6 +83,7 @@ export function ProductReport({ selectedSku, onSkuChange, showProductSelector = 
   const canEdit = user?.role !== 'viewer';
   
   const bookedQuantity = currentSku ? bookedBySku[currentSku] ?? 0 : 0;
+  const bookedNote = currentSku ? bookedNotesBySku[currentSku] ?? "" : "";
 
   const totalQuantity = useMemo(() => {
     return productReport.reduce((sum, item) => sum + item.quantity, 0);
@@ -123,6 +125,14 @@ export function ProductReport({ selectedSku, onSkuChange, showProductSelector = 
         [currentSku]: next,
       };
     });
+  };
+
+  const handleBookedNoteChange = (value: string) => {
+    if (!currentSku) return;
+    setBookedNotesBySku((prev) => ({
+      ...prev,
+      [currentSku]: value,
+    }));
   };
 
   return (
@@ -315,7 +325,29 @@ export function ProductReport({ selectedSku, onSkuChange, showProductSelector = 
                 </tfoot>
               </table>
             </div>
-            
+
+            {currentSku && (
+              <div className="mt-4 pt-4 border-t border-white/10">
+                <label className={`text-sm font-medium ${isDark ? "text-white" : "text-gray-900"} mb-2 block`}>
+                  📝 Booked note
+                </label>
+                <textarea
+                  value={bookedNote}
+                  onChange={(e) => handleBookedNoteChange(e.target.value)}
+                  placeholder="Add context about what these bookings are for..."
+                  rows={3}
+                  className={`w-full rounded-md border px-3 py-2 text-sm ${
+                    isDark
+                      ? "bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-white/20"
+                      : "bg-white border-gray-300 text-gray-900 placeholder:text-gray-400 focus:border-gray-400"
+                  } focus:outline-none focus:ring-1 focus:ring-[var(--accent)] transition`}
+                />
+                <p className={`mt-1 text-xs ${isDark ? "text-white/50" : "text-gray-500"}`}>
+                  This note stays with the selected product while you’re on this page.
+                </p>
+              </div>
+            )}
+
             {/* Export button at very bottom */}
             {productReport.length > 0 && (
               <div className="mt-2 pt-2 border-t border-white/5">
