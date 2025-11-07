@@ -315,9 +315,35 @@ export function ProductReport({ selectedSku, onSkuChange, showProductSelector = 
                 </tfoot>
               </table>
             </div>
-          </CardBody>
-        </Card>
-      )}
-    </div>
-  );
-}
+
+            {currentSku && (
+              <div className="mt-4 pt-4 border-t border-white/10">
+                <label className={`text-sm font-medium ${isDark ? "text-white" : "text-gray-900"} mb-2 block`}>
+                  📝 Booked note
+                </label>
+                <textarea
+                  value={bookedNote}
+                  onChange={(e) => handleBookedNoteChange(e.target.value)}
+                  placeholder="Add context about what these bookings are for..."
+                  rows={3}
+                  disabled={!canEdit}
+                  className={`w-full rounded-md border px-3 py-2 text-sm ${
+                    isDark
+                      ? "bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-white/20"
+                      : "bg-white border-gray-300 text-gray-900 placeholder:text-gray-400 focus:border-gray-400"
+                  } focus:outline-none focus:ring-1 focus:ring-[var(--accent)] transition ${
+                    !canEdit ? "opacity-70 cursor-not-allowed" : ""
+                  }`}
+                />
+                <p className={`mt-1 text-xs ${isDark ? "text-white/50" : "text-gray-500"}`}>
+                  {canEdit
+                    ? "This note is saved for all users."
+                    : "Only editors can update the booked note."}
+                </p>
+              </div>
+            )}
+ 
+            {/* Export button at very bottom */}
+            {productReport.length > 0 && (
+              <div className="mt-2 pt-2 border-t border-white/5">
+                <div className="text-right">
