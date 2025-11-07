@@ -336,7 +336,7 @@ export function ProductReport({ selectedSku, onSkuChange, showProductSelector = 
                           ? isDark
                             ? "text-yellow-200"
                             : "text-yellow-600"
-                          : "text-[var(--accent,#084B83)]"
+                          : "text-black"
                       }`}
                     >
                       {availableQuantity}
