@@ -239,46 +239,54 @@ export function ProductReport({ selectedSku, onSkuChange, showProductSelector = 
                   })}
                 </tbody>
                 <tfoot>
-                  <tr className={`border-t-2 font-bold ${
-                    isDark 
-                      ? "border-[var(--primary)] bg-[var(--primary)]/10" 
-                      : "border-[var(--primary)] bg-[var(--primary)]/5"
-                  }`}>
-                    <td className={`p-3 text-lg ${isDark ? "text-white" : "text-gray-900"}`}>
+                  <tr
+                    className={`border-t ${
+                      isDark
+                        ? "bg-[var(--primary)]/10 border-[var(--primary)]/50"
+                        : "bg-[var(--primary)]/5 border-[var(--primary)]/40"
+                    }`}
+                  >
+                    <td className={`p-3 text-lg font-semibold ${isDark ? "text-white" : "text-gray-900"}`}>
                       <span className="inline-flex items-center gap-2">
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+                          />
                         </svg>
                         Total
                       </span>
                     </td>
-                    <td className="p-3 text-lg font-bold text-[var(--primary)] bg-[var(--primary)]/10 rounded-md text-center">
+                    <td className="p-3 text-lg font-semibold text-[var(--primary)] text-center">
                       {totalQuantity}
                     </td>
                     {canEdit && (
-                      <td className="p-3 text-center">
-                        <div className={`text-xs ${isDark ? "text-white/60" : "text-gray-500"}`}>
-                          {canEdit ? "Quick adjust" : ""}
-                        </div>
+                      <td className="p-3 text-center text-xs uppercase tracking-wide text-[var(--primary)]/80">
+                        Quick adjust
                       </td>
                     )}
                   </tr>
-                  <tr className={`border-t ${isDark ? "border-white/10" : "border-gray-200"}`}>
-                    <td className={`p-3 font-semibold ${isDark ? "text-white" : "text-gray-900"}`}>
+                  <tr
+                    className={`border-t ${
+                      isDark
+                        ? "bg-orange-500/10 border-orange-500/30"
+                        : "bg-orange-100/80 border-orange-300/60"
+                    }`}
+                  >
+                    <td className={`p-3 font-semibold ${isDark ? "text-white" : "text-orange-900"}`}>
                       <span className="inline-flex items-center gap-2">
                         📅 Booked
                       </span>
                     </td>
-                    <td className="p-3 font-semibold text-center">
-                      <span className={`${
-                        bookedQuantity > 0
-                          ? "text-orange-500 font-bold"
-                          : isDark
-                          ? "text-white/60"
-                          : "text-gray-500"
-                      }`}>
-                        {bookedQuantity}
-                      </span>
+                    <td className="p-3 font-semibold text-center text-orange-600">
+                      {bookedQuantity}
                     </td>
                     {canEdit && (
                       <td className="p-3 text-center">
@@ -287,8 +295,8 @@ export function ProductReport({ selectedSku, onSkuChange, showProductSelector = 
                             onClick={() => handleBookedAdjust(1)}
                             className={`px-2 py-1 rounded text-sm font-bold transition-colors ${
                               isDark
-                                ? "bg-orange-500/20 text-orange-400 hover:bg-orange-500/30 border border-orange-500/30"
-                                : "bg-orange-100 text-orange-700 hover:bg-orange-200 border border-orange-300"
+                                ? "bg-orange-500/30 text-orange-100 hover:bg-orange-500/40 border border-orange-500/40"
+                                : "bg-white text-orange-600 hover:bg-orange-200/70 border border-orange-300"
                             }`}
                             title="Add 1 booking"
                           >
@@ -301,14 +309,45 @@ export function ProductReport({ selectedSku, onSkuChange, showProductSelector = 
                               bookedQuantity === 0
                                 ? "bg-gray-300 text-gray-500 cursor-not-allowed"
                                 : isDark
-                                ? "bg-orange-500/20 text-orange-400 hover:bg-orange-500/30 border border-orange-500/30"
-                                : "bg-orange-100 text-orange-700 hover:bg-orange-200 border border-orange-300"
+                                ? "bg-orange-500/30 text-orange-100 hover:bg-orange-500/40 border border-orange-500/40"
+                                : "bg-white text-orange-600 hover:bg-orange-200/70 border border-orange-300"
                             }`}
                             title="Remove 1 booking"
                           >
                             -
                           </button>
                         </div>
+                      </td>
+                    )}
+                  </tr>
+                  <tr
+                    className={`border-t shadow-sm ${
+                      isDark
+                        ? "bg-[var(--accent)]/20 border-[var(--accent)]/40"
+                        : "bg-[var(--accent)]/15 border-[var(--accent)]/30"
+                    }`}
+                  >
+                    <td className={`p-3 font-semibold text-lg ${isDark ? "text-white" : "text-[var(--accent-dark,#084B83)]"}`}>
+                      <span className="inline-flex items-center gap-2">
+                        ✅ Available
+                      </span>
+                    </td>
+                    <td
+                      className={`p-3 text-lg font-bold text-center ${
+                        availableQuantity < 0
+                          ? "text-red-500"
+                          : availableQuantity === 0
+                          ? isDark
+                            ? "text-yellow-200"
+                            : "text-yellow-600"
+                          : "text-[var(--accent,#084B83)]"
+                      }`}
+                    >
+                      {availableQuantity}
+                    </td>
+                    {canEdit && (
+                      <td className="p-3 text-center text-xs uppercase tracking-wide text-[var(--accent,#084B83)]/80">
+                        Total - Booked
                       </td>
                     )}
                   </tr>
