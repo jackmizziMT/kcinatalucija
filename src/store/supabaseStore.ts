@@ -9,6 +9,7 @@ import {
   Item,
   Location,
   buildStockKey,
+  BookingRecord,
 } from "@/lib/types";
 
 type AddItemInput = Omit<Item, "sku"> & { sku: string };
@@ -30,6 +31,11 @@ interface InventoryActions {
   addStock: (sku: string, locationId: string, quantity: number, reason?: string, note?: string) => Promise<void>;
   deductStock: (sku: string, locationId: string, quantity: number, reason?: string, note?: string) => Promise<void>;
   transferStock: (sku: string, fromLocationId: string, toLocationId: string, quantity: number, note?: string) => Promise<void>;
+
+  // Bookings
+  fetchBooking: (sku: string) => Promise<void>;
+  adjustBookingQuantity: (sku: string, delta: number) => Promise<void>;
+  updateBookingNote: (sku: string, note: string) => Promise<void>;
 
   // Audit trail
   getAuditTrail: (filters?: {
@@ -65,6 +71,7 @@ export const useSupabaseInventoryStore = create<SupabaseInventoryStore>()((set, 
   users: {},
   currentUserId: undefined,
   reasons: ["purchase", "sale", "correction", "wastage", "return_in", "return_out", "stocktake", "other"],
+  bookings: {},
 
   // Items
   checkSkuExists: async (sku) => {
@@ -448,11 +455,17 @@ export const useSupabaseInventoryStore = create<SupabaseInventoryStore>()((set, 
   },
 
   transferStock: async (sku, fromLocationId, toLocationId, quantity, note) => {
-    if (quantity <= 0 || !Number.isInteger(quantity)) return;
-
     try {
-      console.log('Starting transfer:', { sku, fromLocationId, toLocationId, quantity, note });
+      console.log('Transferring stock:', { sku, fromLocationId, toLocationId, quantity, note });
       
+      if (!sku || !fromLocationId || !toLocationId || !Number.isInteger(quantity) || quantity <= 0) {
+        throw new Error('Invalid transfer parameters');
+      }
+
+      if (fromLocationId === toLocationId) {
+        throw new Error('Source and destination locations must be different');
+      }
+
       // Increase timeout to 15 seconds for complex operations
       const timeoutPromise = new Promise((_, reject) => {
         setTimeout(() => reject(new Error('Transfer request timeout after 15 seconds')), 15000);
@@ -466,11 +479,14 @@ export const useSupabaseInventoryStore = create<SupabaseInventoryStore>()((set, 
         .eq('sku', sku)
         .in('location_id', [fromLocationId, toLocationId]);
 
-      const { data: stockData, error: stockError } = await Promise.race([stockQuery, timeoutPromise]) as any;
-      if (stockError) throw stockError;
+      const stockResponse = await Promise.race([stockQuery, timeoutPromise]) as any;
 
-      const fromStock = stockData?.find((s: any) => s.location_id === fromLocationId);
-      const toStock = stockData?.find((s: any) => s.location_id === toLocationId);
+      if (stockResponse.error) throw stockResponse.error;
+
+      const stockData = stockResponse.data ?? [];
+
+      const fromStock = stockData.find((s: any) => s.location_id === fromLocationId);
+      const toStock = stockData.find((s: any) => s.location_id === toLocationId);
       
       const fromQuantity = fromStock?.quantity || 0;
       const toQuantity = toStock?.quantity || 0;
@@ -499,10 +515,13 @@ export const useSupabaseInventoryStore = create<SupabaseInventoryStore>()((set, 
           }, { onConflict: 'sku,location_id' })
       ];
 
-      const updateResults = await Promise.race([Promise.all(updatePromises), timeoutPromise]) as any;
+      const updateResponses = await Promise.race([
+        Promise.all(updatePromises),
+        timeoutPromise,
+      ]) as any;
       
-      if (updateResults[0].error) throw updateResults[0].error;
-      if (updateResults[1].error) throw updateResults[1].error;
+      if (updateResponses[0].error) throw updateResponses[0].error;
+      if (updateResponses[1].error) throw updateResponses[1].error;
 
       console.log('Stock updated, creating audit record...');
 
@@ -512,24 +531,26 @@ export const useSupabaseInventoryStore = create<SupabaseInventoryStore>()((set, 
       const toLocationName = get().locations[toLocationId]?.name || 'Unknown Location';
 
       // Add audit record
-      const auditPromise = supabase
-        .from('audit_trail')
-        .insert({
-          timestamp_iso: isoNow(),
-          type: 'transfer',
-          sku,
-          from_location_id: fromLocationId,
-          to_location_id: toLocationId,
-          quantity,
-          note,
-          item_name: itemName,
-          from_location_name: fromLocationName,
-          to_location_name: toLocationName,
-        });
+      const auditResponse = await Promise.race([
+        supabase
+          .from('audit_trail')
+          .insert({
+            timestamp_iso: isoNow(),
+            type: 'transfer',
+            sku,
+            from_location_id: fromLocationId,
+            to_location_id: toLocationId,
+            quantity,
+            note,
+            item_name: itemName,
+            from_location_name: fromLocationName,
+            to_location_name: toLocationName,
+          }),
+        timeoutPromise,
+      ]) as any;
 
-      const { error: auditError } = await Promise.race([auditPromise, timeoutPromise]) as any;
-      if (auditError) {
-        console.warn('Audit record creation failed:', auditError);
+      if (auditResponse.error) {
+        console.warn('Audit record creation failed:', auditResponse.error);
         // Don't throw - the transfer still succeeded
       }
 
@@ -549,6 +570,121 @@ export const useSupabaseInventoryStore = create<SupabaseInventoryStore>()((set, 
       console.log('Transfer completed successfully');
     } catch (error) {
       console.error('Error transferring stock:', error);
+      throw error;
+    }
+  },
+
+  fetchBooking: async (sku) => {
+    if (!sku) return;
+
+    try {
+      const { data, error } = await supabase
+        .from('bookings')
+        .select('quantity, note')
+        .eq('sku', sku)
+        .maybeSingle();
+
+      if (error && error.code !== 'PGRST116') {
+        throw error;
+      }
+
+      const booking: BookingRecord = {
+        quantity: data?.quantity ?? 0,
+        note: data?.note ?? '',
+      };
+
+      set((state) => ({
+        bookings: {
+          ...state.bookings,
+          [sku]: booking,
+        },
+      }));
+    } catch (error) {
+      console.error('Error fetching booking:', error);
+      throw error;
+    }
+  },
+
+  adjustBookingQuantity: async (sku, delta) => {
+    if (!sku) return;
+
+    const current = get().bookings[sku] ?? { quantity: 0, note: '' };
+    const next = {
+      ...current,
+      quantity: Math.max(0, current.quantity + delta),
+    };
+
+    if (next.quantity === current.quantity) {
+      return;
+    }
+
+    set((state) => ({
+      bookings: {
+        ...state.bookings,
+        [sku]: next,
+      },
+    }));
+
+    try {
+      const { error } = await supabase
+        .from('bookings')
+        .upsert({
+          sku,
+          quantity: next.quantity,
+          note: next.note,
+        }, { onConflict: 'sku' });
+
+      if (error) {
+        throw error;
+      }
+    } catch (error) {
+      console.error('Error adjusting booking quantity:', error);
+      set((state) => ({
+        bookings: {
+          ...state.bookings,
+          [sku]: current,
+        },
+      }));
+      throw error;
+    }
+  },
+
+  updateBookingNote: async (sku, note) => {
+    if (!sku) return;
+
+    const current = get().bookings[sku] ?? { quantity: 0, note: '' };
+    const next: BookingRecord = {
+      quantity: current.quantity,
+      note,
+    };
+
+    set((state) => ({
+      bookings: {
+        ...state.bookings,
+        [sku]: next,
+      },
+    }));
+
+    try {
+      const { error } = await supabase
+        .from('bookings')
+        .upsert({
+          sku,
+          quantity: next.quantity,
+          note: next.note,
+        }, { onConflict: 'sku' });
+
+      if (error) {
+        throw error;
+      }
+    } catch (error) {
+      console.error('Error updating booking note:', error);
+      set((state) => ({
+        bookings: {
+          ...state.bookings,
+          [sku]: current,
+        },
+      }));
       throw error;
     }
   },
@@ -618,6 +754,7 @@ export const useSupabaseInventoryStore = create<SupabaseInventoryStore>()((set, 
       users: state.users,
       currentUserId: state.currentUserId,
       reasons: state.reasons,
+      bookings: state.bookings,
     };
   },
 
@@ -634,13 +771,15 @@ export const useSupabaseInventoryStore = create<SupabaseInventoryStore>()((set, 
         supabase.from('items').select('*'),
         supabase.from('locations').select('*'),
         supabase.from('stock_by_location').select('*'),
+        supabase.from('bookings').select('*'),
       ]);
       
-      const [itemsResult, locationsResult, stockResult] = await Promise.race([syncPromise, timeoutPromise]) as any;
+      const [itemsResult, locationsResult, stockResult, bookingsResult] = await Promise.race([syncPromise, timeoutPromise]) as any;
 
       if (itemsResult.error) throw itemsResult.error;
       if (locationsResult.error) throw locationsResult.error;
       if (stockResult.error) throw stockResult.error;
+      if (bookingsResult.error) throw bookingsResult.error;
 
       // Transform data
       const items = itemsResult.data.reduce((acc: any, item: any) => {
@@ -667,11 +806,20 @@ export const useSupabaseInventoryStore = create<SupabaseInventoryStore>()((set, 
         return acc;
       }, {} as Record<string, number>);
 
+      const bookings = (bookingsResult.data ?? []).reduce((acc: Record<string, BookingRecord>, booking: any) => {
+        acc[booking.sku] = {
+          quantity: booking.quantity ?? 0,
+          note: booking.note ?? '',
+        };
+        return acc;
+      }, {});
+
       // Update state
       set({
         items,
         locations,
         stockByLocation,
+        bookings,
       });
     } catch (error) {
       console.error('Error syncing from database:', error);

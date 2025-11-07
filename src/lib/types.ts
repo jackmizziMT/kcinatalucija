@@ -67,6 +67,11 @@ export interface User {
   role: "owner" | "editor" | "viewer";
 }
 
+export interface BookingRecord {
+  quantity: number;
+  note: string;
+}
+
 export interface InventoryState {
   items: Record<string, Item>; // keyed by sku
   locations: Record<string, Location>; // keyed by id
@@ -77,6 +82,7 @@ export interface InventoryState {
   users: Record<string, User>;
   currentUserId?: string;
   reasons: string[]; // editable list of reasons for adjustments
+  bookings: Record<string, BookingRecord>;
 }
 
 export const buildStockKey = (sku: string, locationId: string) => `${sku}::${locationId}`;

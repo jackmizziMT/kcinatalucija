@@ -14,48 +14,41 @@ interface ProductReportProps {
 }
 
 export function ProductReport({ selectedSku, onSkuChange, showProductSelector = true }: ProductReportProps) {
-  const { items, locations, stockByLocation, addStock, deductStock } = useSupabaseInventoryStore();
+  const {
+    items,
+    locations,
+    stockByLocation,
+    addStock,
+    deductStock,
+    bookings,
+    fetchBooking,
+    adjustBookingQuantity,
+    updateBookingNote,
+  } = useSupabaseInventoryStore();
   const { theme } = useTheme();
   const { user } = useSupabaseAuth();
   const [internalSelectedSku, setInternalSelectedSku] = useState(selectedSku || "");
   const [adjustingStocks, setAdjustingStocks] = useState<Record<string, boolean>>({});
-  const [bookedBySku, setBookedBySku] = useState<Record<string, number>>({});
-  const [bookedNotesBySku, setBookedNotesBySku] = useState<Record<string, string>>({});
-
+  
   useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    try {
-      const storedNotes = window.localStorage.getItem("productReportBookedNotes");
-      if (storedNotes) {
-        const parsed = JSON.parse(storedNotes);
-        if (parsed && typeof parsed === "object") {
-          setBookedNotesBySku(parsed);
-        }
-      }
-    } catch (error) {
-      console.error("Failed to load booked notes from storage", error);
+    if (!selectedSku) {
+      setInternalSelectedSku(selectedSku || "");
     }
-  }, []);
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    try {
-      window.localStorage.setItem(
-        "productReportBookedNotes",
-        JSON.stringify(bookedNotesBySku)
-      );
-    } catch (error) {
-      console.error("Failed to save booked notes to storage", error);
-    }
-  }, [bookedNotesBySku]);
+  }, [selectedSku]);
 
   const itemList = useMemo(() => Object.values(items), [items]);
   const locationList = useMemo(() => Object.values(locations), [locations]);
 
   const currentSku = selectedSku || internalSelectedSku;
   const handleSkuChange = onSkuChange || setInternalSelectedSku;
+
+  useEffect(() => {
+    if (!currentSku) return;
+
+    fetchBooking(currentSku).catch((error) => {
+      console.error('Error loading booking information', error);
+    });
+  }, [currentSku, fetchBooking]);
 
   // Product-based report: show quantities across all locations for selected product
   const productReport = useMemo(() => {
@@ -111,8 +104,8 @@ export function ProductReport({ selectedSku, onSkuChange, showProductSelector = 
   // Quick stock adjustment functions
   const canEdit = user?.role !== 'viewer';
   
-  const bookedQuantity = currentSku ? bookedBySku[currentSku] ?? 0 : 0;
-  const bookedNote = currentSku ? bookedNotesBySku[currentSku] ?? "" : "";
+  const bookedQuantity = currentSku ? bookings[currentSku]?.quantity ?? 0 : 0;
+  const bookedNote = currentSku ? bookings[currentSku]?.note ?? "" : "";
 
   const totalQuantity = useMemo(() => {
     return productReport.reduce((sum, item) => sum + item.quantity, 0);
@@ -145,23 +138,16 @@ export function ProductReport({ selectedSku, onSkuChange, showProductSelector = 
   const handleBookedAdjust = (delta: number) => {
     if (!currentSku || !canEdit) return;
 
-    setBookedBySku((prev) => {
-      const current = prev[currentSku] ?? 0;
-      const next = Math.max(0, current + delta);
-      if (next === current) return prev;
-      return {
-        ...prev,
-        [currentSku]: next,
-      };
+    adjustBookingQuantity(currentSku, delta).catch((error) => {
+      console.error('Error adjusting booking quantity', error);
     });
   };
 
   const handleBookedNoteChange = (value: string) => {
-    if (!currentSku) return;
-    setBookedNotesBySku((prev) => ({
-      ...prev,
-      [currentSku]: value,
-    }));
+    if (!currentSku || !canEdit) return;
+    updateBookingNote(currentSku, value).catch((error) => {
+      console.error('Error updating booking note', error);
+    });
   };
 
   return (
