@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useSupabaseInventoryStore } from "@/store/supabaseStore";
 import { Card, CardBody, CardHeader } from "@/components/ui/Card";
 import { Select } from "@/components/ui/Controls";
@@ -21,6 +21,35 @@ export function ProductReport({ selectedSku, onSkuChange, showProductSelector = 
   const [adjustingStocks, setAdjustingStocks] = useState<Record<string, boolean>>({});
   const [bookedBySku, setBookedBySku] = useState<Record<string, number>>({});
   const [bookedNotesBySku, setBookedNotesBySku] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    try {
+      const storedNotes = window.localStorage.getItem("productReportBookedNotes");
+      if (storedNotes) {
+        const parsed = JSON.parse(storedNotes);
+        if (parsed && typeof parsed === "object") {
+          setBookedNotesBySku(parsed);
+        }
+      }
+    } catch (error) {
+      console.error("Failed to load booked notes from storage", error);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    try {
+      window.localStorage.setItem(
+        "productReportBookedNotes",
+        JSON.stringify(bookedNotesBySku)
+      );
+    } catch (error) {
+      console.error("Failed to save booked notes to storage", error);
+    }
+  }, [bookedNotesBySku]);
 
   const itemList = useMemo(() => Object.values(items), [items]);
   const locationList = useMemo(() => Object.values(locations), [locations]);
@@ -270,124 +299,4 @@ export function ProductReport({ selectedSku, onSkuChange, showProductSelector = 
                         <div className="flex items-center justify-center gap-1">
                           <button
                             onClick={() => handleBookedAdjust(1)}
-                            className={`px-2 py-1 rounded text-sm font-bold transition-colors ${
-                              isDark
-                                ? "bg-orange-500/20 text-orange-400 hover:bg-orange-500/30 border border-orange-500/30"
-                                : "bg-orange-100 text-orange-700 hover:bg-orange-200 border border-orange-300"
-                            }`}
-                            title="Add 1 booking"
-                          >
-                            +
-                          </button>
-                          <button
-                            onClick={() => handleBookedAdjust(-1)}
-                            disabled={bookedQuantity === 0}
-                            className={`px-2 py-1 rounded text-sm font-bold transition-colors ${
-                              bookedQuantity === 0
-                                ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-                                : isDark
-                                ? "bg-orange-500/20 text-orange-400 hover:bg-orange-500/30 border border-orange-500/30"
-                                : "bg-orange-100 text-orange-700 hover:bg-orange-200 border border-orange-300"
-                            }`}
-                            title="Remove 1 booking"
-                          >
-                            −
-                          </button>
-                        </div>
-                      </td>
-                    )}
-                  </tr>
-                  <tr className={`border-t ${isDark ? "border-white/10" : "border-gray-200"}`}>
-                    <td className={`p-3 font-semibold ${isDark ? "text-white" : "text-gray-900"}`}>
-                      <span className="inline-flex items-center gap-2">
-                        ✅ Available
-                      </span>
-                    </td>
-                    <td className={`p-3 font-semibold text-center ${
-                      availableQuantity < 0
-                        ? "text-red-500"
-                        : availableQuantity === 0
-                        ? isDark
-                          ? "text-white/70"
-                          : "text-gray-600"
-                        : "text-[var(--accent)]"
-                    }`}>
-                      {availableQuantity}
-                    </td>
-                    {canEdit && (
-                      <td className="p-3 text-center">
-                        <div className={`text-xs ${isDark ? "text-white/60" : "text-gray-500"}`}>
-                          Total - Booked
-                        </div>
-                      </td>
-                    )}
-                  </tr>
-                </tfoot>
-              </table>
-            </div>
-
-            {currentSku && (
-              <div className="mt-4 pt-4 border-t border-white/10">
-                <label className={`text-sm font-medium ${isDark ? "text-white" : "text-gray-900"} mb-2 block`}>
-                  📝 Booked note
-                </label>
-                <textarea
-                  value={bookedNote}
-                  onChange={(e) => handleBookedNoteChange(e.target.value)}
-                  placeholder="Add context about what these bookings are for..."
-                  rows={3}
-                  className={`w-full rounded-md border px-3 py-2 text-sm ${
-                    isDark
-                      ? "bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-white/20"
-                      : "bg-white border-gray-300 text-gray-900 placeholder:text-gray-400 focus:border-gray-400"
-                  } focus:outline-none focus:ring-1 focus:ring-[var(--accent)] transition`}
-                />
-                <p className={`mt-1 text-xs ${isDark ? "text-white/50" : "text-gray-500"}`}>
-                  This note stays with the selected product while you’re on this page.
-                </p>
-              </div>
-            )}
-
-            {/* Export button at very bottom */}
-            {productReport.length > 0 && (
-              <div className="mt-2 pt-2 border-t border-white/5">
-                <div className="text-right">
-                  <button
-                    onClick={exportProductReport}
-                    className={`text-xs px-2 py-1 rounded transition-colors ${
-                      isDark 
-                        ? "text-white/40 hover:text-white/60" 
-                        : "text-gray-400 hover:text-gray-600"
-                    }`}
-                  >
-                    📥 Export CSV
-                  </button>
-                </div>
-              </div>
-            )}
-          </CardBody>
-        </Card>
-      )}
-
-      {/* Show prompt when no product is selected */}
-      {!currentSku && showProductSelector && (
-        <div className={`text-center py-12 rounded-lg border-2 border-dashed ${
-          isDark 
-            ? "border-white/20 bg-white/5" 
-            : "border-gray-300 bg-gray-50"
-        }`}>
-          <div className="text-4xl mb-4">📊</div>
-          <h3 className={`text-xl font-semibold mb-2 ${isDark ? "text-white" : "text-gray-900"}`}>
-            Select a Product to View Report
-          </h3>
-          <p className={`text-base ${isDark ? "text-white/70" : "text-gray-600"}`}>
-            Choose a product from the dropdown above to see inventory levels across all locations.
-          </p>
-          <div className={`mt-4 text-sm ${isDark ? "text-white/60" : "text-gray-500"}`}>
-            💡 This gives you a complete overview of where your inventory is located
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
+                            className={`
