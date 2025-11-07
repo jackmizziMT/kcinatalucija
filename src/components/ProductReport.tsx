@@ -81,6 +81,12 @@ export function ProductReport({ selectedSku, onSkuChange, showProductSelector = 
   // Quick stock adjustment functions
   const canEdit = user?.role !== 'viewer';
   
+  const totalQuantity = useMemo(() => {
+    return productReport.reduce((sum, item) => sum + item.quantity, 0);
+  }, [productReport]);
+
+  const availableQuantity = totalQuantity - bookedQuantity;
+
   const handleQuickAdjust = async (locationId: string, operation: 'add' | 'deduct') => {
     if (!currentSku || !canEdit) return;
     
@@ -222,7 +228,7 @@ export function ProductReport({ selectedSku, onSkuChange, showProductSelector = 
                       </span>
                     </td>
                     <td className="p-3 text-lg font-bold text-[var(--primary)] bg-[var(--primary)]/10 rounded-md text-center">
-                      {productReport.reduce((sum, item) => sum + item.quantity, 0)}
+                      {totalQuantity}
                     </td>
                     {canEdit && (
                       <td className="p-3 text-center">
@@ -277,6 +283,31 @@ export function ProductReport({ selectedSku, onSkuChange, showProductSelector = 
                           >
                             −
                           </button>
+                        </div>
+                      </td>
+                    )}
+                  </tr>
+                  <tr className={`border-t ${isDark ? "border-white/10" : "border-gray-200"}`}>
+                    <td className={`p-3 font-semibold ${isDark ? "text-white" : "text-gray-900"}`}>
+                      <span className="inline-flex items-center gap-2">
+                        ✅ Available
+                      </span>
+                    </td>
+                    <td className={`p-3 font-semibold text-center ${
+                      availableQuantity < 0
+                        ? "text-red-500"
+                        : availableQuantity === 0
+                        ? isDark
+                          ? "text-white/70"
+                          : "text-gray-600"
+                        : "text-[var(--accent)]"
+                    }`}>
+                      {availableQuantity}
+                    </td>
+                    {canEdit && (
+                      <td className="p-3 text-center">
+                        <div className={`text-xs ${isDark ? "text-white/60" : "text-gray-500"}`}>
+                          Total - Booked
                         </div>
                       </td>
                     )}
