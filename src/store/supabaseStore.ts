@@ -604,6 +604,24 @@ export const useSupabaseInventoryStore = create<SupabaseInventoryStore>()((set, 
         note: data?.note ?? '',
       };
 
+      if ((!data || !data.note) && typeof window !== 'undefined') {
+        try {
+          const stored = window.localStorage.getItem('productReportBookedNotes');
+          if (stored) {
+            const parsed = JSON.parse(stored);
+            const legacyNote = parsed?.[sku];
+            if (legacyNote && !booking.note) {
+              booking.note = legacyNote;
+              await supabase
+                .from('bookings')
+                .upsert({ sku, quantity: booking.quantity, note: legacyNote }, { onConflict: 'sku' });
+            }
+          }
+        } catch (error) {
+          console.warn('Failed to import legacy note for', sku, error);
+        }
+      }
+
       set((state) => ({
         bookings: {
           ...state.bookings,
@@ -795,6 +813,11 @@ export const useSupabaseInventoryStore = create<SupabaseInventoryStore>()((set, 
       
       const [itemsResult, locationsResult, stockResult, bookingsResult] = await Promise.race([syncPromise, timeoutPromise]) as any;
 
+      console.log('[syncFromDatabase] items:', itemsResult);
+      console.log('[syncFromDatabase] locations:', locationsResult);
+      console.log('[syncFromDatabase] stock_by_location:', stockResult);
+      console.log('[syncFromDatabase] bookings:', bookingsResult);
+
       if (itemsResult.error) throw itemsResult.error;
       if (locationsResult.error) throw locationsResult.error;
       if (stockResult.error) throw stockResult.error;
@@ -838,6 +861,33 @@ export const useSupabaseInventoryStore = create<SupabaseInventoryStore>()((set, 
         return acc;
       }, {});
 
+      let legacyNotes: Record<string, string> = {};
+      if (typeof window !== 'undefined') {
+        try {
+          const stored = window.localStorage.getItem('productReportBookedNotes');
+          if (stored) {
+            const parsed = JSON.parse(stored);
+            if (parsed && typeof parsed === 'object') {
+              legacyNotes = parsed;
+            }
+          }
+        } catch (error) {
+          console.warn('Failed to read legacy booked notes from storage', error);
+        }
+      }
+
+      const upserts: { sku: string; quantity: number; note: string }[] = [];
+
+      Object.entries(legacyNotes).forEach(([sku, note]) => {
+        if (!bookings[sku] && note) {
+          bookings[sku] = {
+            quantity: 0,
+            note,
+          };
+          upserts.push({ sku, quantity: 0, note });
+        }
+      });
+ 
       // Update state
       set({
         items,
@@ -845,6 +895,20 @@ export const useSupabaseInventoryStore = create<SupabaseInventoryStore>()((set, 
         stockByLocation,
         bookings,
       });
+
+      if (upserts.length > 0) {
+        try {
+          await supabase
+            .from('bookings')
+            .upsert(upserts, { onConflict: 'sku' });
+
+          if (typeof window !== 'undefined') {
+            window.localStorage.removeItem('productReportBookedNotes');
+          }
+        } catch (error) {
+          console.error('Failed to persist legacy booked notes', error);
+        }
+      }
     } catch (error) {
       console.error('Error syncing from database:', error);
       throw error;
