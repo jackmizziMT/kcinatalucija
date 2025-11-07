@@ -584,6 +584,17 @@ export const useSupabaseInventoryStore = create<SupabaseInventoryStore>()((set, 
         .eq('sku', sku)
         .maybeSingle();
 
+      if (error && error.code === '42P01') {
+        console.warn('Bookings table not found; returning default booking');
+        set((state) => ({
+          bookings: {
+            ...state.bookings,
+            [sku]: { quantity: 0, note: '' },
+          },
+        }));
+        return;
+      }
+
       if (error && error.code !== 'PGRST116') {
         throw error;
       }
@@ -635,6 +646,10 @@ export const useSupabaseInventoryStore = create<SupabaseInventoryStore>()((set, 
         }, { onConflict: 'sku' });
 
       if (error) {
+        if (error.code === '42P01') {
+          console.warn('Bookings table not found; skipping persistence of quantity');
+          return;
+        }
         throw error;
       }
     } catch (error) {
@@ -675,6 +690,10 @@ export const useSupabaseInventoryStore = create<SupabaseInventoryStore>()((set, 
         }, { onConflict: 'sku' });
 
       if (error) {
+        if (error.code === '42P01') {
+          console.warn('Bookings table not found; skipping persistence of note');
+          return;
+        }
         throw error;
       }
     } catch (error) {
@@ -779,7 +798,10 @@ export const useSupabaseInventoryStore = create<SupabaseInventoryStore>()((set, 
       if (itemsResult.error) throw itemsResult.error;
       if (locationsResult.error) throw locationsResult.error;
       if (stockResult.error) throw stockResult.error;
-      if (bookingsResult.error) throw bookingsResult.error;
+      const bookingsError = bookingsResult.error;
+      if (bookingsError && bookingsError.code !== '42P01') {
+        throw bookingsError;
+      }
 
       // Transform data
       const items = itemsResult.data.reduce((acc: any, item: any) => {
@@ -806,7 +828,9 @@ export const useSupabaseInventoryStore = create<SupabaseInventoryStore>()((set, 
         return acc;
       }, {} as Record<string, number>);
 
-      const bookings = (bookingsResult.data ?? []).reduce((acc: Record<string, BookingRecord>, booking: any) => {
+      const bookingsData = bookingsError ? [] : bookingsResult.data ?? [];
+
+      const bookings = bookingsData.reduce((acc: Record<string, BookingRecord>, booking: any) => {
         acc[booking.sku] = {
           quantity: booking.quantity ?? 0,
           note: booking.note ?? '',
