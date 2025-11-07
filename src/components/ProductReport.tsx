@@ -267,11 +267,7 @@ export function ProductReport({ selectedSku, onSkuChange, showProductSelector = 
                     <td className="p-3 text-lg font-semibold text-[var(--primary)] text-center">
                       {totalQuantity}
                     </td>
-                    {canEdit && (
-                      <td className="p-3 text-center text-xs uppercase tracking-wide text-[var(--primary)]/80">
-                        Quick adjust
-                      </td>
-                    )}
+                    {canEdit && <td className="p-3" />}
                   </tr>
                   <tr
                     className={`border-t ${
@@ -321,10 +317,10 @@ export function ProductReport({ selectedSku, onSkuChange, showProductSelector = 
                     )}
                   </tr>
                   <tr
-                    className={`border-t shadow-sm ${
+                    className={`border-t shadow-md ${
                       isDark
-                        ? "bg-[var(--accent)]/20 border-[var(--accent)]/40"
-                        : "bg-[var(--accent)]/15 border-[var(--accent)]/30"
+                        ? "bg-[var(--accent)]/30 border-[var(--accent)]/50"
+                        : "bg-[var(--accent)]/10 border-[var(--accent)]/40"
                     }`}
                   >
                     <td className={`p-3 font-semibold text-lg ${isDark ? "text-white" : "text-[var(--accent-dark,#084B83)]"}`}>
@@ -333,7 +329,7 @@ export function ProductReport({ selectedSku, onSkuChange, showProductSelector = 
                       </span>
                     </td>
                     <td
-                      className={`p-3 text-lg font-bold text-center ${
+                      className={`p-3 text-2xl font-bold text-center tracking-wide ${
                         availableQuantity < 0
                           ? "text-red-500"
                           : availableQuantity === 0
@@ -345,11 +341,7 @@ export function ProductReport({ selectedSku, onSkuChange, showProductSelector = 
                     >
                       {availableQuantity}
                     </td>
-                    {canEdit && (
-                      <td className="p-3 text-center text-xs uppercase tracking-wide text-[var(--accent,#084B83)]/80">
-                        Total - Booked
-                      </td>
-                    )}
+                    {canEdit && <td className="p-3" />}
                   </tr>
                 </tfoot>
               </table>
