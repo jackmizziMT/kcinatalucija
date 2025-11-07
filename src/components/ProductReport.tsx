@@ -347,3 +347,23 @@ export function ProductReport({ selectedSku, onSkuChange, showProductSelector = 
             {productReport.length > 0 && (
               <div className="mt-2 pt-2 border-t border-white/5">
                 <div className="text-right">
+                  <button
+                    onClick={exportProductReport}
+                    className={`text-xs px-2 py-1 rounded transition-colors ${
+                      isDark
+                        ? "text-white/40 hover:text-white/60"
+                        : "text-gray-400 hover:text-gray-600"
+                    }`}
+                  >
+                    📥 Export CSV
+                  </button>
+                </div>
+              </div>
+            )}
+
+          </CardBody>
+        </Card>
+      )}
+    </div>
+  );
+}
