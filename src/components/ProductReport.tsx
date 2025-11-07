@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import { useSupabaseInventoryStore } from "@/store/supabaseStore";
 import { Card, CardBody, CardHeader } from "@/components/ui/Card";
-import { Button, Select } from "@/components/ui/Controls";
+import { Select } from "@/components/ui/Controls";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useSupabaseAuth } from "@/contexts/SupabaseAuthContext";
 
@@ -19,6 +19,7 @@ export function ProductReport({ selectedSku, onSkuChange, showProductSelector = 
   const { user } = useSupabaseAuth();
   const [internalSelectedSku, setInternalSelectedSku] = useState(selectedSku || "");
   const [adjustingStocks, setAdjustingStocks] = useState<Record<string, boolean>>({});
+  const [bookedBySku, setBookedBySku] = useState<Record<string, number>>({});
 
   const itemList = useMemo(() => Object.values(items), [items]);
   const locationList = useMemo(() => Object.values(locations), [locations]);
@@ -100,6 +101,22 @@ export function ProductReport({ selectedSku, onSkuChange, showProductSelector = 
     } finally {
       setAdjustingStocks(prev => ({ ...prev, [stockKey]: false }));
     }
+  };
+
+  const bookedQuantity = currentSku ? bookedBySku[currentSku] ?? 0 : 0;
+
+  const handleBookedAdjust = (delta: number) => {
+    if (!currentSku || !canEdit) return;
+
+    setBookedBySku((prev) => {
+      const current = prev[currentSku] ?? 0;
+      const next = Math.max(0, current + delta);
+      if (next === current) return prev;
+      return {
+        ...prev,
+        [currentSku]: next,
+      };
+    });
   };
 
   return (
@@ -211,6 +228,55 @@ export function ProductReport({ selectedSku, onSkuChange, showProductSelector = 
                       <td className="p-3 text-center">
                         <div className={`text-xs ${isDark ? "text-white/60" : "text-gray-500"}`}>
                           {canEdit ? "Quick adjust" : ""}
+                        </div>
+                      </td>
+                    )}
+                  </tr>
+                  <tr className={`border-t ${isDark ? "border-white/10" : "border-gray-200"}`}>
+                    <td className={`p-3 font-semibold ${isDark ? "text-white" : "text-gray-900"}`}>
+                      <span className="inline-flex items-center gap-2">
+                        📅 Booked
+                      </span>
+                    </td>
+                    <td className="p-3 font-semibold text-center">
+                      <span className={`${
+                        bookedQuantity > 0
+                          ? "text-orange-500 font-bold"
+                          : isDark
+                          ? "text-white/60"
+                          : "text-gray-500"
+                      }`}>
+                        {bookedQuantity}
+                      </span>
+                    </td>
+                    {canEdit && (
+                      <td className="p-3 text-center">
+                        <div className="flex items-center justify-center gap-1">
+                          <button
+                            onClick={() => handleBookedAdjust(1)}
+                            className={`px-2 py-1 rounded text-sm font-bold transition-colors ${
+                              isDark
+                                ? "bg-orange-500/20 text-orange-400 hover:bg-orange-500/30 border border-orange-500/30"
+                                : "bg-orange-100 text-orange-700 hover:bg-orange-200 border border-orange-300"
+                            }`}
+                            title="Add 1 booking"
+                          >
+                            +
+                          </button>
+                          <button
+                            onClick={() => handleBookedAdjust(-1)}
+                            disabled={bookedQuantity === 0}
+                            className={`px-2 py-1 rounded text-sm font-bold transition-colors ${
+                              bookedQuantity === 0
+                                ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                                : isDark
+                                ? "bg-orange-500/20 text-orange-400 hover:bg-orange-500/30 border border-orange-500/30"
+                                : "bg-orange-100 text-orange-700 hover:bg-orange-200 border border-orange-300"
+                            }`}
+                            title="Remove 1 booking"
+                          >
+                            −
+                          </button>
                         </div>
                       </td>
                     )}
