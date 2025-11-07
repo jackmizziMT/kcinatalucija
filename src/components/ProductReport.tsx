@@ -81,6 +81,8 @@ export function ProductReport({ selectedSku, onSkuChange, showProductSelector = 
   // Quick stock adjustment functions
   const canEdit = user?.role !== 'viewer';
   
+  const bookedQuantity = currentSku ? bookedBySku[currentSku] ?? 0 : 0;
+
   const totalQuantity = useMemo(() => {
     return productReport.reduce((sum, item) => sum + item.quantity, 0);
   }, [productReport]);
@@ -108,8 +110,6 @@ export function ProductReport({ selectedSku, onSkuChange, showProductSelector = 
       setAdjustingStocks(prev => ({ ...prev, [stockKey]: false }));
     }
   };
-
-  const bookedQuantity = currentSku ? bookedBySku[currentSku] ?? 0 : 0;
 
   const handleBookedAdjust = (delta: number) => {
     if (!currentSku || !canEdit) return;
