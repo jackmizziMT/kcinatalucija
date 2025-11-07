@@ -61,6 +61,7 @@ const initialState = (): InventoryState => {
     users: { [owner.id]: owner },
     currentUserId: owner.id,
     reasons: ["purchase", "sale", "correction", "wastage", "return_in", "return_out", "stocktake", "other"],
+    bookings: {},
   };
 };
 
