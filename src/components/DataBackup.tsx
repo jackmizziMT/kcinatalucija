@@ -2,14 +2,12 @@
 
 import { useState } from "react";
 import { useInventoryStore } from "@/store/inventoryStore";
-import { useAuth } from "@/contexts/AuthContext";
 import { Card, CardBody, CardHeader } from "@/components/ui/Card";
 import { Button, Input, Label } from "@/components/ui/Controls";
 import { useTheme } from "@/contexts/ThemeContext";
 
 export function DataBackup() {
   const { exportState, importItems, locations, stockByLocation, adjustments, transfers, auditTrail } = useInventoryStore();
-  const { users } = useAuth();
   const { theme } = useTheme();
   const [importData, setImportData] = useState("");
   const [error, setError] = useState("");
@@ -23,7 +21,6 @@ export function DataBackup() {
       timestamp: new Date().toISOString(),
       version: "1.0",
       data: exportedState,
-      users: Object.values(users),
       metadata: {
         totalItems: Object.keys(exportedState.items || {}).length,
         totalLocations: Object.keys(locations).length,
