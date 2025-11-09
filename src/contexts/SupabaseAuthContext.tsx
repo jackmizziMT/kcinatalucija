@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { supabase } from '@/lib/supabase';
-import { User } from '@supabase/supabase-js';
+import { User, Session } from '@supabase/supabase-js';
 
 interface AppUser {
   id: string;
@@ -40,7 +40,18 @@ export function SupabaseAuthProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     let isMounted = true;
-    
+    const handleSession = async (session: Session | null) => {
+      if (!isMounted) return;
+
+      setSupabaseUser(session?.user ?? null);
+      if (session?.user) {
+        await loadAppUser(session.user.email!);
+      } else {
+        setUser(null);
+        setIsLoading(false);
+      }
+    };
+
     const initializeAuth = async () => {
       try {
         // Clear any existing auth state first
@@ -65,13 +76,23 @@ export function SupabaseAuthProvider({ children }: { children: ReactNode }) {
           return;
         }
         
-        setSupabaseUser(session?.user ?? null);
         if (session?.user) {
-          await loadAppUser(session.user.email!);
-        } else {
-          setUser(null);
-          setIsLoading(false);
+          await handleSession(session);
+          return;
         }
+
+        // Attempt to recover session if none found (may happen on page reload after inactivity)
+        const { data: refreshedData, error: refreshError } = await supabase.auth.refreshSession();
+
+        if (refreshError) {
+          console.warn('Session recovery failed:', refreshError.message);
+          setUser(null);
+          setSupabaseUser(null);
+          setIsLoading(false);
+          return;
+        }
+
+        await handleSession(refreshedData.session ?? null);
       } catch (error) {
         console.error('Auth initialization error:', error);
         if (isMounted) {
@@ -85,50 +106,23 @@ export function SupabaseAuthProvider({ children }: { children: ReactNode }) {
     initializeAuth();
 
     // Listen for auth changes
+    if (typeof window !== 'undefined') {
+      supabase.auth.startAutoRefresh();
+    }
+
     const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
       if (!isMounted) return;
       
       console.log('Auth state change:', event, session?.user?.email);
-      setSupabaseUser(session?.user ?? null);
-      if (session?.user) {
-        await loadAppUser(session.user.email!);
-      } else {
-        setUser(null);
-        setIsLoading(false);
-      }
+      await handleSession(session ?? null);
     });
-
-    // Set up periodic session refresh to maintain persistence (less aggressive)
-    const refreshInterval = setInterval(async () => {
-      if (!isMounted) return;
-      
-      try {
-        const { data: { session }, error } = await supabase.auth.getSession();
-        if (error) {
-          console.log('Session refresh error:', error);
-          return;
-        }
-        
-        if (session && session.expires_at) {
-          const expiresAt = new Date(session.expires_at * 1000);
-          const now = new Date();
-          const timeUntilExpiry = expiresAt.getTime() - now.getTime();
-          
-          // If session expires in less than 15 minutes, refresh it (more conservative)
-          if (timeUntilExpiry < 15 * 60 * 1000) {
-            console.log('Refreshing session before expiry');
-            await supabase.auth.refreshSession();
-          }
-        }
-      } catch (error) {
-        console.log('Session refresh check failed:', error);
-      }
-    }, 5 * 60 * 1000); // Check every 5 minutes instead of 2
 
     return () => {
       isMounted = false;
       subscription.unsubscribe();
-      clearInterval(refreshInterval);
+      if (typeof window !== 'undefined') {
+        supabase.auth.stopAutoRefresh();
+      }
     };
   }, []);
 
